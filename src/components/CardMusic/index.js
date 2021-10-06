@@ -4,7 +4,6 @@ import { BsFillHeartFill } from 'react-icons/bs'
 import { useState, useEffect } from 'react';
 
 const CardMusic = ({title, artist, duration, image}) => {
-
     var minutes = parseInt((duration/60).toFixed(2));
     var seconds = duration%60;
 
@@ -25,20 +24,19 @@ const CardMusic = ({title, artist, duration, image}) => {
 
     return(
         <S.ContainerMusic>
-            <aside>
-                <S.ImgMusic src={image} alt="capa do álbum" />
-            </aside>
-            <div>
-                <h5>{title}</h5>
-                <h6>{`cantor: ${artist}`}</h6>
-                <p>{`${minutes}:${seconds} min`}</p>
-            </div>
-            <S.MiniPlay>
-                <FaPlay />
-            </S.MiniPlay>
-            <S.Favorite colorConfig={cor} onClick={() => { setColor(!color)}} >
-                <BsFillHeartFill />
-            </S.Favorite>
+            <S.Image src={image} alt={`música  ${title}`} />
+            <S.DataItems>
+                <h3>{title}</h3>
+                <h4>{artist}</h4>
+                <aside>
+                    <p>Duração:</p>
+                    <p>{`${minutes}:${seconds} min`}</p>
+                </aside>    
+                <aside>
+                    <S.PlayButtonM><FaPlay /></S.PlayButtonM>  
+                    <S.Favorite color={cor}onClick={() => {setColor(!color)}}><BsFillHeartFill /></S.Favorite>    
+                </aside>
+            </S.DataItems>
         </S.ContainerMusic>
     )
 }

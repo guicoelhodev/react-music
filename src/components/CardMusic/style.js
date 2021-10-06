@@ -2,74 +2,77 @@ import styled from 'styled-components';
 import { PlayButton } from 'design/PlayButton';
 
 export const ContainerMusic = styled.article`
-  padding:20px 0;
-  position:relative;
-  width:300px;
-  height:100px;
-  display:flex;
-  align-items  : center;
-  border:1px solid var(--orange);
-  border-radius:8px;
-  background-color: var(--white);
+position:relative;
+display:flex;
+flex-direction:column;
+justify-content: center;
+align-items:center;
+width:260px;
+height:auto;
+transition:all 0.8s ease;
 
-  aside {
-      width:100px;
-      height:100px;
-      padding:10px;
-      box-sizing: border-box;
-  }
-
-  div {
-      display:flex;
-      flex-direction:column;
-      justify-content: space-evenly;
-      gap:5px;
-
-      h5 {
-        font-size:1.2rem;
-      }
-
-      h6 {
-        margin-top:5px;
-        font-size:1rem;
-      }
-
-      p {
-        font-size:0.9rem;
-      }
-  }
-`;
-
-export const ImgMusic = styled.img`
-
-width:100%;
-object-fit:contain;
+:hover {
+  scale:1.07;
+}
 `
 
-export const MiniPlay = styled(PlayButton)`
-position: absolute;
-width:30px;
-height:30px;
-bottom:5px;
-right:5px;
-z-index:2;
+export const Image = styled.img`
+
+width:200px;
+height:200px;
+object-fit:contain;
+z-index:1;
+border-radius:14px;
+
+`
+
+export const DataItems = styled.div`
+gap:10px;
+padding-top:80px;
+transform:translateY(-100px);
+bordeR:1px solid var(--orange);
+width:100%;
+height:220px;
+display:flex;
+flex-direction:column;
+align-items:center;
+justify-content:end;
+background-color: var(--white);
+
+h3 {
+   font-size:1.4rem;
+   text-align:center;
+   width: 220px;
+   text-overflow: ellipsis;
+   overflow: hidden;
+   white-space: nowrap;
+  }
+
+  aside {
+    padding-top:10px;
+    display:flex;
+    width:70%;
+    align-items:center;
+    justify-content:center;
+    gap:30px;
+  }
+
+  
+`
+
+export const PlayButtonM = styled(PlayButton)`
+width:40px;
+height:40px;
 padding-left:5px;
 `
 
-export const Favorite = styled(PlayButton)`
-position: absolute;
-width:30px;
-height:30px;
-top:5px;
-right:5px;
-z-index:2;
-background-color: transparent;
+export const Favorite = styled(PlayButtonM)`
+width:69px;
+height:68px;
+padding-left:0;
+background-color:transparent;
 
 svg {
-  fill:${(props) => props.colorConfig};
-  width:50px;
-  height:50px;
+  fill:${(props) => props.color};
 }
-
-
 `

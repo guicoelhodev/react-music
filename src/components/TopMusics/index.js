@@ -6,34 +6,62 @@ import api from 'services/api';
 import ScaleLoader from "react-spinners/ScaleLoader";
 import { useEffect, useState } from 'react';
 import { LoadingContainer } from "GlobalStyle";
+import styled from "styled-components";
+import { useRef } from "react";
 
 const TopMusics = () => {
 
     const [ musicas, setMusicas ] = useState([]);
     const [active, setActive] = useState(false);
+    const [ loader, setLoader ] = useState(true);
+    const loadMoreRef = useRef();
 
-    const [loader, setLoader] = useState(true);
+    
 
     useEffect(() => {
 
         function getAlbum(){
             if(active === false){
                 api.get('/radio/37151/tracks?index=0&limit=10')
-                    .then((res) => setMusicas(res.data.data))
+                    .then((res) => setMusicas((previousState) => [...previousState, ...res.data.data]))
                     .catch((err) => { console.error(err)})
             }
+            setActive(true);
         }
         getAlbum();
-        setActive(true);
         setLoader(false);
         
     }, [musicas, active])
 
-    console.log(musicas);
+    useEffect(() => {
+        const options = {
+          root: null,
+          rootMargin: "20px",
+          threshold: 1.0
+        };
+    
+        const observer = new IntersectionObserver((entities) => {
+          const target = entities[0];
 
+          if (target.isIntersecting){
+            setActive(false);
 
+          }
+        }, options);
+    
+        if (loadMoreRef.current){
+          observer.observe(loadMoreRef.current);
+          console.log('athduhuha')
+
+        }
+
+        return () => {
+            observer.disconnect();
+        }
+      }, []);
+    
     return(
-        <Container>
+        <Container >
             <SearchMusic />
             <p>Bom dia Guilherme, veja aqui as melhores do ranking que separamos pra você</p>
             {
@@ -42,24 +70,40 @@ const TopMusics = () => {
                             </LoadingContainer>
 
                 : (
+                    <ul>
                     <ContainerMusic>
+                        
                         {
                             musicas.map((item) => {
-                                return <CardMusic 
-                                key={item.id} 
-                                title={item.title}
-                                artist={item.artist.name} 
-                                duration={item.duration}
-                                image={item.album.cover_big}
-                                />
+                                return <li key={item.id}>
+                                            <CardMusic
+                                                title={item.title}
+                                                artist={item.artist.name} 
+                                                duration={item.duration}
+                                                image={item.album.cover_big}
+                                            />
+
+                                        </li>
                             })
                         }
+                        
+                        <ObserverA ref={loadMoreRef}></ObserverA>
                     </ContainerMusic>
+                    
+                    </ul>
                 )
             }
+            <button onClick={() => {setActive(!active)}}>UASHUASHUASHAUSH</button>
+
         </Container>
     )
 }
 
 export default TopMusics
 
+const ObserverA = styled.li`
+
+height:0px;
+background-color:red;
+width:100%;
+`
