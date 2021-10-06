@@ -18,7 +18,7 @@ const TopMusics = () => {
 
         function getAlbum(){
             if(active === false){
-                api.get('/radio/37151/tracks?index=10&limit=5')
+                api.get('/radio/37151/tracks?index=0&limit=10')
                     .then((res) => setMusicas(res.data.data))
                     .catch((err) => { console.error(err)})
             }
