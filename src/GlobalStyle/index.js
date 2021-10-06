@@ -39,3 +39,11 @@ position:relative;
 max-width:1280px;
 height:auto;
 `
+
+export const LoadingContainer = styled.div`
+width:100%;
+display:grid;
+place-items:center;
+height:auto;
+padding:60px 0;
+`

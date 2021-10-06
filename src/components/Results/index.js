@@ -1,7 +1,6 @@
 import SearchMusic from 'components/Search';
 import { ContainerMusic } from 'design/ContainerMusic';
 import { Container } from 'design/ContainerPages';
-import * as S from './style';
 
 const Results = () => {
 
