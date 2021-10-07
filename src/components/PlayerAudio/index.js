@@ -1,5 +1,5 @@
 import * as S from "./style";
-import Cogumelo from "assets/images/cogumelo.png";
+import HeadPhone from "assets/icons/icon-music.svg";
 import { BsFillPlayFill } from "react-icons/bs";
 import { AiOutlinePause } from "react-icons/ai";
 import DeezerIMG from "assets/images/deezer-logo.png";
@@ -41,7 +41,7 @@ const PlayerAudio = () => {
     <S.ContainerPlayer>
       <S.ImageDiv>
         {imageDefault ? (
-          <S.Image src={Cogumelo} alt="Capa do álbum" />
+          <S.Image src={HeadPhone} alt="Capa do álbum" />
         ) : (
           <S.Image src={data[3]} alt="Capa do álbum" />
         )}
