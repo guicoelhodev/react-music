@@ -6,41 +6,62 @@ import api from 'services/api';
 import ScaleLoader from "react-spinners/ScaleLoader";
 import { useEffect, useState } from 'react';
 import { LoadingContainer } from "GlobalStyle";
-import styled from "styled-components";
 import InfiniteScroll from "components/InfiniteScroll";
+import styled from "styled-components";
+import { useCallback } from "react";
 
 const TopMusics = () => {
-
-    const [ musicas, setMusicas ] = useState([]);
+    const [dataPlaylist, setDataPlaylist] = useState([]);
     const [active, setActive] = useState(false);
     const [ loader, setLoader ] = useState(true);
+    const [musicas, setMusicas] = useState([]);
+    const [number, setNumber] = useState(0);
 
-    function handleState(bool){
-        setActive(bool);
-    }
-    console.log(musicas.length);
     useEffect(() => {
 
         function getAlbum(){
             if(active === false){
-                api.get(`/radio/37151/tracks?index=0&limit=10`)
-                    .then((res) => setMusicas((previousState) => [...previousState, ...res.data.data]))
-                    .catch((err) => { console.error(err)})
-            }
+                api.get(`/playlist/3155776842?index=${number}&limit=12`)
+                    .then((res) => {
+                        setDataPlaylist(res.data)
+                        setMusicas((previousState) => [...previousState,...res.data.tracks.data])})
+
+                    .catch((err) => { console.error(err)})}
+
             setActive(true);
         }
         getAlbum();
         setLoader(false);
-    }, [active]) 
+        
 
-   
-     
-   
+    }, [active, number]) 
+    
+
+    
+    const handleState = useCallback((bool) => {
+        setActive(bool);
+        setNumber((previousState) => previousState+12);
+    }, [])
+
+    var musicFilter = [];
+
+    musicas.forEach((item)=> {
+        var duplicated  = musicFilter.findIndex(redItem => {
+            return item.id === redItem.id;
+        }) > -1;
+        if(!duplicated) {
+            musicFilter.push(item);
+        }
+    });
+
     return(
         <>
-        <Container >
+        <ContainerTop >
             <SearchMusic />
-            <p>Bom dia Guilherme, veja aqui as melhores do ranking que separamos pra você</p>
+            <p>Bom dia Guilherme, veja aqui as melhores do nosso ranking diário que separamos pra você</p>
+            <h2>{dataPlaylist.title}</h2>
+            <h3>{`Pessoas seguindo essa playlist: ${dataPlaylist.fans}`}</h3>
+           
             {
                 loader ?    <LoadingContainer>
                                 <ScaleLoader hash={100} color="#EB8414"/>
@@ -51,7 +72,7 @@ const TopMusics = () => {
                     <ContainerMusic>
                         
                         {
-                            musicas.map((item) => {
+                            musicFilter.map((item) => {
                                 return <li key={item.id}>
                                             <CardMusic
                                                 title={item.title}
@@ -72,7 +93,7 @@ const TopMusics = () => {
                 )
             }
 
-        </Container>
+        </ContainerTop>
         </> 
 
     )
@@ -80,8 +101,25 @@ const TopMusics = () => {
 
 export default TopMusics
 
-export const aaag = styled.li`
-background-color: red;
-height:20px;
-width:30px;
+const ContainerTop = styled(Container)`
+
+h2 {
+    font-size:2.4rem;
+    color:red;
+}
+
+h3 {
+    text-align:right;
+    padding-right:40px;
+    color:#333333;
+}
+gap:20px;
 `
+
+/*
+
+function handleState (bool){
+        setActive(bool);
+        setNumber((previousState) => previousState+10);
+    }
+*/

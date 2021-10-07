@@ -8,7 +8,6 @@ export const ContainerMusic = styled.div`
   grid-template-rows: auto;
   align-items:center;
   justify-content: center;
-  border:1px solid green;
   gap:40px;
   padding: 20px 0;
 `;
