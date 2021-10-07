@@ -29,10 +29,11 @@ border-radius:14px;
 export const DataItems = styled.div`
 gap:10px;
 padding-top:80px;
+padding-bottom:20px;
 transform:translateY(-80px);
 bordeR:1px solid var(--orange);
 width:100%;
-height:220px;
+height:240px;
 display:flex;
 flex-direction:column;
 align-items:center;
@@ -76,5 +77,21 @@ export const Title = styled.h2`
    text-align:center;
    overflow: hidden;
    white-space: nowrap;
+
+`
+export const RemoveButton = styled.button`
+background-color:Red;
+color:white;
+border:1px solid transparent;
+font-size:1rem;
+width:160px;
+height:40px;
+transition: all 0.8s ease;
+
+:hover{
+  border:1px solid red;
+  color:red;
+  background-color:white;
+} 
 
 `

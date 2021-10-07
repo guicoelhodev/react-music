@@ -8,6 +8,7 @@ import { LoadingContainer } from "GlobalStyle";
 import InfiniteScroll from "components/InfiniteScroll";
 import styled from "styled-components";
 import { useCallback } from "react";
+import { useSelector } from 'react-redux';
 
 const TopMusics = () => {
     const [dataPlaylist, setDataPlaylist] = useState([]);
@@ -15,6 +16,8 @@ const TopMusics = () => {
     const [ loader, setLoader ] = useState(true);
     const [musicas, setMusicas] = useState([]);
     const [number, setNumber] = useState(0);
+
+    const result = useSelector(state => state.getUser[0]);
 
     useEffect(() => {
 
@@ -57,7 +60,7 @@ const TopMusics = () => {
     return(
         <>
         <ContainerTop >
-            <p>Bom dia Guilherme, veja aqui as melhores do nosso ranking diário que separamos pra você</p>
+            <p>{`Bom dia ${result}, veja aqui as melhores do nosso ranking diário que separamos pra você`}</p>
             <h2>{dataPlaylist.title}</h2>
             <h3>{`Pessoas seguindo essa playlist: ${dataPlaylist.fans}`}</h3>
            

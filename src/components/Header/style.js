@@ -68,10 +68,6 @@ div {
 }
 `
 
-export const ContainerButtons = styled.aside`
-width:100%;
-margin:0 auto;
-`
 
 export const ButtonPage = styled(Button)`
 border:3px solid transparent;
@@ -89,5 +85,28 @@ outline-color:transparent;
   color:var(--orange);
   background-color: transparent;
   outline-color:transparent;
+}
+`
+
+export const ContainerButtons = styled.aside`
+width:100%;
+margin:0 auto;
+
+${ButtonPage}:nth-last-child(1){
+  position: relative;
+
+  span {
+    position:absolute;
+    right:0;
+    top:0;
+    width:40px;
+    height:40px;
+    background-color:black;
+    color:white;
+    border-radius:50%;
+    display:grid;
+    place-items:center;
+    transform:translateX(-40px);
+  }
 }
 `

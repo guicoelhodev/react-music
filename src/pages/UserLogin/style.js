@@ -20,8 +20,11 @@ h2 {
 p {
     font-size:1.2rem;
 }
-section {
+form {
     width:clamp(240px, 100%,600px);
+}
+section {
+    width:100%;
     padding-top:10px;
     display:flex;
     flex-wrap: wrap;

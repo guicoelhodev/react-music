@@ -3,14 +3,16 @@ import { FaPlay } from 'react-icons/fa';
 import { BsFillHeartFill } from 'react-icons/bs'
 import { useState, useEffect } from 'react';
 import { memo } from 'react';
-import { useDispatch} from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 import { getMusic } from 'store/GetMusic/getMusic.actions';
+import { getFavoriteMusic, removeItem } from 'store/FavoriteMusic/favoriteMusic.actions';
 
-const CardMusic = ({title, artist, duration, image, link, interaction, audio}) => {
+/*interection: propriedade para verificar se o link da api tem informações como duração, arquivo.mp3*/
 
+
+const CardMusic = ({id,title, artist, duration, image, link, interaction, audio, remove}) => {
+    var playlist = useSelector(state => state.getFavoriteMusic);
     const dispatch = useDispatch();  
-
-    /*interection: propriedade para verificar se o link da api tem informações como duração, arquivo.mp3*/
     var minutes = parseInt((duration/60).toFixed(2));
     var seconds = duration%60;
 
@@ -29,7 +31,7 @@ const CardMusic = ({title, artist, duration, image, link, interaction, audio}) =
         handleColor();
     }, [color])
 
-    
+
     return(
         <S.ContainerMusic>
             <S.Image src={image} alt={`música  ${title}`} />
@@ -50,8 +52,16 @@ const CardMusic = ({title, artist, duration, image, link, interaction, audio}) =
                             }}
                             
                             ><FaPlay /></S.PlayButtonM>  
-                            <S.Favorite color={cor}onClick={() => {setColor(!color)}}><BsFillHeartFill /></S.Favorite>    
+                            {
+                                remove ? <></>
+                                :
+                                <S.Favorite color={cor}
+                                onClick={() => {
+                                    dispatch(getFavoriteMusic(title, artist, duration, image, link, audio))
+                                    setColor(!color)}}><BsFillHeartFill /></S.Favorite>
+                            }    
                         </aside>
+                        
                     </>
                     ):
                     (
@@ -59,6 +69,11 @@ const CardMusic = ({title, artist, duration, image, link, interaction, audio}) =
                         <a href={link}>Ouvir na deezer</a>    
                     </>
                     )
+                }
+                {
+                    remove ? <S.RemoveButton
+                    onClick={() => dispatch(removeItem(title)) }
+                    >Remover item</S.RemoveButton> : <></>
                 }
             </S.DataItems>
         </S.ContainerMusic>

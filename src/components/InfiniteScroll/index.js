@@ -20,6 +20,7 @@ const InfiniteScroll = ({ loadMore}) => {
 
     if (containerRef.current){
       observer.observe(containerRef.current);
+
     } 
   }, []); //eslint-disable-line
 

@@ -2,7 +2,6 @@ import Header from 'components/Header';
 import MyPlaylist from 'components/MyPlaylist';
 import HomePageNav from 'pages/HomePageNav';
 import { Switch, Route } from "react-router-dom";
-
 import * as S from './style';
 
 const Home = () => {

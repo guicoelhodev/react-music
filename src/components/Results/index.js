@@ -2,13 +2,13 @@ import CardMusic from 'components/CardMusic';
 import { ContainerMusic } from 'design/ContainerMusic';
 import { Container } from 'design/ContainerPages';
 import { useEffect, useState } from 'react';
+
 import api from 'services/api';
 
 
 const Results = ({inputValue, selectValue}) => {
 
     const [musicData, setMusicData] = useState([]);
-    console.log(musicData)
 
     useEffect(() => {
         api.get(`/search/${selectValue}?q=${inputValue}`)

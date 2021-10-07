@@ -1,4 +1,4 @@
-export default function (state=['...','none', '0', '', '',''], action){ //eslint-disable-line
+export default function getMusicReducer(state=['...','none', '0', '', '',''], action){ //eslint-disable-line
     switch(action.type){
         case 'GETMUSIC':
             return action.payload
