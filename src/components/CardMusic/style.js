@@ -40,9 +40,10 @@ justify-content:end;
 background-color: var(--white);
 
 h3 {
+  padding:0;
    font-size:1.4rem;
    text-align:center;
-   width: 220px;
+   width: 200px;
    text-overflow: ellipsis;
    overflow: hidden;
    white-space: nowrap;
