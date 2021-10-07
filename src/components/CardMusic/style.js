@@ -29,25 +29,15 @@ border-radius:14px;
 export const DataItems = styled.div`
 gap:10px;
 padding-top:80px;
-transform:translateY(-100px);
+transform:translateY(-80px);
 bordeR:1px solid var(--orange);
 width:100%;
 height:220px;
 display:flex;
 flex-direction:column;
 align-items:center;
-justify-content:end;
+justify-content:space-evenly;
 background-color: var(--white);
-
-h3 {
-  padding:0;
-   font-size:1.4rem;
-   text-align:center;
-   width: 200px;
-   text-overflow: ellipsis;
-   overflow: hidden;
-   white-space: nowrap;
-  }
 
   aside {
     padding-top:10px;
@@ -76,4 +66,15 @@ background-color:transparent;
 svg {
   fill:${(props) => props.color};
 }
+`
+
+export const Title = styled.h2`
+   width:200px;
+   padding:0;
+   font-size:1.5rem !important;
+   text-overflow: ellipsis;
+   text-align:center;
+   overflow: hidden;
+   white-space: nowrap;
+
 `

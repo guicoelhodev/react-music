@@ -3,10 +3,14 @@ import { FaPlay } from 'react-icons/fa';
 import { BsFillHeartFill } from 'react-icons/bs'
 import { useState, useEffect } from 'react';
 import { memo } from 'react';
+import { useDispatch} from 'react-redux';
+import { getMusic } from 'store/GetMusic/getMusic.actions';
 
-const CardMusic = ({title, artist, duration, image}) => {
+const CardMusic = ({title, artist, duration, image, link, interaction, audio}) => {
 
-    //console.log('estou sendo re-renderizado')
+    const dispatch = useDispatch();  
+
+    /*interection: propriedade para verificar se o link da api tem informações como duração, arquivo.mp3*/
     var minutes = parseInt((duration/60).toFixed(2));
     var seconds = duration%60;
 
@@ -25,20 +29,37 @@ const CardMusic = ({title, artist, duration, image}) => {
         handleColor();
     }, [color])
 
+    
     return(
         <S.ContainerMusic>
             <S.Image src={image} alt={`música  ${title}`} />
             <S.DataItems>
-                <h3>{title}</h3>
+                <S.Title>{title}</S.Title>
                 <h4>{artist}</h4>
-                <aside>
-                    <p>Duração:</p>
-                    <p>{`${minutes}:${seconds} min`}</p>
-                </aside>    
-                <aside>
-                    <S.PlayButtonM><FaPlay /></S.PlayButtonM>  
-                    <S.Favorite color={cor}onClick={() => {setColor(!color)}}><BsFillHeartFill /></S.Favorite>    
-                </aside>
+                {
+                    interaction ? (
+                    <>
+                        <aside>
+                            <p>Duração:</p>
+                            <p>{`${minutes}:${seconds} min`}</p>
+                        </aside>    
+                        <aside>
+                            <S.PlayButtonM
+                            onClick={() => {
+                                dispatch(getMusic(title, artist, duration, image, link, audio))
+                            }}
+                            
+                            ><FaPlay /></S.PlayButtonM>  
+                            <S.Favorite color={cor}onClick={() => {setColor(!color)}}><BsFillHeartFill /></S.Favorite>    
+                        </aside>
+                    </>
+                    ):
+                    (
+                    <>
+                        <a href={link}>Ouvir na deezer</a>    
+                    </>
+                    )
+                }
             </S.DataItems>
         </S.ContainerMusic>
     )

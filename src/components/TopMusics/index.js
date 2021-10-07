@@ -1,5 +1,4 @@
 import CardMusic from "components/CardMusic";
-import SearchMusic from "components/Search"
 import { ContainerMusic } from "design/ContainerMusic";
 import { Container } from "design/ContainerPages";
 import api from 'services/api';
@@ -45,6 +44,7 @@ const TopMusics = () => {
 
     var musicFilter = [];
 
+    //remover itens duplicados
     musicas.forEach((item)=> {
         var duplicated  = musicFilter.findIndex(redItem => {
             return item.id === redItem.id;
@@ -57,7 +57,6 @@ const TopMusics = () => {
     return(
         <>
         <ContainerTop >
-            <SearchMusic />
             <p>Bom dia Guilherme, veja aqui as melhores do nosso ranking diário que separamos pra você</p>
             <h2>{dataPlaylist.title}</h2>
             <h3>{`Pessoas seguindo essa playlist: ${dataPlaylist.fans}`}</h3>
@@ -75,10 +74,13 @@ const TopMusics = () => {
                             musicFilter.map((item) => {
                                 return <li key={item.id}>
                                             <CardMusic
+                                                interaction={true}
                                                 title={item.title}
                                                 artist={item.artist.name} 
                                                 duration={item.duration}
                                                 image={item.album.cover_big}
+                                                link={item.link}
+                                                audio={item.preview}
                                             />
 
                                         </li>
@@ -102,6 +104,8 @@ const TopMusics = () => {
 export default TopMusics
 
 const ContainerTop = styled(Container)`
+padding-top:20px;
+padding-right:20px;
 
 h2 {
     font-size:2.4rem;
@@ -109,17 +113,8 @@ h2 {
 }
 
 h3 {
-    text-align:right;
-    padding-right:40px;
     color:#333333;
+    text-align:right;
 }
 gap:20px;
 `
-
-/*
-
-function handleState (bool){
-        setActive(bool);
-        setNumber((previousState) => previousState+10);
-    }
-*/

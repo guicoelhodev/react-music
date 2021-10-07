@@ -25,20 +25,24 @@ export const ContainerPlayer = styled.div`
       word-wrap:break-word;
     }
   }
+
+  h3 {
+    text-align:center;
+    padding:0 10px;
+  }
 `;
 
 
 export const ImageDiv = styled.div`
-width:clamp(40px, 80%, 140px);
-height:clamp(40px, 80%, 140px);
+width:clamp(40px, 80%, 180px);
+height:clamp(40px, 80%, 180px);
 display:grid;
-place-items:center;
-border:1px solid red;
+
 
 `
 
 export const Image = styled.img`
-width:80%;
+width:100%;
 object-fit: contain;
 `
 
@@ -52,8 +56,9 @@ export const PlayerInteraction = styled.article`
 
 `
 
-export const DeezerButton = styled.button`
-
+export const DeezerButton = styled.a`
+display:grid;
+place-items:center;
 width:200px;
 height:60px;
 background-color:var(--white);

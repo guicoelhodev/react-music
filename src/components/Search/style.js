@@ -10,26 +10,20 @@ export const Container = styled.div`
 `;
 
 export const SearchMusic = styled.div`
+margin:0 auto;
 display:flex;
-width:clamp(220px, 100%, 400px);
+width:clamp(220px, 100%, 600px);
 margin-top:20px;
-
-button {
-    height:42px;
-    width:42px;
-
-    background-color: var(--orange);
-    border:1px solid var(--orange);
-    cursor:pointer;
-    
-    svg {
-        width:90%;
-        height:90%;
-        fill:var(--white);
-    }
-}
 
 input {
     border-radius:0;
+}
+
+select {
+    background-color:var(--orange);
+    border:1px solid var(--orange);
+    color:var(--white);
+    font-size:1rem;
+    width:100px;
 }
 `

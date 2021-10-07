@@ -7,7 +7,7 @@ const InfiniteScroll = ({ loadMore}) => {
     const options = {
       root: null,
       rootMargin: "20px",
-      threshold: 1.0
+      threshold: 0.1
     };
 
     const observer = new IntersectionObserver((entities) => {
@@ -15,13 +15,11 @@ const InfiniteScroll = ({ loadMore}) => {
 
       if (target.isIntersecting){
         loadMore(false);
-        console.log('Apareci nessa porra')
       }
     }, options);
 
     if (containerRef.current){
       observer.observe(containerRef.current);
-      console.log('E')
     } 
   }, []); //eslint-disable-line
 
