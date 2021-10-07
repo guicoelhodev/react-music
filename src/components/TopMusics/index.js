@@ -7,22 +7,23 @@ import ScaleLoader from "react-spinners/ScaleLoader";
 import { useEffect, useState } from 'react';
 import { LoadingContainer } from "GlobalStyle";
 import styled from "styled-components";
-import { useRef } from "react";
+import InfiniteScroll from "components/InfiniteScroll";
 
 const TopMusics = () => {
 
     const [ musicas, setMusicas ] = useState([]);
     const [active, setActive] = useState(false);
     const [ loader, setLoader ] = useState(true);
-    const loadMoreRef = useRef();
 
-    
-
+    function handleState(bool){
+        setActive(bool);
+    }
+    console.log(musicas.length);
     useEffect(() => {
 
         function getAlbum(){
             if(active === false){
-                api.get('/radio/37151/tracks?index=0&limit=10')
+                api.get(`/radio/37151/tracks?index=0&limit=10`)
                     .then((res) => setMusicas((previousState) => [...previousState, ...res.data.data]))
                     .catch((err) => { console.error(err)})
             }
@@ -30,37 +31,13 @@ const TopMusics = () => {
         }
         getAlbum();
         setLoader(false);
-        
-    }, [musicas, active])
+    }, [active]) 
 
-    useEffect(() => {
-        const options = {
-          root: null,
-          rootMargin: "20px",
-          threshold: 1.0
-        };
-    
-        const observer = new IntersectionObserver((entities) => {
-          const target = entities[0];
-
-          if (target.isIntersecting){
-            setActive(false);
-
-          }
-        }, options);
-    
-        if (loadMoreRef.current){
-          observer.observe(loadMoreRef.current);
-          console.log('athduhuha')
-
-        }
-
-        return () => {
-            observer.disconnect();
-        }
-      }, []);
-    
+   
+     
+   
     return(
+        <>
         <Container >
             <SearchMusic />
             <p>Bom dia Guilherme, veja aqui as melhores do ranking que separamos pra você</p>
@@ -86,24 +63,25 @@ const TopMusics = () => {
                                         </li>
                             })
                         }
-                        
-                        <ObserverA ref={loadMoreRef}></ObserverA>
+                        {
+                            musicas.length !== 0 && (<InfiniteScroll  loadMore={handleState} />)  
+                        }
+
                     </ContainerMusic>
-                    
                     </ul>
                 )
             }
-            <button onClick={() => {setActive(!active)}}>UASHUASHUASHAUSH</button>
 
         </Container>
+        </> 
+
     )
 }
 
 export default TopMusics
 
-const ObserverA = styled.li`
-
-height:0px;
-background-color:red;
-width:100%;
+export const aaag = styled.li`
+background-color: red;
+height:20px;
+width:30px;
 `

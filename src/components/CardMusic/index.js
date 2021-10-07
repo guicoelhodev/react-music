@@ -2,8 +2,11 @@ import * as S from './style';
 import { FaPlay } from 'react-icons/fa';
 import { BsFillHeartFill } from 'react-icons/bs'
 import { useState, useEffect } from 'react';
+import { memo } from 'react';
 
 const CardMusic = ({title, artist, duration, image}) => {
+
+    //console.log('estou sendo re-renderizado')
     var minutes = parseInt((duration/60).toFixed(2));
     var seconds = duration%60;
 
@@ -41,4 +44,4 @@ const CardMusic = ({title, artist, duration, image}) => {
     )
 }
 
-export default CardMusic
+export default memo(CardMusic)
