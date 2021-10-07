@@ -1,4 +1,4 @@
-import  styled, { createGlobalStyle} from "styled-components";
+import styled, { createGlobalStyle } from "styled-components";
 
 const GlobalStyle = createGlobalStyle`
 
@@ -21,6 +21,10 @@ body {
         list-style:none;
     }
 
+    button {
+      outline:none;
+    }
+
     
 }
 
@@ -33,21 +37,21 @@ body {
     --black         : #222222;
 
 }
-`
+`;
 export default GlobalStyle;
 
 export const CenterContent = styled.div`
-margin:0 auto;
-width:100%;
-position:relative;
-max-width:1280px;
-height:auto;
-`
+  margin: 0 auto;
+  width: 100%;
+  position: relative;
+  max-width: 1280px;
+  height: auto;
+`;
 
 export const LoadingContainer = styled.div`
-width:100%;
-display:grid;
-place-items:center;
-height:auto;
-padding:60px 0;
-`
+  width: 100%;
+  display: grid;
+  place-items: center;
+  height: auto;
+  padding: 60px 0;
+`;
