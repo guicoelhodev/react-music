@@ -5,13 +5,9 @@ export function getFavoriteMusic (title, artist, duration, image, link, audio){
     }
 }
 
-export function addItem(){
+export function removeItem(title){
     return{
-        type:'ADD_ITEM'
-    }
-}
-export function removeItem(){
-    return{
-        type:'REM_TEM'
+        type:'REMOVE',
+        payload:title
     }
 }

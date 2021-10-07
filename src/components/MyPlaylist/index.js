@@ -7,8 +7,6 @@ const MyPlaylist = () => {
     const data = useSelector(state => state.getFavoriteMusic); 
     const name = useSelector(state => state.getUser[0]);
 
-    console.log(data);
-
    
     return(
         <Container>
