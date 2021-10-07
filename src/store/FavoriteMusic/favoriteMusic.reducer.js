@@ -1,30 +1,23 @@
+export default function favoriteMusicReducer(state = [], action) {
+  switch (action.type) {
+    case "FAVORITEMUSIC":
+      var musicFilter = [];
+      let musicas = [...state, ...action.payload];
 
-export default function favoriteMusicReducer(state=[], action){
+      console.log(musicFilter);
 
-    
-    switch(action.type){
-        case 'FAVORITEMUSIC':
+      musicas.forEach((item) => {
+        var duplicated =
+          musicFilter.findIndex((redItem) => item.id === redItem.id) > -1;
+        if (!duplicated) musicFilter.push(item);
+      });
 
-            let musicFilter= [];           
-            const musicas = [...state, ...action.payload];
-            musicas.forEach((item)=> {
-                var duplicated  = musicFilter.findIndex(redItem => {
-                    return item.id === redItem.id;
-                }) > -1;
-                if(!duplicated) {
-                    musicFilter.push(item);
-                }
-            });
+      return musicFilter;
 
-            return musicFilter
+    case "REMOVE":
+      return state.filter((musicas) => musicas.id !== action.payload);
 
-        case 'REMOVE':             
-            
-        return state.filter(comment => comment.title !== action.payload);
-
-        default:
-                return state;
-   
-    }
+    default:
+      return state;
+  }
 }
-
