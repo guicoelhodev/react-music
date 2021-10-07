@@ -118,4 +118,14 @@ const ContainerTop = styled(Container)`
     text-align: right;
   }
   gap: 20px;
+
+  @media (max-width: 890px) {
+    padding: 10px 20px;
+  }
+
+  @media (max-width: 340px) {
+    h2 {
+      text-align: center;
+    }
+  }
 `;
