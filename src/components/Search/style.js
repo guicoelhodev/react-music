@@ -16,6 +16,8 @@ export const SearchMusic = styled.div`
 
   input {
     border-radius: 0;
+    border-bottom: 2px solid grey;
+
     :focus {
       outline: 1px solid #fffff0;
       border-bottom: 2px solid var(--orange);
