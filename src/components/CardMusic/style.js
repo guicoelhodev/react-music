@@ -59,9 +59,12 @@ export const Favorite = styled(PlayButtonM)`
   height: 68px;
   padding-left: 0;
   background-color: transparent;
-
+  outline: 1px solid transparent;
   svg {
     fill: ${(props) => props.color};
+  }
+  :focus {
+    outline: 1px solid transparent;
   }
 `;
 
