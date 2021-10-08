@@ -20,7 +20,6 @@ export const EmptyDiv = styled.div`
   position: relative;
   width: 320px;
   height: auto;
-  background-color: var(--light-orange);
 
   @media (max-width: 890px) {
     display: none;

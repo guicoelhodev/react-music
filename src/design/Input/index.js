@@ -3,8 +3,8 @@ import styled from "styled-components";
 export const Input = styled.input`
   width: 100%;
   height: 40px;
-  background-color: var(--light-orange);
-  border: 1px solid grey;
+  background-color: var(--white);
+  border: 2px solid transparent;
   border-radius: 8px;
   color: black;
   font-size: 1rem;
@@ -12,6 +12,7 @@ export const Input = styled.input`
   padding-left: 8px;
 
   :focus {
-    outline: 1px solid var(--orange);
+    outline: 1px solid #fffff0;
+    border-bottom: 2px solid red;
   }
 `;

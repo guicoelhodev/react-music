@@ -110,7 +110,7 @@ const ContainerTop = styled(Container)`
 
   h2 {
     font-size: 2.4rem;
-    color: red;
+    color: #3357ab;
   }
 
   h3 {

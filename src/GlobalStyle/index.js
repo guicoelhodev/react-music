@@ -9,7 +9,7 @@ body {
     width:100%;
     min-height:100vh;
     height:100%;
-    background-color: var(--whitesmoke);
+    background-color: var(--white);
 
     * {
         font-family: 'Montserrat', sans-serif;
@@ -22,7 +22,9 @@ body {
     }
 
     button {
-      outline:none;
+      &:focus {
+        outline:2px solid var(--orange);
+      }
     }
 
     

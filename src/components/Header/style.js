@@ -47,14 +47,14 @@ export const ButtonPage = styled(Button)`
   border-radius: 0;
   width: 50%;
   background-color: transparent;
-  border-bottom: 3px solid var(--white);
+  border-bottom: 1px solid red;
   color: var(--black);
   outline-color: transparent;
 
   :focus,
   :hover {
     border: 3px solid transparent;
-    border-bottom: 3px solid var(--orange);
+    border-bottom: 1px solid var(--orange);
     color: var(--orange);
     background-color: transparent;
     outline-color: transparent;

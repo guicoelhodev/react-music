@@ -1,70 +1,48 @@
-# Getting Started with Create React App
+<center>
+<h1>React Music</h1>
+<h2>Um webApp criado para simular um aplicativo de músicas</h2>
+</center>
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+<p>Bibliotecas utilizadas:</p>
+<li><a href="https://reactrouter.com/web/guides/quick-start" target="_blank">React router dom</a></li>
+<li><a href="https://styled-components.com/" target="_blank">Styled Compoenents</a></li>
+<li><a href="https://react-icons.github.io/react-icons/" target="_blank">React Icons</a></li>
+<li><a href="https://react-redux.js.org/" target="_blank">React Redux</a></li>
+<li><a href="https://redux.js.org/" target="_blank">Redux</a></li>
 
-## Available Scripts
+<h3>Sobre o projeto 
+🚀</h3>
 
-In the project directory, you can run:
+<p>O projeto tem como foco principal trabalhar a manipulação dos dados vindos da <a href="https://developers.deezer.com/api" taget="_blank">API do deezer</a>, juntamente com o processo de gerenciamento de dados e troca de informações entre os componentes utilizando a biblioteca redux.<br></p>
 
-### `npm start`
+<center>
+<img width="500px" src="./github/telaInicial.png" alt="página inicial do projeto, que pergunta ao usuário seu nome e cidade local" />
+<img width="500px" src="./github/paginasDeMusicas.png" alt="página que lista as principais músicas do momento da deezer" />
+</center>
+<center><h2>Como acessar o projeto?</h2></center>
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in the browser.
+<p>Há duas formas, rodando na sua máquina local, ou acessando o link que leva ao site da netlify.<br></p>
 
-The page will reload if you make edits.\
-You will also see any lint errors in the console.
+<h3>Rodando na sua máquina local</h3>
 
-### `npm test`
+<p>Como requisitos, é necessário que você tenha instalado o nodeJS em sua máquina, juntamente com o instalador de pacotes npm</p>
 
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+<li><a href="https://nodejs.org/en/" target="_blank">nodeJS</a></li>
+<li><a href="https://www.devmedia.com.br/como-instalar-o-node-js-npm-e-o-react-no-windows/40329" target="_blank">Como instalar o nodeJS e npm?</a></li>
 
-### `npm run build`
+<p><br>Agora com tudo preparado, basta seguir os seguintes comandos:</p>
+<p>Baixará os pacotes utilizados no projeto</p>
 
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
+```
+npm install
+```
 
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
+<p>Comando para rodar localmente</p>
 
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
+```
+npm start
+```
 
-### `npm run eject`
+<h3>Acessando o site</h3>
 
-**Note: this is a one-way operation. Once you `eject`, you can’t go back!**
-
-If you aren’t satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
-
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you’re on your own.
-
-You don’t have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn’t feel obligated to use this feature. However we understand that this tool wouldn’t be useful if you couldn’t customize it when you are ready for it.
-
-## Learn More
-
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
-
-To learn React, check out the [React documentation](https://reactjs.org/).
-
-### Code Splitting
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/code-splitting](https://facebook.github.io/create-react-app/docs/code-splitting)
-
-### Analyzing the Bundle Size
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size](https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size)
-
-### Making a Progressive Web App
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app](https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app)
-
-### Advanced Configuration
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/advanced-configuration](https://facebook.github.io/create-react-app/docs/advanced-configuration)
-
-### Deployment
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/deployment](https://facebook.github.io/create-react-app/docs/deployment)
-
-### `npm run build` fails to minify
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify](https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify)
+<p>Caso você não queira baixar esses pacotes, você pode usar a aplicação acessando o netlify, <a href="https://react-musicjs.netlify.app/" target="_blank">clique aqui</a></p>
