@@ -14,6 +14,7 @@ const Results = ({ inputValue, selectValue }) => {
       .then((res) => setMusicData(res.data.data));
   }, [selectValue, inputValue]);
 
+  console.log(inputValue);
   return (
     <Container>
       <p>Esses são os resultados da sua pesquisa</p>

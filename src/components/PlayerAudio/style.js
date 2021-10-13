@@ -110,11 +110,19 @@ export const ContainerPlayer = styled.div`
     aside {
       flex-direction: column;
     }
+    div {
+      width: 100%;
+      max-width: 400px;
+    }
     p,
     h3 {
       text-align: start !important;
       padding-top: 2px;
-      padding: 0;
+      padding-left: 5px;
+      border: 1px solid blue;
+      text-overflow: ellipsis;
+      overflow: hidden;
+      white-space: nowrap;
     }
     ${ImageDiv} {
       width: 120px;
@@ -122,8 +130,9 @@ export const ContainerPlayer = styled.div`
       bottom: 0;
       transform: none;
       ${Image} {
-        width: 100%;
-        object-fit: cover;
+        width: 120px;
+        height: 120px;
+        object-fit: contain;
       }
     }
 
@@ -137,43 +146,64 @@ export const ContainerPlayer = styled.div`
       }
 
       a {
-        width: 100px;
         height: 100%;
         border-radius: 0;
         border: 1px solid white;
       }
       h3 {
         font-size: 0.8rem;
+        padding-left: 10px;
         padding-top: 5px;
+        border: 1px solid blue;
+        width: 140px;
+        text-overflow: ellipsis;
+        overflow: hidden;
+        white-space: nowrap;
       }
       p {
         font-size: 0.8rem;
+        padding-left: 10px;
+      }
+      ${ImageDiv} {
+        width: 90px;
+        height: 90px;
+        ${Image} {
+          width: 90px;
+          height: 90px;
+        }
       }
     }
-  }
 
-  @media (max-width: 430px) {
-    height: 70px;
-
-    div {
-      gap: 2px;
-      padding-left: 4px;
-      aside {
-        gap: 2px;
-      }
-    }
-    ${ImageDiv} {
-      padding: 0;
-      width: 70px;
+    @media (max-width: 430px) {
       height: 70px;
-    }
 
-    article {
-      padding: 0;
-    }
+      a {
+        width: 180px !important;
+      }
 
-    a {
-      width: 80px;
+      div {
+        gap: 2px;
+        padding-left: 4px;
+        aside {
+          gap: 2px;
+        }
+      }
+      ${ImageDiv} {
+        width: 70px;
+        height: 70px;
+        ${Image} {
+          width: 70px;
+          height: 70px;
+        }
+      }
+
+      article {
+        padding: 0;
+      }
+
+      a {
+        width: 80px;
+      }
     }
   }
 `;

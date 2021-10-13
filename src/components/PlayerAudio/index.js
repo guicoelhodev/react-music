@@ -35,8 +35,6 @@ const PlayerAudio = () => {
   var minutes = parseInt((data[2] / 60).toFixed(2));
   var seconds = data[2] % 60;
 
-  console.log(data[5]);
-
   return (
     <S.ContainerPlayer>
       <S.ImageDiv>
