@@ -1,3 +1,4 @@
+import { PlayButton } from "design/PlayButton";
 import styled from "styled-components";
 
 export const Text = styled.p`
@@ -201,6 +202,12 @@ export const ContainerPlayer = styled.div`
 
       a {
         width: 80px;
+      }
+
+      ${PlayButton} {
+        width: 40px;
+        height: 40px;
+        transform: translateX(-5px);
       }
     }
   }
