@@ -119,7 +119,6 @@ export const ContainerPlayer = styled.div`
       text-align: start !important;
       padding-top: 2px;
       padding-left: 5px;
-      border: 1px solid blue;
       text-overflow: ellipsis;
       overflow: hidden;
       white-space: nowrap;
@@ -154,7 +153,6 @@ export const ContainerPlayer = styled.div`
         font-size: 0.8rem;
         padding-left: 10px;
         padding-top: 5px;
-        border: 1px solid blue;
         width: 140px;
         text-overflow: ellipsis;
         overflow: hidden;
