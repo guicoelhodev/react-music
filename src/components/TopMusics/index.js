@@ -13,7 +13,7 @@ import { useSelector } from "react-redux";
 const TopMusics = () => {
   const [dataPlaylist, setDataPlaylist] = useState([]);
   const [active, setActive] = useState(false);
-  const [loader, setLoader] = useState(true);
+  const [loading, setLoading] = useState(true);
   const [musicas, setMusicas] = useState([]);
   const [number, setNumber] = useState(0);
 
@@ -36,11 +36,10 @@ const TopMusics = () => {
             console.error(err);
           });
       }
-
-      setActive(true);
     }
+
     getAlbum();
-    setLoader(false);
+    setLoading(false);
   }, [active, number]);
 
   const handleState = useCallback((bool) => {
@@ -63,16 +62,16 @@ const TopMusics = () => {
 
   return (
     <>
-      <ContainerTop>
-        <p>{`Bom dia ${result}, veja aqui as melhores do nosso ranking diário que separamos pra você`}</p>
-        <h2>{dataPlaylist.title}</h2>
-        <h3>{`Pessoas seguindo essa playlist: ${dataPlaylist.fans}`}</h3>
-
-        {loader ? (
-          <LoadingContainer>
-            <ScaleLoader hash={100} color="#EB8414" />
-          </LoadingContainer>
-        ) : (
+      {loading ? (
+        <LoadingContainer>
+          <ScaleLoader color="#EB8414" />
+          <p>Carregando</p>
+        </LoadingContainer>
+      ) : (
+        <ContainerTop>
+          <p>{`Bom dia ${result}, veja aqui as melhores do nosso ranking diário que separamos pra você`}</p>
+          <h2>{dataPlaylist.title}</h2>
+          <h3>{`Pessoas seguindo essa playlist: ${dataPlaylist.fans}`}</h3>
           <ul>
             <ContainerMusic>
               {musicFilter.map((item) => {
@@ -96,8 +95,8 @@ const TopMusics = () => {
               )}
             </ContainerMusic>
           </ul>
-        )}
-      </ContainerTop>
+        </ContainerTop>
+      )}
     </>
   );
 };
