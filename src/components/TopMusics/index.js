@@ -2,7 +2,7 @@ import CardMusic from "components/CardMusic";
 import { ContainerMusic } from "design/ContainerMusic";
 import { Container } from "design/ContainerPages";
 import api from "services/api";
-import ScaleLoader from "react-spinners/ScaleLoader";
+//import ScaleLoader from "react-spinners/ScaleLoader";
 import { useEffect, useState } from "react";
 import { LoadingContainer } from "GlobalStyle";
 import InfiniteScroll from "components/InfiniteScroll";
@@ -64,7 +64,7 @@ const TopMusics = () => {
     <>
       {loading ? (
         <LoadingContainer>
-          <ScaleLoader color="#EB8414" />
+          {/* <ScaleLoader color="#EB8414" /> */}
           <p>Carregando</p>
         </LoadingContainer>
       ) : (

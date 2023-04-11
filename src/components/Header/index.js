@@ -1,12 +1,12 @@
 import * as S from "./style";
 import { RiLogoutBoxLine } from "react-icons/ri";
 import LogoTitle from "design/LogoTitle";
-import { useHistory } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 import { useSelector } from "react-redux";
 import { useState, useEffect } from "react";
 
 const Header = () => {
-  const history = useHistory();
+  const navigate = useNavigate();
   const result = useSelector((state) => state.getUser[1]);
   const playlist = useSelector((state) => state.getFavoriteMusic);
   const [total, setTotal] = useState(0);
@@ -23,7 +23,7 @@ const Header = () => {
 
   return (
     <S.HeaderContainer>
-      <S.LogOut onClick={() => history.push("/")}>
+      <S.LogOut onClick={() => navigate("/")}>
         <RiLogoutBoxLine />
       </S.LogOut>
       <S.Informations>
@@ -33,10 +33,10 @@ const Header = () => {
           <p>{`${day} / ${mes} / ${ano}`}</p>
         </div>
         <S.ContainerButtons>
-          <S.ButtonPage onClick={() => history.push("/home")}>
+          <S.ButtonPage onClick={() => navigate("/home")}>
             Página home
           </S.ButtonPage>
-          <S.ButtonPage onClick={() => history.push("/home/myPlaylist")}>
+          <S.ButtonPage onClick={() => navigate("/home/myPlaylist")}>
             <p>Minha playlist</p>
             <S.CounterMusic>{total}</S.CounterMusic>
           </S.ButtonPage>
