@@ -1,48 +1,32 @@
-<center>
-<h1>React Music</h1>
-<h2>Um webApp criado para simular um aplicativo de músicas</h2>
-</center>
+## Steps to updated oldest project (more than 2 years)
 
-<p>Bibliotecas utilizadas:</p>
-<li><a href="https://reactrouter.com/web/guides/quick-start" target="_blank">React router dom</a></li>
-<li><a href="https://styled-components.com/" target="_blank">Styled Compoenents</a></li>
-<li><a href="https://react-icons.github.io/react-icons/" target="_blank">React Icons</a></li>
-<li><a href="https://react-redux.js.org/" target="_blank">React Redux</a></li>
-<li><a href="https://redux.js.org/" target="_blank">Redux</a></li>
+### Goals
 
-<h3>Sobre o projeto 
-🚀</h3>
+- [x] Fix route migration v5 => v6 
+- [x] Update all packages managers correctly
+- [x] Add typescript
+- [] Create a simple design System UI in styled-components
+- [] Add a playground test to refactor all components
+- [] Insert react testing library and setup jest with typescript environment
+- [] Add storybook
+- [] Migrate state logic from react-redux to zustand
+- [] Create Interfaces to type all data objects in site
+- [] Add new UI features
 
-<p>O projeto tem como foco principal trabalhar a manipulação dos dados vindos da <a href="https://developers.deezer.com/api" taget="_blank">API do deezer</a>, juntamente com o processo de gerenciamento de dados e troca de informações entre os componentes utilizando a biblioteca redux.<br></p>
+<br />
 
-<center>
-<img width="500px" src="./github/telaInicial.png" alt="página inicial do projeto, que pergunta ao usuário seu nome e cidade local" />
-<img width="500px" src="./github/paginasDeMusicas.png" alt="página que lista as principais músicas do momento da deezer" />
-</center>
-<center><h2>Como acessar o projeto?</h2></center>
+-  Fix migration react router dom:
 
-<p>Há duas formas, rodando na sua máquina local, ou acessando o link que leva ao site da netlify.<br></p>
+1. Add all packages @latest version
+2. Change react routers from v5 to v6
+3. Remove useHistory to use useNavigate
 
-<h3>Rodando na sua máquina local</h3>
+- Update all packages correctly
 
-<p>Como requisitos, é necessário que você tenha instalado o nodeJS em sua máquina, juntamente com o instalador de pacotes npm</p>
+1. npm i -g npm-check-updates
+2. run the following command: ncu
+3. ncu -u change all packages to latest version
 
-<li><a href="https://nodejs.org/en/" target="_blank">nodeJS</a></li>
-<li><a href="https://www.devmedia.com.br/como-instalar-o-node-js-npm-e-o-react-no-windows/40329" target="_blank">Como instalar o nodeJS e npm?</a></li>
+- Add typescript
 
-<p><br>Agora com tudo preparado, basta seguir os seguintes comandos:</p>
-<p>Baixará os pacotes utilizados no projeto</p>
-
-```
-npm install
-```
-
-<p>Comando para rodar localmente</p>
-
-```
-npm start
-```
-
-<h3>Acessando o site</h3>
-
-<p>Caso você não queira baixar esses pacotes, você pode usar a aplicação acessando o netlify, <a href="https://react-musicjs.netlify.app/" target="_blank">clique aqui</a></p>
+1. Fix all default problems issues temporally changing the tsconfig.json file, noImplictyAny: false
