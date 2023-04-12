@@ -5,13 +5,13 @@
 - [x] Fix route migration v5 => v6 
 - [x] Update all packages managers correctly
 - [x] Add typescript
-- [] Create a simple design System UI in styled-components
-- [] Add a playground test to refactor all components
-- [] Insert react testing library and setup jest with typescript environment
-- [] Add storybook
-- [] Migrate state logic from react-redux to zustand
-- [] Create Interfaces to type all data objects in site
-- [] Add new UI features
+- [ ] Create a simple design System UI in styled-components
+- [ ] Add a playground test to refactor all components
+- [ ] Insert react testing library and setup jest with typescript environment
+- [ ] Add storybook
+- [ ] Migrate state logic from react-redux to zustand
+- [ ] Create Interfaces to type all data objects in site
+- [ ] Add new UI features
 
 <br />
 
