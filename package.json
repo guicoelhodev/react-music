@@ -21,6 +21,8 @@
     "start": "react-scripts start",
     "build": "react-scripts build",
     "test": "react-scripts test",
+    "tsc": "tsc",
+    "type-check": "tsc --noEmit",
     "eject": "react-scripts eject"
   },
   "eslintConfig": {
@@ -40,5 +42,9 @@
       "last 1 firefox version",
       "last 1 safari version"
     ]
+  },
+  "devDependencies": {
+    "@types/styled-components": "^5.1.26",
+    "typescript": "^5.0.4"
   }
 }

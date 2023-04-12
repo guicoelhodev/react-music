@@ -1,13 +1,14 @@
-import GlobalStyle from "GlobalStyle";
-import App from "./App/index";
+import { GlobalStyle } from "GlobalStyle";
 import React from "react";
 import { createRoot } from "react-dom/client";
 import { Provider } from "react-redux";
-import { RouterProvider } from "react-router-dom";
 import { router } from "routes";
-import store from "store/store";
+import { RouterProvider } from "react-router-dom";
+import store from "store";
 
-createRoot(document.getElementById("root")).render(
+const app = document.getElementById("root")!;
+
+createRoot(app).render(
   <Provider store={store}>
     <RouterProvider router={router} />
     <GlobalStyle />

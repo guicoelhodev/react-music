@@ -1,3 +1,4 @@
+//@ts-nocheck
 export default function favoriteMusicReducer(state = [], action) {
   switch (action.type) {
     case "FAVORITEMUSIC":

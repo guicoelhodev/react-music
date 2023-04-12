@@ -1,15 +1,11 @@
-import MyPlaylist from "components/MyPlaylist";
+import React from "react";
 import PlayerAudio from "components/PlayerAudio";
-import Home from "pages/Home";
-import HomePageNav from "pages/HomePageNav";
+import { Home } from "pages/Home";
 import UserLogin from "pages/UserLogin/index";
 import { createBrowserRouter } from "react-router-dom";
 
 export const router = createBrowserRouter([
   { path: "/", element: <UserLogin /> },
-  // { path: "/home", element: <HomePageNav /> },
-  // { path: "/home/playlist", element: <MyPlaylist /> },
-
   {
     path: "/home",
     element: (

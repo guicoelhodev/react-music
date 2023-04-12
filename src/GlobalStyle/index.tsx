@@ -1,6 +1,6 @@
 import styled, { createGlobalStyle } from "styled-components";
 
-const GlobalStyle = createGlobalStyle`
+export const GlobalStyle = createGlobalStyle`
 
 body {
     box-sizing: border-box;
@@ -40,7 +40,6 @@ body {
 
 }
 `;
-export default GlobalStyle;
 
 export const CenterContent = styled.div`
   margin: 0 auto;
