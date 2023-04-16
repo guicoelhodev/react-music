@@ -1,8 +1,9 @@
-import { Player } from "components/refactor/Player";
-import React from "react";
+import { MusicItem } from "components/refactor/MusicItem";
+import React, { useEffect, useState } from "react";
 import { FC } from "react";
+import api from "services/api";
+import { useTopWorldMusic } from "services/http/GET/useTopWorldMusics";
 import styled from "styled-components";
-import { usePlayerStorie } from "../../zustand/usePlayerStorie";
 
 const Container = styled.div`
   width: 100%;
@@ -10,14 +11,16 @@ const Container = styled.div`
 
   display: grid;
   place-items: center;
+
+  background: linear-gradient(180deg, #d9c6f8 0%, #faf8ff 0%, #ffcddf 100%);
 `;
 
 export const Playground: FC = () => {
-  const { buttonActions, currentAction } = usePlayerStorie();
+  const { data } = useTopWorldMusic(20);
 
   return (
     <Container>
-      <Player />
+      <MusicItem {...data?.pages[0].tracks.data[0]} />
     </Container>
   );
 };
