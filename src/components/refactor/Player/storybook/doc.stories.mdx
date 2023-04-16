@@ -1,0 +1,50 @@
+import { Meta } from "@storybook/blocks";
+
+<Meta title="Components/Player/Docs" />
+
+# Player Component
+
+The `Player` component is a React component that displays a music player interface. It imports the `FaHeadphonesAlt` icon from `react-icons/fa` and some other custom components.
+
+## Props
+
+The `Player` component does not accept any props.
+
+## Usage
+
+To use the `Player` component, simply import it and place it in your JSX code:
+
+```jsx
+import { Player } from "./components/refactor/Player";
+
+function App() {
+  return (
+    <div className="App">
+      <Player />
+    </div>
+  );
+}
+```
+
+## Zustand
+
+The Player component uses Zustand to manage state. The usePlayerStorie hook from `../../../zustand/usePlayerStorie` is used to get and set state.
+Types
+
+The Player component uses several custom types to define its props and state. These types can be found in the types.ts file in the same directory as the Player component.
+Functions
+
+### The Player component has several functions that handle user interaction:
+
+    `handleCurrentAction`: A function that takes an action parameter and updates the current action and button icons accordingly.
+
+### Button Actions
+
+The Player component has several button actions that can be performed by the user:
+
+- `pause`: pauses or resumes the currently playing music.
+- `prev`: skips to the previous music in the playlist.
+- `next`: skips to the next music in the playlist.
+- `info`: shows more information about the currently playing music.
+- `like`: adds the currently playing music to the user's liked songs.
+- `shuffle`: shuffles the playlist.

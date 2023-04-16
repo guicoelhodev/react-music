@@ -24,7 +24,6 @@ export const Player: FC = () => {
           <FaHeadphonesAlt />
         </aside>
 
-        <section />
         <img src="https://www.vstopbrasil.com.br/wp-content/uploads/just-dance-lady-gaga-ft-colby-odonis-20221811109563985732.jpg" />
       </S.Header>
 
