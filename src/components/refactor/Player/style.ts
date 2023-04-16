@@ -20,12 +20,11 @@ export const Container = styled.div`
   border-radius: 1.5rem;
   padding: 2rem 1rem;
 
-  background: rgb(67, 42, 201);
+  background: rgb(142, 33, 223);
   background: linear-gradient(
     180deg,
-    rgba(67, 42, 201, 1) 0%,
-    rgba(224, 156, 177, 1) 80%,
-    rgba(238, 136, 166, 1) 100%
+    rgba(142, 33, 223, 1) 0%,
+    rgba(255, 186, 207, 1) 100%
   );
 
   display: flex;
