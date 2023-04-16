@@ -1,53 +1,22 @@
 import React, { FC } from "react";
 
-import { AiFillHeart } from "react-icons/ai";
 import { FaHeadphonesAlt } from "react-icons/fa";
-import { BsFillPauseFill, BsThreeDots, BsShuffle } from "react-icons/bs";
+import { usePlayerStorie } from "../../../zustand/usePlayerStorie";
 
-import { BiSkipPrevious } from "react-icons/bi";
-import { IButtonActions } from "./types";
 import * as S from "./style";
 
-const buttonActions: IButtonActions = {
-  prev: {
-    title: "previous music",
-    size: "sm",
-    icon: <BiSkipPrevious />,
-  },
-  play: {
-    title: "play music",
-    size: "md",
-    icon: <BsFillPauseFill />,
-  },
-
-  next: {
-    title: "next music",
-    size: "sm",
-    icon: <BiSkipPrevious />,
-  },
-  info: {
-    title: "more info",
-    size: "sm",
-    icon: <BsThreeDots />,
-  },
-  like: {
-    title: "like music",
-    size: "sm",
-    icon: <AiFillHeart />,
-  },
-  shuffle: {
-    title: "shuffle playlist",
-    size: "sm",
-    icon: <BsShuffle />,
-  },
-};
-
 export const Player: FC = () => {
+  const { buttonActions, currentAction } = usePlayerStorie();
+
+  const handleCurrentAction = usePlayerStorie((s) => s.handleCurrentAction);
+
+  console.log(currentAction);
+
   return (
     <S.Container>
       <S.Header>
         <aside>
-          <p>Now playing...</p>
+          <p>{currentAction !== "pause" ? "Waiting..." : "Now playing..."}</p>
           <FaHeadphonesAlt />
         </aside>
 
@@ -63,14 +32,20 @@ export const Player: FC = () => {
 
         <S.PlayActionsContainer>
           {Object.values(buttonActions).map((item) => (
-            <article>
-              <S.ButtonAction title={item.title} size={item.size}>
+            <article key={item.action}>
+              <S.ButtonAction
+                title={item.title}
+                size={item.size}
+                onClick={() => handleCurrentAction(item.action)}
+              >
                 {item.icon}
               </S.ButtonAction>
             </article>
           ))}
         </S.PlayActionsContainer>
       </S.PlayerInfo>
+
+      {/* <button onClick={() => console.log(actions)}>Visualizar</button> */}
     </S.Container>
   );
 };

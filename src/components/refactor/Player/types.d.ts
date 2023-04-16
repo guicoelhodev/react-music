@@ -1,9 +1,3 @@
-export type IButtonActions = {
-  [Key in string]: {
-    title: string;
-    size: ISize;
-    icon: any;
-  };
-};
+import { IActions } from "zustand/usePlayerStorie/types";
 
 export type ISize = "sm" | "md";
