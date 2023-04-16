@@ -3,7 +3,6 @@ import styled, { createGlobalStyle } from "styled-components";
 export const GlobalStyle = createGlobalStyle`
 
 body {
-    box-sizing: border-box;
     margin:0;
     padding:0;
     width:100%;
@@ -15,6 +14,7 @@ body {
         font-family: 'Montserrat', sans-serif;
         margin:0;
         padding:0;
+        box-sizing: border-box;
     }
 
     li {
