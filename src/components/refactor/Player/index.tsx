@@ -1,6 +1,7 @@
 import React, { FC } from "react";
 
 import { FaHeadphonesAlt } from "react-icons/fa";
+import { IButtonKey } from "zustand/usePlayerStorie/types";
 import { usePlayerStorie } from "../../../zustand/usePlayerStorie";
 
 import * as S from "./style";
@@ -11,6 +12,9 @@ export const Player: FC = () => {
   const handleCurrentAction = usePlayerStorie((s) => s.handleCurrentAction);
 
   console.log(currentAction);
+
+  const getButtonValues: () => IButtonKey[] = () =>
+    Object.values(buttonActions);
 
   return (
     <S.Container>
@@ -31,7 +35,7 @@ export const Player: FC = () => {
         </article>
 
         <S.PlayActionsContainer>
-          {Object.values(buttonActions).map((item) => (
+          {getButtonValues().map((item) => (
             <article key={item.action}>
               <S.ButtonAction
                 title={item.title}

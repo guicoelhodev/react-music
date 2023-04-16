@@ -14,10 +14,12 @@ export type IAttributes = {
 };
 
 export type IButtonActions = {
-  [Key in IActions]: {
-    title: string;
-    size: ISize;
-    icon: any;
-    action: IActions;
-  };
+  [Key in IActions]: IButtonKey;
+};
+
+export type IButtonKey = {
+  title: string;
+  size: ISize;
+  icon: any;
+  action: IActions;
 };
