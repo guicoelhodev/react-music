@@ -1,7 +1,3 @@
-export const themeColors = {
-  blue: "#f00",
-};
-
 export const themeCSS = {
   "p-sm": "0.5rem",
   "p-md": "1rem",

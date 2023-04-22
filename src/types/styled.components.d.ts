@@ -1,8 +1,9 @@
-import { themeColors, themeCSS } from "style/theme";
 import "styled-components";
+import { themeCSS } from "style/attributes/theme";
+import { colorsCSS } from "style/attributes/colors";
 
 type ThemeType = typeof themeCSS;
-type ColorsType = typeof themeColors;
+type ColorsType = typeof colorsCSS;
 
 declare module "styled-components" {
   export interface DefaultTheme extends ThemeType {
