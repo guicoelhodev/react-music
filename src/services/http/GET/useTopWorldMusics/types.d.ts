@@ -1,9 +1,11 @@
-export interface IRequiredParams {
+import { INullableValues } from "types/generics";
+
+export type IRequiredParams = {
   offSet: number;
   limit?: number;
-}
+};
 
-export interface IResponse {
+export type IResponse = {
   id: number;
   title: string;
   description: string;
@@ -28,21 +30,21 @@ export interface IResponse {
   creator: Creator;
   type: string;
   tracks: Tracks;
-}
+};
 
-export interface ICreator {
+export type ICreator = {
   id: number;
   name: string;
   tracklist: string;
   type: string;
-}
+};
 
-export interface ITracks {
+export type ITracks = {
   data: IMusic[];
   checksum: string;
-}
+};
 
-export interface IMusic {
+export type IMusic = {
   id: number;
   readable: boolean;
   title: string;
@@ -57,20 +59,20 @@ export interface IMusic {
   preview: string;
   md5_image: string;
   time_add: number;
-  artist: Artist;
-  album: Album;
+  artist: IArtist;
+  album: IAlbum;
   type: string;
-}
+};
 
-export interface IArtist {
+export type IArtist = {
   id: number;
   name: string;
   link: string;
   tracklist: string;
   type: string;
-}
+};
 
-export interface IAlbum {
+export type IAlbum = {
   id: number;
   title: string;
   cover: string;
@@ -81,4 +83,4 @@ export interface IAlbum {
   md5_image: string;
   tracklist: string;
   type: string;
-}
+};
