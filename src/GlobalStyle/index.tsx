@@ -24,10 +24,6 @@ body {
     button {
       cursor:pointer;
 
-      display:flex;
-      align-items:center;
-      justify-content: center;
-
       :active {
         filter: brightness(0.9);
       }

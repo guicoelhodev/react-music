@@ -6,7 +6,7 @@ import { createBrowserRouter } from "react-router-dom";
 import { Playground } from "pages/Playground";
 
 export const router = createBrowserRouter([
-  { path: "/", element: <UserLogin /> },
+  { path: "/", element: <Home /> },
   {
     path: "/home",
     element: (
