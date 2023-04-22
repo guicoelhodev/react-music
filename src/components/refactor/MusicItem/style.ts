@@ -1,19 +1,78 @@
 import styled from "styled-components";
 
-export const Container = styled.div`
-  border: 1px solid red;
+interface IStyledMusic {
+  src: string;
+}
 
-  header {
-    width: min(12rem, 100%);
-    aspect-ratio: 1/1;
-    border-radius: 5px;
-    padding: 1rem;
-  }
+interface IStyledContent {
+  isFavorite: boolean;
+}
+export const Container = styled.div`
+  border-radius: ${(p) => p.theme["radius-sm"]};
+  width: 12rem;
 
   display: flex;
   flex-direction: column;
+`;
 
-  section {
-    background: ${(p) => p.theme.colors.white};
+export const Player = styled.button<IStyledMusic>`
+  border-radius: ${(p) => p.theme["radius-sm"]} ${(p) => p.theme["radius-sm"]} 0
+    0;
+  aspect-ratio: 1/1;
+  background: url(${(p) => p.src});
+  opacity: 0.8;
+
+  border: 1px solid ${(p) => p.theme.colors.white};
+  cursor: pointer;
+`;
+
+export const ContentMusic = styled.section<IStyledContent>`
+  width: 100%;
+  background: ${(p) => p.theme.colors.white};
+
+  border-radius: 0 0 ${(p) => p.theme["radius-sm"]}
+    ${(p) => p.theme["radius-sm"]};
+  padding: ${(p) => p.theme["p-sm"]};
+
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+
+  div {
+    width: calc(12rem - 4rem);
+    color: ${(p) => p.theme.colors["purple-800"]};
+
+    p,
+    h4 {
+      width: 100%;
+      overflow: hidden;
+      white-space: nowrap;
+      text-overflow: ellipsis;
+    }
+
+    h4 {
+      font-size: ${(p) => p.theme["text-lg"]};
+      font-weight: 800;
+    }
+    p {
+      font-size: ${(p) => p.theme["text-sm"]};
+    }
+  }
+
+  button {
+    background: inherit;
+    border: 1px solid transparent;
+    border-radius: 50%;
+    width: 2.4rem;
+    height: 2.4rem;
+
+    svg {
+      fill: ${(p) =>
+        p.isFavorite
+          ? p.theme.colors["purple-800"]
+          : p.theme.colors["gray-200"]};
+      width: 2rem;
+      height: 2rem;
+    }
   }
 `;
