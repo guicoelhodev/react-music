@@ -22,13 +22,19 @@ body {
     }
 
     button {
-      &:focus {
-        outline:2px solid var(--orange);
-      }
-    }
+      cursor:pointer;
 
-    
+      display:flex;
+      align-items:center;
+      justify-content: center;
+
+      :active {
+        filter: brightness(0.9);
+      }
+    }    
 }
+
+
 
 :root {
     --orange        : #F39200;
