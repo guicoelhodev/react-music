@@ -19,4 +19,19 @@ export const themeCSS = {
   "radius-lg": "1.5rem",
   "radius-xl": "2rem",
   "radius-full": "50%",
+
+  "text-xs": "0.75rem",
+  "text-sm": "0.875rem",
+  "text-base": "1rem",
+  "text-lg": "1.125rem",
+  "text-xl": "1.25rem",
+
+  "title-1": "1.5rem",
+  "title-2": "1.875rem",
+  "title-3": "2.25rem",
+  "title-4": "3rem",
+  "title-5": "3.75rem",
+  "title-6": "4.5rem",
+  "title-7": "6rem",
+  "title-8": "8rem",
 } as const;

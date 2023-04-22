@@ -1,6 +1,8 @@
 import * as React from "react";
 import type { Preview } from "@storybook/react";
 import { GlobalStyle } from "../src/GlobalStyle";
+import { styledComponentsTheme } from "../src/style/index";
+import { ThemeProvider } from "styled-components";
 
 const preview: Preview = {
   parameters: {
@@ -14,10 +16,10 @@ const preview: Preview = {
   },
   decorators: [
     (Story) => (
-      <>
+      <ThemeProvider theme={styledComponentsTheme}>
         <GlobalStyle />
         <Story />
-      </>
+      </ThemeProvider>
     ),
   ],
 };

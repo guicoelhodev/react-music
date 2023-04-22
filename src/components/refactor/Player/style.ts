@@ -16,8 +16,7 @@ export const Container = styled.div`
   height: min(100%, 48rem);
   overflow-y: auto;
 
-  background: blue;
-  border-radius: 1.5rem;
+  border-radius: ${(p) => p.theme["radius-lg"]};
   padding: 2rem 1rem;
 
   background: rgb(142, 33, 223);
@@ -40,14 +39,15 @@ export const Header = styled.header`
 
   width: 100%;
   background: rgba(255, 255, 255, 0.3);
-  border-radius: 1.5rem;
-  padding: 1rem;
-  padding-bottom: 2rem;
+
+  padding: ${(p) => p.theme["p-md"]};
+  padding-bottom: ${(p) => p.theme["p-lg"]};
+  border-radius: ${(p) => p.theme["radius-lg"]};
 
   aside {
     display: flex;
     align-items: center;
-    gap: 0.5rem;
+    gap: ${(p) => p.theme["gap-1"]};
 
     svg,
     p {
@@ -56,7 +56,7 @@ export const Header = styled.header`
 
     p {
       font-weight: 600;
-      font-size: 1.2rem;
+      font-size: ${(p) => p.theme["text-xl"]};
     }
   }
 
@@ -65,7 +65,7 @@ export const Header = styled.header`
     width: 16rem;
     background: rgba(255, 255, 255, 0.6);
     background: blue;
-    border-radius: 0.5rem;
+    border-radius: ${(p) => p.theme["radius-sm"]};
   }
 `;
 
@@ -73,19 +73,19 @@ export const PlayerInfo = styled.section`
   display: flex;
   flex-direction: column;
   align-items: center;
-  padding: 1rem 0;
+  padding: ${(p) => p.theme["p-md"]} 0;
 
   article {
     display: flex;
     flex-direction: column;
     align-items: center;
-    color: #fff;
+    color: ${(p) => p.theme.colors.white};
 
     h3 {
       font-weight: 800;
     }
     p {
-      padding-top: 0.2rem;
+      padding-top: ${(p) => p.theme["p-sm"]};
       max-width: 14rem;
       overflow: hidden;
       white-space: nowrap;
@@ -96,7 +96,8 @@ export const PlayerInfo = styled.section`
 
 export const PlayActionsContainer = styled.div`
   width: 14rem;
-  padding: 1rem 0;
+  padding: ${(p) => p.theme["p-md"]} 0;
+
   padding-top: 3rem;
   display: grid;
   grid-template-columns: 0.6fr 0.8fr 0.6fr;
@@ -145,7 +146,7 @@ export const ButtonAction = styled.button<IButton>`
   outline: 1px solid transparent;
 
   svg {
-    fill: #fff;
+    fill: ${(p) => p.theme.colors.white};
     width: 1.6rem;
     height: 1.6rem;
   }
@@ -156,10 +157,10 @@ export const ButtonAction = styled.button<IButton>`
 
   :active,
   :focus {
-    outline: 1px solid #ee88a6;
+    outline: 1px solid ${(p) => p.theme.colors["pink-200"]};
   }
 
   :active {
-    background: #ee88a6;
+    background: ${(p) => p.theme.colors["pink-200"]};
   }
 `;
