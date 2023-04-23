@@ -75,6 +75,7 @@ export const ContentMusic = styled.section<IStyledContent>`
           : p.theme.colors["gray-200"]};
       width: 2rem;
       height: 2rem;
+      transition: all 200ms ease-in;
     }
   }
 `;
