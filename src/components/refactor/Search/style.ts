@@ -9,10 +9,10 @@ export const Container = styled.section`
   gap: 1rem;
 
   padding: 1rem;
-  background: ${(p) => p.theme.colors.white};
 `;
 
 export const SearchInput = styled.article`
+  background: ${(p) => p.theme.colors.white};
   border: 2px solid ${(p) => p.theme.colors["gray-200"]};
   border-radius: 5rem;
 
@@ -58,7 +58,7 @@ export const OptionsToSearch = styled.article`
 `;
 
 export const MyPlaylist = styled.button`
-  background: inherit;
+  background: ${(p) => p.theme.colors.white};
   margin-left: auto;
   gap: 0.5rem;
   align-items: center;

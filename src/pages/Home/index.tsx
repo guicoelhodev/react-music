@@ -1,3 +1,4 @@
+import { InfiniteScroll } from "components/InfiniteScroll";
 import { MusicItem } from "components/refactor/MusicItem";
 import { Player } from "components/refactor/Player";
 import { Search } from "components/refactor/Search";
@@ -7,11 +8,14 @@ import { useTopWorldMusic } from "services/http/GET/useTopWorldMusics";
 import * as S from "./style";
 
 export const Home = () => {
-  const { data } = useTopWorldMusic(20);
+  const { data, fetchNextPage } = useTopWorldMusic(20);
 
-  const tracks = data?.pages.flat().map((i) => i.tracks)[0].data;
+  const getAllTracks = () => {
+    const allTracks = data?.pages.flat().map((i) => i.tracks.data);
 
-  console.log(tracks);
+    return allTracks?.flat();
+  };
+
   return (
     <S.Layout>
       <S.Container>
@@ -33,9 +37,10 @@ export const Home = () => {
             <Search />
 
             <ul>
-              {tracks?.map((track) => (
+              {getAllTracks()?.map((track) => (
                 <MusicItem {...track} />
               ))}
+              <InfiniteScroll loadMore={() => fetchNextPage()} />
             </ul>
           </S.MusicNav>
         </S.Main>

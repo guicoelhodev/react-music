@@ -9,7 +9,7 @@ interface IStyledContent {
 }
 export const Container = styled.div`
   border-radius: 0.5rem;
-  width: 14rem;
+  width: 16rem;
 
   display: flex;
   flex-direction: column;

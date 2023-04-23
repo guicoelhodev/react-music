@@ -2,6 +2,9 @@ import styled from "styled-components";
 
 export const Layout = styled.div`
   width: 100%;
+
+  /* background: linear-gradient(180deg, #ffffff 0%, #eeeeee 0%, #fed8e6 100%); */
+  background: whitesmoke;
 `;
 
 export const Container = styled.div`
@@ -35,7 +38,6 @@ export const Logo = styled.section`
 export const PlayerControls = styled.div``;
 
 export const Main = styled.main`
-  background: aliceblue;
   padding: 1rem;
 
   display: flex;
