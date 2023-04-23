@@ -55,13 +55,17 @@ const buttonActions: IButtonActions = {
 
 const initialState: IAttributes = {
   buttonActions,
-  musicVolume: 0.1,
+  musicVolume: 0.2,
   currentAction: null,
   currentMusic: null,
   currentPlaylist: [],
+  search: {
+    inputValue: "",
+    playlistType: "top_100",
+  },
 };
 
-export const usePlayerStorie = create<IPlayerStorie>((set) => ({
+export const usePlayerStore = create<IPlayerStorie>((set) => ({
   ...initialState,
 
   handleCurrentPlaylist: (tracks) => set({ currentPlaylist: tracks }),
@@ -72,8 +76,8 @@ export const usePlayerStorie = create<IPlayerStorie>((set) => ({
     set((state) => {
       let { musicVolume } = state;
 
-      if (musicVolume === 0.1) musicVolume = 0.6;
-      else if (musicVolume === 0) musicVolume = 0.1;
+      if (musicVolume === 0.2) musicVolume = 0.8;
+      else if (musicVolume === 0) musicVolume = 0.2;
       else musicVolume = 0;
 
       return { ...state, musicVolume };
@@ -111,15 +115,29 @@ export const usePlayerStorie = create<IPlayerStorie>((set) => ({
 
   handlePlayMusic: () =>
     set((state) => {
-      let { buttonActions, currentAction } = state;
+      let { buttonActions, currentAction, musicVolume } = state;
       if (currentAction === "play") {
         buttonActions.play.icon = <BsPlayFill />;
+        musicVolume = 0.2;
 
         currentAction = null;
       } else {
         buttonActions.play.icon = <BsPauseFill />;
         currentAction = "play";
       }
-      return { buttonActions, currentAction };
+      return { buttonActions, currentAction, musicVolume };
+    }),
+
+  handleSearch: ({ inputValue = "", playlistType }) =>
+    set((state) => {
+      let { search } = state;
+
+      search = { ...search, inputValue };
+
+      if (playlistType) {
+        search = { ...search, playlistType };
+      }
+
+      return { ...state, search };
     }),
 }));

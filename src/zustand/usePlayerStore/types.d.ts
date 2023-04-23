@@ -1,9 +1,16 @@
 import { IButtonActions } from "components/refactor/Player/types";
+import { IconType } from "react-icons";
 import { IMusic } from "services/http/GET/useTopWorldMusics/types";
 
 export type IPlayerStorie = IAttributes & IMethods;
 
 export type IActions = "play" | "prev" | "next" | "info" | "like" | "volume";
+export type IPlaylist = "top_100" | "my_playlist";
+
+type ISearch = {
+  inputValue: string;
+  playlistType: IPlaylist;
+};
 
 export type IMethods = {
   handlePlayMusic: () => void;
@@ -11,6 +18,7 @@ export type IMethods = {
   handleSkipMusic: (direction: "prev" | "next") => void;
   handleCurrentPlaylist: (musics: IMusic[]) => void;
   handleMusicVolume: () => void;
+  handleSearch: (params: Partial<ISearch>) => void;
 };
 
 export type IAttributes = {
@@ -19,6 +27,7 @@ export type IAttributes = {
   currentMusic: IMusic | null;
   currentPlaylist: IMusic[];
   musicVolume: number;
+  search: ISearch;
 };
 
 export type IButtonActions = {
@@ -28,6 +37,6 @@ export type IButtonActions = {
 export type IButtonKey = {
   title: string;
   size: ISize;
-  icon: any;
+  icon: Element<IconType>;
   action: IActions;
 };
