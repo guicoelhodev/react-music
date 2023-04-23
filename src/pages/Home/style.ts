@@ -35,8 +35,6 @@ export const Logo = styled.section`
   }
 `;
 
-export const PlayerControls = styled.div``;
-
 export const Main = styled.main`
   padding: 1rem;
 

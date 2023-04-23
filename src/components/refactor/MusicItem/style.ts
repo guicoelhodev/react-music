@@ -38,7 +38,7 @@ export const ContentMusic = styled.section<IStyledContent>`
   justify-content: space-between;
 
   div {
-    width: calc(12rem - 4rem);
+    width: calc(16rem - 4rem);
     color: ${(p) => p.theme.colors["purple-800"]};
 
     p,
