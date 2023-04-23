@@ -9,6 +9,22 @@ export const Container = styled.section`
   gap: 1rem;
 
   padding: 1rem;
+
+  .favorite-enabled {
+    background: ${(p) => p.theme.colors["purple-800"]};
+    transition: all 200ms ease-in;
+
+    svg,
+    p {
+      color: ${(p) => p.theme.colors.white};
+    }
+    div {
+      background: ${(p) => p.theme.colors.white};
+      span {
+        color: ${(p) => p.theme.colors["purple-800"]};
+      }
+    }
+  }
 `;
 
 export const SearchInput = styled.article`
@@ -103,4 +119,6 @@ export const Button = styled.button<IButton>`
 
   font-size: 1rem;
   border-radius: 2rem;
+
+  transition: all 200ms ease-in;
 `;
