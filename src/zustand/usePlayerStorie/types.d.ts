@@ -7,8 +7,8 @@ export type IActions = "play" | "prev" | "next" | "info" | "like" | "shuffle";
 
 export type IMethods = {
   handlePlayMusic: () => void;
-  // handleSkipMusic: (direction: "prev" | "next") => void;
   handleCurrentMusic: (music: IMusic) => void;
+  handleSkipMusic: (direction: "prev" | "next") => void;
   handleCurrentPlaylist: (musics: IMusic[]) => void;
 };
 

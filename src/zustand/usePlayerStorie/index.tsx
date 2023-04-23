@@ -66,6 +66,36 @@ export const usePlayerStorie = create<IPlayerStorie>((set) => ({
 
   handleCurrentMusic: (music) => set({ currentMusic: music }),
 
+  handleSkipMusic: (direction) =>
+    set((state) => {
+      if (!state.currentMusic) return state;
+
+      let currentMusicIndex: number = 0;
+
+      state.currentPlaylist.forEach((music, index) => {
+        if (state.currentMusic?.id !== music.id) return;
+        return (currentMusicIndex = index);
+      });
+
+      if (direction === "prev") {
+        currentMusicIndex -= 1;
+      } else {
+        currentMusicIndex += 1;
+      }
+
+      if (
+        currentMusicIndex < 0 ||
+        currentMusicIndex === state.currentPlaylist.length
+      ) {
+        return state;
+      }
+
+      return {
+        ...state,
+        currentMusic: state.currentPlaylist[currentMusicIndex],
+      };
+    }),
+
   handlePlayMusic: () =>
     set((state) => {
       let { buttonActions, currentAction } = state;

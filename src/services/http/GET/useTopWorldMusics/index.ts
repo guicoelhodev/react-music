@@ -3,7 +3,6 @@ import api from "services/api";
 import { IRequiredParams, IResponse } from "./types";
 
 const getTopWorldWide = async ({ offSet, limit = 20 }: IRequiredParams) => {
-  console.log("thats the offSet", offSet);
   const playlistId = 3155776842;
 
   try {
