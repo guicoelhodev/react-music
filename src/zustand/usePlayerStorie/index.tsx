@@ -4,11 +4,12 @@ import { IAttributes, IPlayerStorie, IButtonActions } from "./types";
 
 import {
   BsThreeDots,
-  BsShuffle,
   BsFillPlayFill,
   BsPauseFill,
   BsPlayFill,
 } from "react-icons/bs";
+
+import { GiSpeaker } from "react-icons/gi";
 import { BiSkipPrevious } from "react-icons/bi";
 import { AiFillHeart } from "react-icons/ai";
 
@@ -44,16 +45,17 @@ const buttonActions: IButtonActions = {
     icon: <AiFillHeart />,
     action: "like",
   },
-  shuffle: {
-    title: "shuffle playlist",
+  volume: {
+    title: "Change volume high",
     size: "sm",
-    icon: <BsShuffle />,
-    action: "shuffle",
+    icon: <GiSpeaker />,
+    action: "volume",
   },
 };
 
 const initialState: IAttributes = {
   buttonActions,
+  musicVolume: 0.1,
   currentAction: null,
   currentMusic: null,
   currentPlaylist: [],
@@ -65,6 +67,17 @@ export const usePlayerStorie = create<IPlayerStorie>((set) => ({
   handleCurrentPlaylist: (tracks) => set({ currentPlaylist: tracks }),
 
   handleCurrentMusic: (music) => set({ currentMusic: music }),
+
+  handleMusicVolume: () =>
+    set((state) => {
+      let { musicVolume } = state;
+
+      if (musicVolume === 0.1) musicVolume = 0.6;
+      else if (musicVolume === 0) musicVolume = 0.1;
+      else musicVolume = 0;
+
+      return { ...state, musicVolume };
+    }),
 
   handleSkipMusic: (direction) =>
     set((state) => {

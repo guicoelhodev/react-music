@@ -9,7 +9,8 @@ export const Player: FC = () => {
   const audioRef = useRef<HTMLAudioElement>(null);
   const { buttonActions, currentMusic, currentAction } = usePlayerStorie();
 
-  const { handlePlayMusic, handleSkipMusic } = usePlayerStorie();
+  const { handlePlayMusic, handleSkipMusic, handleMusicVolume, musicVolume } =
+    usePlayerStorie();
 
   const getButtonValues: () => IButtonKey[] = () =>
     Object.values(buttonActions);
@@ -28,20 +29,20 @@ export const Player: FC = () => {
 
   const handleActions: { [Key in IActions] } = {
     play: () => handlePlayMusic(),
-    info: a,
     prev: () => handleSkipMusic("prev"),
     next: () => handleSkipMusic("next"),
-    shuffle: a,
+    volume: () => handleMusicVolume(),
     like: a,
+    info: a,
   };
 
   useEffect(() => {
     if (audioRef.current) {
-      audioRef.current.volume = 0.1;
+      audioRef.current.volume = musicVolume;
     }
 
     playAudio();
-  }, [audioRef.current, currentAction, currentMusic]);
+  }, [audioRef.current, currentAction, currentMusic, musicVolume]);
 
   return (
     <S.Container>

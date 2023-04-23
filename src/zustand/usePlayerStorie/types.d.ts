@@ -3,13 +3,14 @@ import { IMusic } from "services/http/GET/useTopWorldMusics/types";
 
 export type IPlayerStorie = IAttributes & IMethods;
 
-export type IActions = "play" | "prev" | "next" | "info" | "like" | "shuffle";
+export type IActions = "play" | "prev" | "next" | "info" | "like" | "volume";
 
 export type IMethods = {
   handlePlayMusic: () => void;
   handleCurrentMusic: (music: IMusic) => void;
   handleSkipMusic: (direction: "prev" | "next") => void;
   handleCurrentPlaylist: (musics: IMusic[]) => void;
+  handleMusicVolume: () => void;
 };
 
 export type IAttributes = {
@@ -17,6 +18,7 @@ export type IAttributes = {
   currentAction: IActions | null;
   currentMusic: IMusic | null;
   currentPlaylist: IMusic[];
+  musicVolume: number;
 };
 
 export type IButtonActions = {
