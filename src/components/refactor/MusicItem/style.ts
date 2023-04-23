@@ -8,21 +8,21 @@ interface IStyledContent {
   isFavorite: boolean;
 }
 export const Container = styled.div`
-  border-radius: ${(p) => p.theme["radius-sm"]};
-  width: 12rem;
+  border-radius: 0.5rem;
+  width: 14rem;
 
   display: flex;
   flex-direction: column;
 `;
 
 export const Player = styled.button<IStyledMusic>`
-  border-radius: ${(p) => p.theme["radius-sm"]} ${(p) => p.theme["radius-sm"]} 0
-    0;
+  border-radius: 0.5rem 0.5rem 0 0;
   aspect-ratio: 1/1;
   background: url(${(p) => p.src});
-  opacity: 0.8;
 
   border: 1px solid ${(p) => p.theme.colors.white};
+
+  opacity: 0.8;
   cursor: pointer;
 `;
 
@@ -30,9 +30,8 @@ export const ContentMusic = styled.section<IStyledContent>`
   width: 100%;
   background: ${(p) => p.theme.colors.white};
 
-  border-radius: 0 0 ${(p) => p.theme["radius-sm"]}
-    ${(p) => p.theme["radius-sm"]};
-  padding: ${(p) => p.theme["p-sm"]};
+  border-radius: 0 0 0.5rem 0.5rem;
+  padding: 0.5rem;
 
   display: flex;
   align-items: center;
