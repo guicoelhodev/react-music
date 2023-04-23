@@ -6,25 +6,46 @@ import { Search } from "components/refactor/Search";
 import React, { useEffect } from "react";
 import { IoHeadsetSharp } from "react-icons/io5";
 import { useMediaQuery } from "react-responsive";
+import { useSearchMusic } from "services/http/GET/useSearchMusics";
 import { useTopWorldMusic } from "services/http/GET/useTopWorldMusics";
-import { usePlayerStorie } from "../../zustand/usePlayerStorie";
+import { useFavoriteMusicsStore } from "../../zustand/useFavoriteMusicsStore";
+import { usePlayerStore } from "../../zustand/usePlayerStore";
 
 import * as S from "./style";
 
 export const Home = () => {
-  const { data, fetchNextPage } = useTopWorldMusic(20);
-  const { handleCurrentPlaylist, currentPlaylist } = usePlayerStorie();
+  const { handleCurrentPlaylist, currentPlaylist, search } = usePlayerStore();
+  const { favoriteMusics } = useFavoriteMusicsStore();
 
   const isDesktop = useMediaQuery({ minWidth: 1000 });
 
+  const { data: musicWorldData, fetchNextPage } = useTopWorldMusic(20);
+
+  const { data: musicSearchData } = useSearchMusic({
+    inputValue: search.inputValue,
+  });
+
   const getAllTracks = () => {
-    const allTracks = data?.pages.flat().map((i) => i.tracks.data);
+    const allTracks = musicWorldData?.pages.flat().map((i) => i.tracks.data);
     handleCurrentPlaylist(allTracks?.flat()!);
   };
 
+  const handlePlaylistContent = () => {
+    if (search.inputValue) return handleCurrentPlaylist(musicSearchData?.data!);
+    if (search.playlistType === "my_playlist")
+      return handleCurrentPlaylist(favoriteMusics);
+    else return getAllTracks();
+  };
+
   useEffect(() => {
-    getAllTracks();
-  }, [data]);
+    if (search.playlistType === "top_100" && !search.inputValue) {
+      getAllTracks();
+    }
+  }, [musicWorldData?.pages]);
+
+  useEffect(() => {
+    handlePlaylistContent();
+  }, [search.inputValue, search.playlistType, musicSearchData?.data]);
 
   return (
     <S.Layout>
