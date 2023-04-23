@@ -55,7 +55,7 @@ export const Player: FC<IPlayer> = ({ bgTransparent = false }) => {
   return (
     <S.Container isTransparent={bgTransparent}>
       <S.Header>
-        <img src={currentMusic?.album.cover_medium} />
+        <img src={currentMusic?.album.cover_big} />
       </S.Header>
 
       <audio ref={audioRef} src={currentMusic?.preview}></audio>
