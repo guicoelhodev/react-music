@@ -1,5 +1,6 @@
 import * as React from "react";
 import { AiFillHeart } from "react-icons/ai";
+import { useMediaQuery } from "react-responsive";
 import { IMusic } from "services/http/GET/useTopWorldMusics/types";
 import { useFavoriteMusicsStore } from "../../store/useFavoriteMusicsStore";
 import { usePlayerStore } from "../../store/usePlayerStore";
@@ -10,11 +11,19 @@ type IMusicItem = IMusic;
 export const MusicItem: React.FC<IMusicItem> = (props) => {
   const { handleCurrentMusic } = usePlayerStore();
   const { favoriteMusics, handleFavoriteMusics } = useFavoriteMusicsStore();
+
+  const isMobile = useMediaQuery({ maxWidth: 580 });
   return (
-    <S.Container>
+    <S.Container
+      onClick={() => {
+        if (isMobile) return handleCurrentMusic(props as IMusic);
+      }}
+    >
       <S.Player
         src={props.album?.cover_medium!}
-        onClick={() => handleCurrentMusic(props as IMusic)}
+        onClick={() => {
+          if (!isMobile) return handleCurrentMusic(props as IMusic);
+        }}
       />
       <S.ContentMusic
         isFavorite={favoriteMusics.some((i) => i.id === props.id)}

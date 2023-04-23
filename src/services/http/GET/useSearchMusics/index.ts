@@ -1,7 +1,6 @@
-import { IPlaylistType } from "components/refactor/Search";
 import { useQuery } from "react-query";
-import api from "services/api";
 import { IResponse } from "./types";
+import api from "services/api";
 
 interface IRequiredParams {
   inputValue: string;

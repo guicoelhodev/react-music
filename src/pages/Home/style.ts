@@ -3,8 +3,7 @@ import styled from "styled-components";
 export const Layout = styled.div`
   width: 100%;
 
-  /* background: linear-gradient(180deg, #ffffff 0%, #eeeeee 0%, #fed8e6 100%); */
-  background: whitesmoke;
+  background: linear-gradient(180deg, #ffffff 0%, #eeeeee 0%, #fed8e6 100%);
 `;
 
 export const Container = styled.div`
@@ -20,7 +19,7 @@ export const Header = styled.header`
   justify-content: space-between;
   padding: 0 1rem;
 
-  height: 4rem;
+  height: 5rem;
 `;
 
 export const Logo = styled.section`
@@ -43,7 +42,7 @@ export const Main = styled.main`
   align-items: center;
   gap: 1rem;
 
-  height: calc(100vh - 4rem);
+  height: calc(100vh - 5rem);
 `;
 
 export const MusicNav = styled.section`
@@ -65,5 +64,17 @@ export const MusicNav = styled.section`
     padding: 1rem 0;
 
     overflow-y: auto;
+    ::-webkit-scrollbar {
+      display: none;
+    }
+
+     {
+      -ms-overflow-style: none; /* IE and Edge */
+      scrollbar-width: none; /* Firefox */
+    }
+  }
+
+  @media (max-width: 580px) {
+    padding-bottom: 6rem;
   }
 `;

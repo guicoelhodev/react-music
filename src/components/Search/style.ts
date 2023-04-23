@@ -25,6 +25,10 @@ export const Container = styled.section`
       }
     }
   }
+
+  @media (max-width: 580px) {
+    padding: 1rem 0;
+  }
 `;
 
 export const SearchInput = styled.article`

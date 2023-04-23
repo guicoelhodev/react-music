@@ -7,12 +7,16 @@ type IButton = {
   iconColor: string;
 };
 
+type IStyled = {
+  isTransparent: boolean;
+};
+
 const buttonSize: { [Key in ISize]: string } = {
   md: "5rem",
   sm: "3rem",
 };
 
-export const Container = styled.div`
+export const Container = styled.div<IStyled>`
   width: min(100%, 21.25rem);
   height: min(100%, 48rem);
   overflow-y: auto;
@@ -20,13 +24,11 @@ export const Container = styled.div`
   border-radius: ${(p) => p.theme["radius-lg"]};
   padding: 2rem 1rem;
 
-  background: rgb(142, 33, 223);
-  background: linear-gradient(
-    180deg,
-    rgba(142, 33, 223, 1) 0%,
-    rgba(255, 186, 207, 1) 100%
-  );
-
+  background: ${(p) => (p.isTransparent ? "transparent" : "rgb(142, 33, 223)")};
+  background: ${(p) =>
+    p.isTransparent
+      ? "transparent"
+      : "linear-gradient(180deg, rgba(142, 33, 223, 1) 0%,rgba(255, 186, 207, 1) 100%)"};
   display: flex;
   flex-direction: column;
   justify-content: space-between;

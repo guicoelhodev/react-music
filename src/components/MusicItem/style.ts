@@ -13,6 +13,11 @@ export const Container = styled.div`
 
   display: flex;
   flex-direction: column;
+
+  @media (max-width: 580px) {
+    width: 100%;
+    flex-direction: row;
+  }
 `;
 
 export const Player = styled.button<IStyledMusic>`
@@ -21,12 +26,17 @@ export const Player = styled.button<IStyledMusic>`
   background: url(${(p) => p.src});
   background-repeat: no-repeat;
   background-position: center;
-  background-size: auto;
+  background-size: contain;
 
   border: 1px solid ${(p) => p.theme.colors.white};
 
   opacity: 0.8;
   cursor: pointer;
+
+  @media (max-width: 580px) {
+    border-radius: 0.5rem 0 0 0.5rem;
+    width: 5rem;
+  }
 `;
 
 export const ContentMusic = styled.section<IStyledContent>`
@@ -77,5 +87,9 @@ export const ContentMusic = styled.section<IStyledContent>`
       height: 2rem;
       transition: all 200ms ease-in;
     }
+  }
+
+  @media (max-width: 580px) {
+    border-radius: 0 0.5rem 0.5rem 0;
   }
 `;

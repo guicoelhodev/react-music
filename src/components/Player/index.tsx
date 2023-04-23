@@ -6,7 +6,11 @@ import { usePlayerStore } from "../../store/usePlayerStore";
 
 import * as S from "./style";
 
-export const Player: FC = () => {
+interface IPlayer {
+  bgTransparent?: boolean;
+}
+
+export const Player: FC<IPlayer> = ({ bgTransparent = false }) => {
   const audioRef = useRef<HTMLAudioElement>(null);
 
   const { buttonActions, currentMusic, currentAction } = usePlayerStore();
@@ -49,7 +53,7 @@ export const Player: FC = () => {
   }, [audioRef.current, currentAction, currentMusic, musicVolume]);
 
   return (
-    <S.Container>
+    <S.Container isTransparent={bgTransparent}>
       <S.Header>
         <img src={currentMusic?.album.cover_medium} />
       </S.Header>

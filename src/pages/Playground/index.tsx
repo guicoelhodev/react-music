@@ -1,7 +1,5 @@
-import { MusicItem } from "components/refactor/MusicItem";
-import React, { useEffect, useState } from "react";
+import React from "react";
 import { FC } from "react";
-import api from "services/api";
 import { useTopWorldMusic } from "services/http/GET/useTopWorldMusics";
 import styled from "styled-components";
 
