@@ -1,8 +1,8 @@
 import React, { FC, useEffect, useRef } from "react";
-import { useFavoriteMusicsStore } from "../../../zustand/useFavoriteMusicsStore";
+import { useFavoriteMusicsStore } from "../../zustand/useFavoriteMusicsStore";
 
-import { IActions, IButtonKey } from "../../../zustand/usePlayerStore/types";
-import { usePlayerStore } from "../../../zustand/usePlayerStore";
+import { IActions, IButtonKey } from "../../zustand/usePlayerStore/types";
+import { usePlayerStore } from "../../zustand/usePlayerStore";
 
 import * as S from "./style";
 

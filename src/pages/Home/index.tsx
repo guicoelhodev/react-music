@@ -1,9 +1,9 @@
-import { InfiniteScroll } from "components/InfiniteScroll";
-import { MobilePlayer } from "components/refactor/MobilePlayer";
-import { MusicItem } from "components/refactor/MusicItem";
-import { Player } from "components/refactor/Player";
-import { Search } from "components/refactor/Search";
 import React, { useEffect } from "react";
+import { InfiniteScroll } from "components/InfiniteScroll";
+import { MobilePlayer } from "components/MobilePlayer";
+import { MusicItem } from "components/MusicItem";
+import { Player } from "components/Player";
+import { Search } from "components/Search";
 import { IoHeadsetSharp } from "react-icons/io5";
 import { useMediaQuery } from "react-responsive";
 import { useSearchMusic } from "services/http/GET/useSearchMusics";

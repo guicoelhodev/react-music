@@ -3,8 +3,8 @@ import { FC } from "react";
 import { DebounceInput } from "react-debounce-input";
 import { AiOutlineSearch } from "react-icons/ai";
 import { MdPlaylistPlay } from "react-icons/md";
-import { usePlayerStore } from "../../../zustand/usePlayerStore";
-import { useFavoriteMusicsStore } from "../../../zustand/useFavoriteMusicsStore";
+import { usePlayerStore } from "../../zustand/usePlayerStore";
+import { useFavoriteMusicsStore } from "../../zustand/useFavoriteMusicsStore";
 import * as S from "./style";
 
 export type IPlaylistType = "top 100" | "favorite";
