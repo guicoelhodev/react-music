@@ -1,7 +1,7 @@
 import React, { FC, useEffect, useRef } from "react";
 
 interface IInfiniteScroll {
-  loadMore: (arg: boolean) => boolean;
+  loadMore: (arg: boolean) => void;
 }
 
 export const InfiniteScroll: FC<IInfiniteScroll> = ({ loadMore }) => {
