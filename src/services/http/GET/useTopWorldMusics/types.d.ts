@@ -58,7 +58,7 @@ export type IMusic = {
   explicit_content_cover: number;
   preview: string;
   md5_image: string;
-  time_add: number;
+  time_add?: number;
   artist: IArtist;
   album: IAlbum;
   type: string;
