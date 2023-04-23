@@ -1,7 +1,11 @@
-import React, { useEffect, useRef } from "react";
+import React, { FC, useEffect, useRef } from "react";
 
-const InfiniteScroll = ({ loadMore }) => {
-  const containerRef = useRef();
+interface IInfiniteScroll {
+  loadMore: (arg: boolean) => boolean;
+}
+
+export const InfiniteScroll: FC<IInfiniteScroll> = ({ loadMore }) => {
+  const containerRef = useRef<HTMLDivElement>(null);
 
   useEffect(() => {
     const options = {
@@ -21,9 +25,7 @@ const InfiniteScroll = ({ loadMore }) => {
     if (containerRef.current) {
       observer.observe(containerRef.current);
     }
-  }, []); //eslint-disable-line
+  }, []);
 
-  return <div ref={containerRef} />;
+  return <div ref={containerRef}></div>;
 };
-
-export default InfiniteScroll;
