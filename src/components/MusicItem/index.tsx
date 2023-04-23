@@ -1,8 +1,8 @@
 import * as React from "react";
 import { AiFillHeart } from "react-icons/ai";
 import { IMusic } from "services/http/GET/useTopWorldMusics/types";
-import { useFavoriteMusicsStore } from "../../zustand/useFavoriteMusicsStore";
-import { usePlayerStore } from "../../zustand/usePlayerStore";
+import { useFavoriteMusicsStore } from "../../store/useFavoriteMusicsStore";
+import { usePlayerStore } from "../../store/usePlayerStore";
 import * as S from "./style";
 
 type IMusicItem = IMusic;

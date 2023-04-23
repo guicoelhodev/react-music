@@ -1,3 +1,3 @@
-import { IActions } from "zustand/usePlayerStore/types";
+import { IActions } from "store/usePlayerStore/types";
 
 export type ISize = "sm" | "md";

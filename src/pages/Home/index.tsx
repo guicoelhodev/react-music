@@ -8,8 +8,8 @@ import { IoHeadsetSharp } from "react-icons/io5";
 import { useMediaQuery } from "react-responsive";
 import { useSearchMusic } from "services/http/GET/useSearchMusics";
 import { useTopWorldMusic } from "services/http/GET/useTopWorldMusics";
-import { useFavoriteMusicsStore } from "../../zustand/useFavoriteMusicsStore";
-import { usePlayerStore } from "../../zustand/usePlayerStore";
+import { useFavoriteMusicsStore } from "../../store/useFavoriteMusicsStore";
+import { usePlayerStore } from "../../store/usePlayerStore";
 
 import * as S from "./style";
 
