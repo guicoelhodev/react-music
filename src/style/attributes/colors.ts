@@ -4,5 +4,5 @@ export const colorsCSS = {
 
   "purple-800": "#6E26CD",
 
-  "gray-200": "#d9d9d9",
+  "gray-200": "#d3d3d3",
 } as const;
