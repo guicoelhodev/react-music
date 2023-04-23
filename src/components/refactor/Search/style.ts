@@ -6,26 +6,67 @@ interface IButton {
 export const Container = styled.section`
   display: flex;
   flex-direction: column;
-  gap: ${(p) => p.theme["gap-1"]};
-  padding: ${(p) => p.theme["p-md"]} 0;
+  gap: 1rem;
+
+  padding: 1rem;
+  background: ${(p) => p.theme.colors.white};
+`;
+
+export const SearchInput = styled.article`
+  border: 2px solid ${(p) => p.theme.colors["gray-200"]};
+  border-radius: 5rem;
+
+  display: flex;
+  align-items: center;
+  padding: 0 1rem;
+
+  input {
+    padding: 0.8rem;
+    flex: 1;
+    border-radius: inherit;
+    border: 0;
+    font-size: 1rem;
+    color: ${(p) => p.theme.colors["purple-800"]};
+
+    ::placeholder {
+      color: #9c9c9c;
+    }
+
+    :focus {
+      outline: 0;
+    }
+  }
+
+  svg {
+    fill: #999;
+    width: 1.4rem;
+    height: 1.4rem;
+  }
+
+  :focus-within {
+    border-color: ${(p) => p.theme.colors["purple-800"]};
+    svg {
+      fill: ${(p) => p.theme.colors["purple-800"]};
+    }
+  }
 `;
 
 export const OptionsToSearch = styled.article`
   display: flex;
   align-items: center;
-  gap: ${(p) => p.theme["gap-2"]};
+  gap: 1rem;
 `;
 
 export const MyPlaylist = styled.button`
   background: inherit;
   margin-left: auto;
-  gap: ${(p) => p.theme["gap-1"]};
+  gap: 0.5rem;
   align-items: center;
 
   display: flex;
 
   border: 1px solid ${(p) => p.theme.colors["purple-800"]};
-  border-radius: ${(p) => p.theme["radius-lg"]};
+  border-radius: 1.5rem;
 
   padding: 0.5rem 1rem;
   color: ${(p) => p.theme.colors["purple-800"]};
@@ -41,7 +82,7 @@ export const MyPlaylist = styled.button`
     width: 1.5rem;
     height: 1.5rem;
     background: ${(p) => p.theme.colors["purple-800"]};
-    border-radius: ${(p) => p.theme["radius-full"]};
+    border-radius: 50%;
 
     span {
       font-size: ${(p) => p.theme["text-base"]};
@@ -53,7 +94,9 @@ export const MyPlaylist = styled.button`
 export const Button = styled.button<IButton>`
   background: ${(p) =>
     p.isActive ? p.theme.colors["purple-800"] : p.theme.colors.white};
-  padding: ${(p) => p.theme["p-sm"]} ${(p) => p.theme["p-md"]};
+
+  padding: 0.5rem 1rem;
+
   border: 1px solid ${(p) => p.theme.colors["purple-800"]};
   color: ${(p) =>
     p.isActive ? p.theme.colors.white : p.theme.colors["purple-800"]};

@@ -1,12 +1,16 @@
 import React from "react";
 import { FC } from "react";
+import { AiOutlineSearch } from "react-icons/ai";
 import { MdPlaylistPlay } from "react-icons/md";
 import * as S from "./style";
 
 export const Search: FC = () => {
   return (
     <S.Container>
-      <p>dshsduh</p>
+      <S.SearchInput>
+        <AiOutlineSearch />
+        <input type="text" placeholder="search your music here" />
+      </S.SearchInput>
       <S.OptionsToSearch>
         <S.Button isActive>Title</S.Button>
         <S.Button isActive={false}>Album</S.Button>
