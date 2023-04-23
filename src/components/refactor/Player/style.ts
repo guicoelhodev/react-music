@@ -40,14 +40,13 @@ export const Header = styled.header`
   width: 100%;
   background: rgba(255, 255, 255, 0.3);
 
-  padding: ${(p) => p.theme["p-md"]};
-  padding-bottom: ${(p) => p.theme["p-lg"]};
-  border-radius: ${(p) => p.theme["radius-lg"]};
+  padding: 1rem;
+  border-radius: 1.5rem;
 
   aside {
     display: flex;
     align-items: center;
-    gap: ${(p) => p.theme["gap-1"]};
+    gap: 0.5rem;
 
     svg,
     p {
@@ -63,9 +62,8 @@ export const Header = styled.header`
   img {
     aspect-ratio: 1/1;
     width: 16rem;
-    background: rgba(255, 255, 255, 0.6);
-    background: blue;
-    border-radius: ${(p) => p.theme["radius-sm"]};
+    background: transparent;
+    border-radius: 1rem;
   }
 `;
 
@@ -73,7 +71,7 @@ export const PlayerInfo = styled.section`
   display: flex;
   flex-direction: column;
   align-items: center;
-  padding: ${(p) => p.theme["p-md"]} 0;
+  padding: 1rem 0;
 
   article {
     display: flex;
@@ -83,6 +81,11 @@ export const PlayerInfo = styled.section`
 
     h3 {
       font-weight: 800;
+      white-space: nowrap;
+      text-overflow: ellipsis;
+      overflow: hidden;
+      width: 16rem;
+      text-align: center;
     }
     p {
       padding-top: ${(p) => p.theme["p-sm"]};

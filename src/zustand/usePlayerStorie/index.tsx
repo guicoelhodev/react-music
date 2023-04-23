@@ -19,11 +19,11 @@ const buttonActions: IButtonActions = {
     icon: <BiSkipPrevious />,
     action: "prev",
   },
-  pause: {
+  play: {
     title: "play music",
     size: "md",
     icon: <BsFillPlayFill />,
-    action: "pause",
+    action: "play",
   },
 
   next: {
@@ -55,27 +55,28 @@ const buttonActions: IButtonActions = {
 const initialState: IAttributes = {
   buttonActions,
   currentAction: null,
+  currentMusic: null,
+  currentPlaylist: [],
 };
 
 export const usePlayerStorie = create<IPlayerStorie>((set) => ({
   ...initialState,
-  handleCurrentAction: (action) =>
+
+  handleCurrentPlaylist: (tracks) => set({ currentPlaylist: tracks }),
+
+  handleCurrentMusic: (music) => set({ currentMusic: music }),
+
+  handlePlayMusic: () =>
     set((state) => {
       let { buttonActions, currentAction } = state;
-      switch (action) {
-        case "pause":
-          if (currentAction === action) {
-            buttonActions.pause.icon = <BsPlayFill />;
+      if (currentAction === "play") {
+        buttonActions.play.icon = <BsPlayFill />;
 
-            currentAction = null;
-          } else {
-            buttonActions.pause.icon = <BsPauseFill />;
-            currentAction = "pause";
-          }
-          return { buttonActions, currentAction };
-        default:
-          break;
+        currentAction = null;
+      } else {
+        buttonActions.play.icon = <BsPauseFill />;
+        currentAction = "play";
       }
-      return state;
+      return { buttonActions, currentAction };
     }),
 }));

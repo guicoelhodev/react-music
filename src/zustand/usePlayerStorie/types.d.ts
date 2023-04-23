@@ -1,16 +1,22 @@
 import { IButtonActions } from "components/refactor/Player/types";
+import { IMusic } from "services/http/GET/useTopWorldMusics/types";
 
 export type IPlayerStorie = IAttributes & IMethods;
 
-export type IActions = "pause" | "prev" | "next" | "info" | "like" | "shuffle";
+export type IActions = "play" | "prev" | "next" | "info" | "like" | "shuffle";
 
 export type IMethods = {
-  handleCurrentAction: (action: IActions) => void;
+  handlePlayMusic: () => void;
+  // handleSkipMusic: (direction: "prev" | "next") => void;
+  handleCurrentMusic: (music: IMusic) => void;
+  handleCurrentPlaylist: (musics: IMusic[]) => void;
 };
 
 export type IAttributes = {
   buttonActions: IButtonActions;
   currentAction: IActions | null;
+  currentMusic: IMusic | null;
+  currentPlaylist: IMusic[];
 };
 
 export type IButtonActions = {

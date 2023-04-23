@@ -19,6 +19,9 @@ export const Player = styled.button<IStyledMusic>`
   border-radius: 0.5rem 0.5rem 0 0;
   aspect-ratio: 1/1;
   background: url(${(p) => p.src});
+  background-repeat: no-repeat;
+  background-position: center;
+  background-size: auto;
 
   border: 1px solid ${(p) => p.theme.colors.white};
 

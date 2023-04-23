@@ -1,31 +1,60 @@
-import React, { FC } from "react";
+import React, { FC, useEffect, useRef } from "react";
 
-import { FaHeadphonesAlt } from "react-icons/fa";
-import { IButtonKey } from "zustand/usePlayerStorie/types";
+import { IActions, IButtonKey } from "zustand/usePlayerStorie/types";
 import { usePlayerStorie } from "../../../zustand/usePlayerStorie";
 
 import * as S from "./style";
 
 export const Player: FC = () => {
-  const { buttonActions, currentAction } = usePlayerStorie();
+  const audioRef = useRef<HTMLAudioElement>(null);
+  const { buttonActions, currentMusic, currentAction } = usePlayerStorie();
 
-  const handleCurrentAction = usePlayerStorie((s) => s.handleCurrentAction);
-
-  console.log(currentAction);
+  const { handlePlayMusic } = usePlayerStorie();
 
   const getButtonValues: () => IButtonKey[] = () =>
     Object.values(buttonActions);
 
+  const playAudio = () => {
+    const audio = audioRef.current;
+
+    if (currentAction === "play") {
+      audio?.play();
+    } else {
+      audio?.pause();
+    }
+  };
+
+  const a = () => {};
+
+  const handleActions: { [Key in IActions] } = {
+    play: () => handlePlayMusic(),
+    info: a,
+    like: a,
+    next: a,
+    prev: a,
+    shuffle: a,
+  };
+
+  useEffect(() => {
+    if (audioRef.current) {
+      audioRef.current.volume = 0.1;
+    }
+
+    playAudio();
+  }, [audioRef.current, currentAction, currentMusic]);
+
   return (
     <S.Container>
       <S.Header>
-        <img src="https://www.vstopbrasil.com.br/wp-content/uploads/just-dance-lady-gaga-ft-colby-odonis-20221811109563985732.jpg" />
+        <img src={currentMusic?.album.cover_medium} />
       </S.Header>
 
+      <audio ref={audioRef} src={currentMusic?.preview}></audio>
       <S.PlayerInfo>
         <article>
-          <h3>Just Dance</h3>
-          <p>Lady Gaga ft. Colby O´Donis Etc </p>
+          <h3>{currentMusic ? currentMusic.title : "XXXXX XXXX"}</h3>
+
+          <p>{currentMusic ? currentMusic.artist.name : "XXXXX XXXX"}</p>
         </article>
 
         <S.PlayActionsContainer>
@@ -34,7 +63,10 @@ export const Player: FC = () => {
               <S.ButtonAction
                 title={item.title}
                 size={item.size}
-                onClick={() => handleCurrentAction(item.action)}
+                onClick={() => {
+                  const currentAction = handleActions[item.action];
+                  currentAction();
+                }}
               >
                 {item.icon}
               </S.ButtonAction>
