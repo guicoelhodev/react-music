@@ -29,7 +29,7 @@ export type IResponse = {
   picture_type: string;
   creator: Creator;
   type: string;
-  tracks: Tracks;
+  tracks: ITracks;
 };
 
 export type ICreator = {

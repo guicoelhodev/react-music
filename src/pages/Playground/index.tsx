@@ -18,9 +18,5 @@ const Container = styled.div`
 export const Playground: FC = () => {
   const { data } = useTopWorldMusic(20);
 
-  return (
-    <Container>
-      <MusicItem {...data?.pages[0].tracks.data[0]} />
-    </Container>
-  );
+  return <Container></Container>;
 };
