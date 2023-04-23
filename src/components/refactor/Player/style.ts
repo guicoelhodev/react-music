@@ -132,12 +132,12 @@ export const PlayActionsContainer = styled.div`
 `;
 
 export const ButtonAction = styled.button<IButton>`
-  cursor: pointer;
-  transition: all 200ms ease-in;
-
-  background: rgba(255, 255, 255, 0.3);
-  aspect-ratio: 1/1;
   width: ${(p) => buttonSize[p.size]};
+
+  transition: all 200ms ease-in;
+  background: rgba(255, 255, 255, 0.3);
+
+  aspect-ratio: 1/1;
   border-radius: 50%;
   border: 1px solid transparent;
 
