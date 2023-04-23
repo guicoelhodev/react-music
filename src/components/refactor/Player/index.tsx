@@ -19,11 +19,6 @@ export const Player: FC = () => {
   return (
     <S.Container>
       <S.Header>
-        <aside>
-          <p>{currentAction !== "pause" ? "Waiting..." : "Now playing..."}</p>
-          <FaHeadphonesAlt />
-        </aside>
-
         <img src="https://www.vstopbrasil.com.br/wp-content/uploads/just-dance-lady-gaga-ft-colby-odonis-20221811109563985732.jpg" />
       </S.Header>
 
