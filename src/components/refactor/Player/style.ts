@@ -4,6 +4,7 @@ import { ISize } from "./types";
 
 type IButton = {
   size: ISize;
+  iconColor: string;
 };
 
 const buttonSize: { [Key in ISize]: string } = {
@@ -149,7 +150,8 @@ export const ButtonAction = styled.button<IButton>`
   outline: 1px solid transparent;
 
   svg {
-    fill: ${(p) => p.theme.colors.white};
+    transition: all 200ms ease-in;
+    fill: ${(p) => p.iconColor};
     width: 1.6rem;
     height: 1.6rem;
   }

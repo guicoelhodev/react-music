@@ -1,16 +1,20 @@
 import React, { FC, useEffect, useRef } from "react";
+import { useFavoriteMusicsStore } from "../../../zustand/useFavoriteMusicsStore";
 
-import { IActions, IButtonKey } from "zustand/usePlayerStorie/types";
-import { usePlayerStorie } from "../../../zustand/usePlayerStorie";
+import { IActions, IButtonKey } from "../../../zustand/usePlayerStore/types";
+import { usePlayerStore } from "../../../zustand/usePlayerStore";
 
 import * as S from "./style";
 
 export const Player: FC = () => {
   const audioRef = useRef<HTMLAudioElement>(null);
-  const { buttonActions, currentMusic, currentAction } = usePlayerStorie();
+
+  const { buttonActions, currentMusic, currentAction } = usePlayerStore();
 
   const { handlePlayMusic, handleSkipMusic, handleMusicVolume, musicVolume } =
-    usePlayerStorie();
+    usePlayerStore();
+
+  const { handleFavoriteMusics, favoriteMusics } = useFavoriteMusicsStore();
 
   const getButtonValues: () => IButtonKey[] = () =>
     Object.values(buttonActions);
@@ -32,7 +36,7 @@ export const Player: FC = () => {
     prev: () => handleSkipMusic("prev"),
     next: () => handleSkipMusic("next"),
     volume: () => handleMusicVolume(),
-    like: a,
+    like: () => handleFavoriteMusics(currentMusic!),
     info: a,
   };
 
@@ -59,24 +63,33 @@ export const Player: FC = () => {
         </article>
 
         <S.PlayActionsContainer>
-          {getButtonValues().map((item) => (
-            <article key={item.action}>
-              <S.ButtonAction
-                title={item.title}
-                size={item.size}
-                onClick={() => {
-                  const currentAction = handleActions[item.action];
-                  currentAction();
-                }}
-              >
-                {item.icon}
-              </S.ButtonAction>
-            </article>
-          ))}
+          {getButtonValues().map((item) => {
+            let iconColor = "#fff";
+            if (
+              item.action === "like" &&
+              favoriteMusics.some((music) => music.id === currentMusic?.id)
+            ) {
+              iconColor = "#ee88a6";
+            }
+
+            return (
+              <article key={item.action}>
+                <S.ButtonAction
+                  title={item.title}
+                  size={item.size}
+                  iconColor={iconColor}
+                  onClick={() => {
+                    const currentAction = handleActions[item.action];
+                    currentAction();
+                  }}
+                >
+                  {item.icon}
+                </S.ButtonAction>
+              </article>
+            );
+          })}
         </S.PlayActionsContainer>
       </S.PlayerInfo>
-
-      {/* <button onClick={() => console.log(actions)}>Visualizar</button> */}
     </S.Container>
   );
 };
