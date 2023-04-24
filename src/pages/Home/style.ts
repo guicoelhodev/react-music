@@ -59,7 +59,8 @@ export const MusicNav = styled.section`
 
     display: flex;
     flex-wrap: wrap;
-    justify-content: space-evenly;
+
+    justify-content: center;
     gap: 1rem;
     padding: 1rem 0;
 
@@ -76,5 +77,11 @@ export const MusicNav = styled.section`
 
   @media (max-width: 580px) {
     padding-bottom: 6rem;
+
+    ul {
+      flex-direction: column;
+      flex-wrap: nowrap;
+      justify-content: flex-start;
+    }
   }
 `;
