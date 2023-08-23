@@ -38,12 +38,7 @@ export const Dropdown = styled.div<IDropdownStyle>`
   transform: ${(p) => (p.open ? "translateX(0)" : "translateX(100%)")};
   transition: all 200ms linear;
 
-  background: rgb(142, 33, 223);
-  background: linear-gradient(
-    180deg,
-    rgba(142, 33, 223, 1) 0%,
-    rgba(255, 186, 207, 1) 100%
-  );
+  background-color: ${(p) => p.theme.colors["blue-800"]};
   height: 100%;
 
   display: flex;
@@ -62,9 +57,9 @@ export const Dropdown = styled.div<IDropdownStyle>`
 
 export const MenuMusic = styled.div`
   margin-top: 0.5rem;
-  background: ${(p) => p.theme.colors.white};
+  background: ${(p) => p.theme.colors["blue-800"]};
   width: 20rem;
-  border: 1px solid ${(p) => p.theme.colors["purple-800"]};
+  border: 1px solid ${(p) => p.theme.colors["blue-aqua-200"]};
 
   display: flex;
   border-radius: 5px;
@@ -81,7 +76,7 @@ export const MenuMusic = styled.div`
 
   button:nth-child(1) {
     border-radius: 5px 0 0 5px;
-    background: ${(p) => p.theme.colors.white};
+    background: ${(p) => p.theme.colors["blue-800"]};
     flex: 1;
 
     display: flex;
@@ -107,7 +102,7 @@ export const MenuMusic = styled.div`
       overflow: hidden;
       white-space: nowrap;
       text-overflow: ellipsis;
-      color: ${(p) => p.theme.colors["purple-800"]};
+      color: ${(p) => p.theme.colors["blue-aqua-200"]};
       width: 12rem;
     }
 
@@ -127,7 +122,7 @@ export const MenuMusic = styled.div`
       width: 2rem;
       height: 2rem;
 
-      fill: ${(p) => p.theme.colors["purple-800"]};
+      fill: ${(p) => p.theme.colors["blue-aqua-200"]};
     }
   }
 
@@ -178,7 +173,7 @@ export const HiddenDropdown = styled.button`
   svg {
     width: 80%;
     height: 80%;
-    fill: ${(p) => p.theme.colors.white};
+    fill: ${(p) => p.theme.colors["blue-aqua-200"]};
   }
 
   @media (max-width: 600px) {

@@ -16,9 +16,6 @@ export const GlobalStyle = createGlobalStyle`
   button {
     cursor:pointer;
 
-    :active {
-      filter: brightness(0.9);
-    }
   }    
 
 `;

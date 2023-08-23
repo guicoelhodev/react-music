@@ -11,17 +11,17 @@ export const Container = styled.section`
   padding: 1rem;
 
   .favorite-enabled {
-    background: ${(p) => p.theme.colors["purple-800"]};
+    background: ${(p) => p.theme.colors["blue-aqua-200"]};
     transition: all 200ms ease-in;
 
     svg,
     p {
-      color: ${(p) => p.theme.colors.white};
+      color: ${(p) => p.theme.colors["blue-600"]};
     }
     div {
-      background: ${(p) => p.theme.colors.white};
+      background: ${(p) => p.theme.colors["blue-600"]};
       span {
-        color: ${(p) => p.theme.colors["purple-800"]};
+        color: ${(p) => p.theme.colors["blue-aqua-200"]};
       }
     }
   }
@@ -32,8 +32,8 @@ export const Container = styled.section`
 `;
 
 export const SearchInput = styled.article`
-  background: ${(p) => p.theme.colors.white};
-  border: 2px solid ${(p) => p.theme.colors["gray-200"]};
+  background: ${(p) => p.theme.colors["blue-700"]};
+  border: 2px solid ${(p) => p.theme.colors["blue-aqua-200"]};
   border-radius: 5rem;
 
   display: flex;
@@ -46,10 +46,11 @@ export const SearchInput = styled.article`
     border-radius: inherit;
     border: 0;
     font-size: 1rem;
-    color: ${(p) => p.theme.colors["purple-800"]};
+    color: ${(p) => p.theme.colors["blue-aqua-200"]};
+    background-color: inherit;
 
     ::placeholder {
-      color: #9c9c9c;
+      color: inherit;
     }
 
     :focus {
@@ -58,15 +59,15 @@ export const SearchInput = styled.article`
   }
 
   svg {
-    fill: #999;
+    fill: ${(p) => p.theme.colors["blue-aqua-200"]};
     width: 1.4rem;
     height: 1.4rem;
   }
 
   :focus-within {
-    border-color: ${(p) => p.theme.colors["purple-800"]};
+    border-color: ${(p) => p.theme.colors["blue-aqua-200"]};
     svg {
-      fill: ${(p) => p.theme.colors["purple-800"]};
+      fill: ${(p) => p.theme.colors["blue-aqua-200"]};
     }
   }
 `;
@@ -78,18 +79,18 @@ export const OptionsToSearch = styled.article`
 `;
 
 export const MyPlaylist = styled.button`
-  background: ${(p) => p.theme.colors.white};
+  background: ${(p) => p.theme.colors["blue-600"]};
   margin-left: auto;
   gap: 0.5rem;
   align-items: center;
 
   display: flex;
 
-  border: 1px solid ${(p) => p.theme.colors["purple-800"]};
+  border: 1px solid ${(p) => p.theme.colors["blue-aqua-200"]};
   border-radius: 1.5rem;
 
   padding: 0.5rem 1rem;
-  color: ${(p) => p.theme.colors["purple-800"]};
+  color: ${(p) => p.theme.colors["blue-aqua-200"]};
 
   svg {
     width: 1.4rem;
@@ -101,25 +102,25 @@ export const MyPlaylist = styled.button`
     place-items: center;
     width: 1.5rem;
     height: 1.5rem;
-    background: ${(p) => p.theme.colors["purple-800"]};
+    background: ${(p) => p.theme.colors["blue-aqua-200"]};
     border-radius: 50%;
 
     span {
       font-size: ${(p) => p.theme["text-base"]};
-      color: ${(p) => p.theme.colors.white};
+      color: ${(p) => p.theme.colors["blue-600"]};
     }
   }
 `;
 
 export const Button = styled.button<IButton>`
   background: ${(p) =>
-    p.isActive ? p.theme.colors["purple-800"] : p.theme.colors.white};
+    p.isActive ? p.theme.colors["blue-aqua-200"] : p.theme.colors["blue-600"]};
 
   padding: 0.5rem 1rem;
 
-  border: 1px solid ${(p) => p.theme.colors["purple-800"]};
+  border: 1px solid ${(p) => p.theme.colors["blue-aqua-200"]};
   color: ${(p) =>
-    p.isActive ? p.theme.colors.white : p.theme.colors["purple-800"]};
+    p.isActive ? p.theme.colors["blue-600"] : p.theme.colors["blue-aqua-200"]};
 
   font-size: 1rem;
   border-radius: 2rem;

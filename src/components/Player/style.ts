@@ -24,11 +24,7 @@ export const Container = styled.div<IStyled>`
   border-radius: ${(p) => p.theme["radius-lg"]};
   padding: 2rem 1rem;
 
-  background: ${(p) => (p.isTransparent ? "transparent" : "rgb(142, 33, 223)")};
-  background: ${(p) =>
-    p.isTransparent
-      ? "transparent"
-      : "linear-gradient(180deg, rgba(142, 33, 223, 1) 0%,rgba(255, 186, 207, 1) 100%)"};
+  background-color: #050517;
   display: flex;
   flex-direction: column;
   justify-content: space-between;
@@ -41,7 +37,6 @@ export const Header = styled.header`
   gap: 0.5rem;
 
   width: 100%;
-  background: rgba(255, 255, 255, 0.3);
 
   padding: 1rem;
   border-radius: 1.5rem;
@@ -66,6 +61,13 @@ export const Header = styled.header`
     aspect-ratio: 1/1;
     width: 16rem;
     background: transparent;
+    border-radius: 1rem;
+  }
+
+  span {
+    aspect-ratio: 1/1;
+    width: 16rem;
+    background: ${(p) => p.theme.colors["blue-700"]};
     border-radius: 1rem;
   }
 `;
@@ -141,7 +143,7 @@ export const ButtonAction = styled.button<IButton>`
   width: ${(p) => buttonSize[p.size]};
 
   transition: all 200ms ease-in;
-  background: rgba(255, 255, 255, 0.3);
+  background-color: ${(p) => p.theme.colors["blue-700"]};
 
   aspect-ratio: 1/1;
   border-radius: 50%;
@@ -159,15 +161,15 @@ export const ButtonAction = styled.button<IButton>`
   }
 
   :hover {
-    background: rgba(255, 255, 255, 0.5);
+    background: ${(p) => p.theme.colors["blue-aqua-200"]};
   }
 
   :active,
   :focus {
-    outline: 1px solid ${(p) => p.theme.colors["pink-200"]};
+    outline: 1px solid ${(p) => p.theme.colors["blue-aqua-200"]};
   }
 
   :active {
-    background: ${(p) => p.theme.colors["pink-200"]};
+    background: ${(p) => p.theme.colors["blue-aqua-200"]};
   }
 `;

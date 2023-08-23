@@ -3,7 +3,8 @@ import styled from "styled-components";
 export const Layout = styled.div`
   width: 100%;
 
-  background: linear-gradient(180deg, #ffffff 0%, #eeeeee 0%, #fed8e6 100%);
+  /* background: linear-gradient(180deg, #ffffff 0%, #eeeeee 0%, #fed8e6 100%); */
+  background: ${({ theme }) => theme.colors["blue-800"]};
 `;
 
 export const Container = styled.div`
@@ -26,7 +27,7 @@ export const Logo = styled.section`
   display: flex;
   align-items: center;
   gap: 1rem;
-  color: ${(p) => p.theme.colors["purple-800"]};
+  color: ${(p) => p.theme.colors["blue-aqua-200"]};
 
   svg {
     width: 2.5rem;

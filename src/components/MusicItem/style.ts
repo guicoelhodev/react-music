@@ -29,9 +29,8 @@ export const Player = styled.button<IStyledMusic>`
   background-position: center;
   background-size: contain;
 
-  border: 1px solid ${(p) => p.theme.colors.white};
+  border: 1px solid ${(p) => p.theme.colors["blue-aqua-200"]};
 
-  opacity: 0.8;
   cursor: pointer;
 
   @media (max-width: 580px) {
@@ -42,7 +41,7 @@ export const Player = styled.button<IStyledMusic>`
 
 export const ContentMusic = styled.section<IStyledContent>`
   width: 100%;
-  background: ${(p) => p.theme.colors.white};
+  background-color: ${(p) => p.theme.colors["blue-700"]};
 
   border-radius: 0 0 0.5rem 0.5rem;
   padding: 0.5rem;
@@ -51,9 +50,11 @@ export const ContentMusic = styled.section<IStyledContent>`
   align-items: center;
   justify-content: space-between;
 
+  border: 1px solid ${(p) => p.theme.colors["blue-aqua-200"]};
+
   div {
     width: calc(16rem - 4rem);
-    color: ${(p) => p.theme.colors["purple-800"]};
+    color: ${(p) => p.theme.colors["blue-aqua-200"]};
 
     p,
     h4 {
@@ -65,7 +66,7 @@ export const ContentMusic = styled.section<IStyledContent>`
 
     h4 {
       font-size: ${(p) => p.theme["text-lg"]};
-      font-weight: 800;
+      font-weight: 600;
     }
     p {
       font-size: ${(p) => p.theme["text-sm"]};
@@ -82,7 +83,7 @@ export const ContentMusic = styled.section<IStyledContent>`
     svg {
       fill: ${(p) =>
         p.isFavorite
-          ? p.theme.colors["purple-800"]
+          ? p.theme.colors["blue-aqua-200"]
           : p.theme.colors["gray-200"]};
       width: 2rem;
       height: 2rem;
