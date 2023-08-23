@@ -11,7 +11,7 @@ import {
 
 import { GiSpeaker } from "react-icons/gi";
 import { BiSkipPrevious } from "react-icons/bi";
-import { AiFillHeart } from "react-icons/ai";
+import { AiFillGithub, AiFillHeart } from "react-icons/ai";
 
 const buttonActions: IButtonActions = {
   prev: {
@@ -34,9 +34,9 @@ const buttonActions: IButtonActions = {
     action: "next",
   },
   info: {
-    title: "more info",
+    title: "github",
     size: "sm",
-    icon: <BsThreeDots />,
+    icon: <AiFillGithub />,
     action: "info",
   },
   like: {

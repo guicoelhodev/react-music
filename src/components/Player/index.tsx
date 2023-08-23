@@ -41,7 +41,8 @@ export const Player: FC<IPlayer> = ({ bgTransparent = false }) => {
     next: () => handleSkipMusic("next"),
     volume: () => handleMusicVolume(),
     like: () => handleFavoriteMusics(currentMusic!),
-    info: a,
+    info: () =>
+      window.open("https://github.com/guicoelhodev/ReactMusic", "_blank"),
   };
 
   useEffect(() => {
@@ -57,7 +58,9 @@ export const Player: FC<IPlayer> = ({ bgTransparent = false }) => {
       <S.Header>
         {currentMusic?.album.cover_big ? (
           <img src={currentMusic?.album.cover_big} />
-        ) : <span />}
+        ) : (
+          <span />
+        )}
       </S.Header>
 
       <audio ref={audioRef} src={currentMusic?.preview}></audio>
