@@ -115,6 +115,8 @@ export const usePlayerStore = create<IPlayerStorie>((set) => ({
 
   handlePlayMusic: () =>
     set((state) => {
+      if (!state.currentMusic) return state;
+
       let { buttonActions, currentAction, musicVolume } = state;
       if (currentAction === "play") {
         buttonActions.play.icon = <BsPlayFill />;
