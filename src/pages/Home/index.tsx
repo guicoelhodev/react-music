@@ -70,7 +70,7 @@ export const Home = () => {
 
             <ul>
               {currentPlaylist?.map((track) => (
-                <MusicItem {...track} />
+                <MusicItem key={track.id} {...track} />
               ))}
               <InfiniteScroll loadMore={() => fetchNextPage()} />
             </ul>
