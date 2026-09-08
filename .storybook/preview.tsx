@@ -1,6 +1,6 @@
 import * as React from "react";
 import type { Preview } from "@storybook/react";
-import { GlobalStyle } from "../src/GlobalStyle";
+import { GlobalStyle } from "../src/style/global";
 import { styledComponentsTheme } from "../src/style/index";
 import { ThemeProvider } from "styled-components";
 
