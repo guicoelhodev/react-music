@@ -1,175 +1,314 @@
 import styled from "styled-components";
 
-import { ISize } from "./types";
+export const Container = styled.section<{
+  $cover?: string;
+  $isTransparent: boolean;
+}>`
+  position: relative;
+  min-height: 31rem;
+  overflow: hidden;
+  isolation: isolate;
+  border: 1px solid ${({ theme }) => theme.colors["blue-500"]};
+  border-radius: 1.75rem;
+  background: ${({ theme, $isTransparent }) =>
+    $isTransparent ? "transparent" : theme.colors["blue-900"]};
+  box-shadow: 0 30px 80px rgba(0, 0, 0, 0.32);
 
-type IButton = {
-  size: ISize;
-  iconColor: string;
-};
+  &::before {
+    content: "";
+    position: absolute;
+    z-index: -2;
+    inset: -4rem;
+    background: ${({ $cover }) => ($cover ? `url(${$cover}) center/cover` : "none")};
+    filter: blur(42px) saturate(0.75);
+    opacity: ${({ $cover }) => ($cover ? 0.28 : 0)};
+  }
 
-type IStyled = {
-  isTransparent: boolean;
-};
-
-const buttonSize: { [Key in ISize]: string } = {
-  md: "5rem",
-  sm: "3rem",
-};
-
-export const Container = styled.div<IStyled>`
-  width: min(100%, 21.25rem);
-  height: min(100%, 48rem);
-  overflow-y: auto;
-
-  border-radius: ${(p) => p.theme["radius-lg"]};
-  padding: 2rem 1rem;
-
-  background-color: #050517;
-  display: flex;
-  flex-direction: column;
-  justify-content: space-between;
+  &::after {
+    content: "";
+    position: absolute;
+    z-index: -1;
+    inset: 0;
+    background: linear-gradient(125deg, rgba(5, 13, 31, 0.84), rgba(6, 18, 42, 0.96));
+  }
 `;
 
-export const Header = styled.header`
+export const Content = styled.div`
+  position: relative;
+  height: 100%;
+  padding: 1.65rem;
+
+  @media (max-width: 720px) {
+    padding: 1.25rem;
+  }
+`;
+
+export const Eyebrow = styled.p`
   display: flex;
-  flex-direction: column;
   align-items: center;
-  gap: 0.5rem;
+  gap: 0.55rem;
+  margin-bottom: 1.5rem;
+  color: ${({ theme }) => theme.colors["gray-300"]};
+  font-size: 0.7rem;
+  font-weight: 700;
+  letter-spacing: 0.16em;
+  text-transform: uppercase;
 
+  span {
+    width: 0.45rem;
+    height: 0.45rem;
+    border-radius: 50%;
+    background: ${({ theme }) => theme.colors["cyan-400"]};
+    box-shadow: 0 0 14px ${({ theme }) => theme.colors["cyan-400"]};
+  }
+`;
+
+export const NowPlaying = styled.div`
+  display: grid;
+  grid-template-columns: minmax(12rem, 0.72fr) minmax(18rem, 1.28fr);
+  align-items: center;
+  gap: clamp(1.5rem, 3vw, 3rem);
+
+  @media (max-width: 720px) {
+    grid-template-columns: 1fr;
+  }
+`;
+
+export const CoverWrap = styled.div`
+  position: relative;
   width: 100%;
+  max-width: 18rem;
+  justify-self: center;
 
-  padding: 1rem;
-  border-radius: 1.5rem;
-
-  aside {
-    display: flex;
-    align-items: center;
-    gap: 0.5rem;
-
-    svg,
-    p {
-      color: #fff;
-    }
-
-    p {
-      font-weight: 600;
-      font-size: ${(p) => p.theme["text-xl"]};
-    }
+  @media (max-width: 720px) {
+    max-width: 15rem;
   }
 
   img {
-    aspect-ratio: 1/1;
-    width: 16rem;
-    background: transparent;
-    border-radius: 1rem;
-  }
-
-  span {
-    aspect-ratio: 1/1;
-    width: 16rem;
-    background: ${(p) => p.theme.colors["blue-700"]};
-    border-radius: 1rem;
+    display: block;
+    width: 100%;
+    aspect-ratio: 1;
+    object-fit: cover;
+    border-radius: 1.25rem;
+    box-shadow: 0 22px 44px rgba(0, 0, 0, 0.4);
   }
 `;
 
-export const PlayerInfo = styled.section`
+export const PlayingBadge = styled.span`
+  position: absolute;
+  right: 0.75rem;
+  bottom: 0.75rem;
+  padding: 0.4rem 0.65rem;
+  border: 1px solid rgba(139, 244, 255, 0.35);
+  border-radius: 999px;
+  color: ${({ theme }) => theme.colors["cyan-300"]};
+  background: rgba(4, 15, 31, 0.82);
+  font-size: 0.7rem;
+  font-weight: 700;
+  text-transform: uppercase;
+`;
+
+export const PlayerInfo = styled.div`
+  min-width: 0;
+`;
+
+export const TrackHeading = styled.div`
   display: flex;
-  flex-direction: column;
-  align-items: center;
-  padding: 1rem 0;
-
-  article {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    color: ${(p) => p.theme.colors.white};
-
-    h3 {
-      font-weight: 800;
-      white-space: nowrap;
-      text-overflow: ellipsis;
-      overflow: hidden;
-      width: 16rem;
-      text-align: center;
-    }
-    p {
-      padding-top: ${(p) => p.theme["p-sm"]};
-      max-width: 14rem;
-      overflow: hidden;
-      white-space: nowrap;
-      text-overflow: ellipsis;
-    }
-  }
-`;
-
-export const PlayActionsContainer = styled.div`
-  width: 14rem;
-  padding: ${(p) => p.theme["p-md"]} 0;
-
-  padding-top: 3rem;
-  display: grid;
-  grid-template-columns: 0.6fr 0.8fr 0.6fr;
-  grid-template-rows: 1fr 1fr;
+  align-items: flex-start;
+  justify-content: space-between;
   gap: 1rem;
 
-  article {
-    display: grid;
-    place-items: center;
+  div {
+    min-width: 0;
   }
 
-  article:nth-child(2) {
-    transform: translateY(-10px);
-
-    svg {
-      width: 3.4rem;
-      height: 3.4em;
-    }
+  p {
+    margin-bottom: 0.45rem;
+    overflow: hidden;
+    color: ${({ theme }) => theme.colors["cyan-400"]};
+    font-size: 0.73rem;
+    font-weight: 700;
+    letter-spacing: 0.08em;
+    text-overflow: ellipsis;
+    text-transform: uppercase;
+    white-space: nowrap;
   }
 
-  article:nth-child(1),
-  article:nth-child(3) {
-    svg {
-      width: 3rem;
-      height: 3em;
-    }
+  h2,
+  h3 {
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
   }
 
-  article:nth-child(3) {
-    transform: rotate(180deg);
+  h2 {
+    color: ${({ theme }) => theme.colors.white};
+    font-size: clamp(1.6rem, 3vw, 2.65rem);
+    line-height: 1.05;
+  }
+
+  h3 {
+    margin-top: 0.55rem;
+    color: ${({ theme }) => theme.colors["gray-300"]};
+    font-size: 1rem;
+    font-weight: 500;
   }
 `;
 
-export const ButtonAction = styled.button<IButton>`
-  width: ${(p) => buttonSize[p.size]};
-
-  transition: all 200ms ease-in;
-  background-color: ${(p) => p.theme.colors["blue-700"]};
-
-  aspect-ratio: 1/1;
+export const FavoriteButton = styled.button<{ $isFavorite: boolean }>`
+  flex: 0 0 2.75rem;
+  width: 2.75rem;
+  height: 2.75rem;
+  border: 1px solid ${({ theme }) => theme.colors["blue-500"]};
   border-radius: 50%;
-  border: 1px solid transparent;
-
-  display: grid;
-  place-items: center;
-  outline: 1px solid transparent;
+  color: ${({ theme, $isFavorite }) =>
+    $isFavorite ? theme.colors["pink-200"] : theme.colors["gray-300"]};
+  background: rgba(11, 26, 51, 0.74);
 
   svg {
-    transition: all 200ms ease-in;
-    fill: ${(p) => p.iconColor};
-    width: 1.6rem;
-    height: 1.6rem;
+    width: 1.2rem;
+    height: 1.2rem;
+    fill: currentColor;
+  }
+`;
+
+export const WaveSection = styled.div`
+  margin-top: 1.65rem;
+`;
+
+export const Timeline = styled.div`
+  display: flex;
+  justify-content: space-between;
+  margin-top: 0.25rem;
+  color: ${({ theme }) => theme.colors["gray-400"]};
+  font-size: 0.7rem;
+  font-variant-numeric: tabular-nums;
+`;
+
+export const Controls = styled.div`
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: clamp(0.45rem, 1.5vw, 1.1rem);
+  margin-top: 1.2rem;
+`;
+
+export const SecondaryButton = styled.button<{ $isActive?: boolean }>`
+  display: grid;
+  place-items: center;
+  width: 2.75rem;
+  height: 2.75rem;
+  border: 0;
+  border-radius: 50%;
+  color: ${({ theme, $isActive }) =>
+    $isActive ? theme.colors["cyan-400"] : theme.colors["gray-300"]};
+  background: transparent;
+
+  svg {
+    width: 1.3rem;
+    height: 1.3rem;
   }
 
-  :hover {
-    background: ${(p) => p.theme.colors["blue-aqua-200"]};
+  &:hover:not(:disabled) {
+    color: ${({ theme }) => theme.colors.white};
+    background: rgba(255, 255, 255, 0.06);
   }
 
-  :active,
-  :focus {
-    outline: 1px solid ${(p) => p.theme.colors["blue-aqua-200"]};
+  &:disabled {
+    cursor: not-allowed;
+    opacity: 0.28;
+  }
+`;
+
+export const PlayButton = styled.button`
+  display: grid;
+  place-items: center;
+  width: 4rem;
+  height: 4rem;
+  border: 0;
+  border-radius: 50%;
+  color: ${({ theme }) => theme.colors["blue-900"]};
+  background: ${({ theme }) => theme.colors["cyan-400"]};
+  box-shadow: 0 0 28px rgba(32, 217, 238, 0.28);
+
+  svg {
+    width: 2rem;
+    height: 2rem;
   }
 
-  :active {
-    background: ${(p) => p.theme.colors["blue-aqua-200"]};
+  &:disabled {
+    cursor: wait;
+    opacity: 0.55;
+  }
+`;
+
+export const PlayerFooter = styled.div`
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-top: 0.8rem;
+  color: ${({ theme }) => theme.colors["gray-400"]};
+  font-size: 0.7rem;
+
+  button {
+    display: grid;
+    place-items: center;
+    width: 2.75rem;
+    height: 2.75rem;
+    border: 0;
+    color: ${({ theme }) => theme.colors["gray-300"]};
+    background: transparent;
+
+    svg {
+      width: 1.3rem;
+      height: 1.3rem;
+    }
+  }
+`;
+
+export const Error = styled.p`
+  margin-top: 0.55rem;
+  color: ${({ theme }) => theme.colors["red-300"]};
+  font-size: 0.75rem;
+`;
+
+export const EmptyState = styled.div`
+  display: grid;
+  grid-template-columns: minmax(10rem, 0.7fr) 1.3fr;
+  align-items: center;
+  gap: 2rem;
+  min-height: 23rem;
+
+  @media (max-width: 720px) {
+    grid-template-columns: 1fr;
+    text-align: center;
+  }
+
+  h2 {
+    color: ${({ theme }) => theme.colors.white};
+    font-size: clamp(1.8rem, 4vw, 3.1rem);
+    line-height: 1.05;
+  }
+
+  p {
+    max-width: 28rem;
+    margin-top: 1rem;
+    color: ${({ theme }) => theme.colors["gray-300"]};
+    line-height: 1.65;
+  }
+`;
+
+export const EmptyCover = styled.div`
+  width: 100%;
+  max-width: 17rem;
+  aspect-ratio: 1;
+  border: 1px solid ${({ theme }) => theme.colors["blue-500"]};
+  border-radius: 1.25rem;
+  background:
+    radial-gradient(circle at 50% 50%, rgba(32, 217, 238, 0.2), transparent 32%),
+    linear-gradient(135deg, ${({ theme }) => theme.colors["blue-700"]}, ${({ theme }) => theme.colors["blue-900"]});
+
+  @media (max-width: 720px) {
+    max-width: 15rem;
   }
 `;

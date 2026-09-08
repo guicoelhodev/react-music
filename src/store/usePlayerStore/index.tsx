@@ -1,145 +1,163 @@
-import React from "react";
 import { create } from "zustand";
-import { IAttributes, IPlayerStorie, IButtonActions } from "./types";
-
-import {
-  BsThreeDots,
-  BsFillPlayFill,
-  BsPauseFill,
-  BsPlayFill,
-} from "react-icons/bs";
-
-import { GiSpeaker } from "react-icons/gi";
-import { BiSkipPrevious } from "react-icons/bi";
-import { AiFillGithub, AiFillHeart } from "react-icons/ai";
-
-const buttonActions: IButtonActions = {
-  prev: {
-    title: "previous music",
-    size: "sm",
-    icon: <BiSkipPrevious />,
-    action: "prev",
-  },
-  play: {
-    title: "play music",
-    size: "md",
-    icon: <BsFillPlayFill />,
-    action: "play",
-  },
-
-  next: {
-    title: "next music",
-    size: "sm",
-    icon: <BiSkipPrevious />,
-    action: "next",
-  },
-  info: {
-    title: "github",
-    size: "sm",
-    icon: <AiFillGithub />,
-    action: "info",
-  },
-  like: {
-    title: "like music",
-    size: "sm",
-    icon: <AiFillHeart />,
-    action: "like",
-  },
-  volume: {
-    title: "Change volume high",
-    size: "sm",
-    icon: <GiSpeaker />,
-    action: "volume",
-  },
-};
+import { IAttributes, IPlayerStorie } from "./types";
 
 const initialState: IAttributes = {
-  buttonActions,
-  musicVolume: 0.2,
-  currentAction: null,
+  musicVolume: 0.35,
   currentMusic: null,
   currentPlaylist: [],
+  isPlaying: false,
+  currentTime: 0,
+  duration: 0,
+  isLoading: false,
+  playbackError: null,
+  repeatMode: "off",
+  isShuffled: false,
+  seekTo: null,
   search: {
     inputValue: "",
     playlistType: "top_100",
   },
 };
 
+const getNextIndex = (
+  currentIndex: number,
+  playlistLength: number,
+  isShuffled: boolean,
+) => {
+  if (!isShuffled || playlistLength < 2) return currentIndex + 1;
+
+  let nextIndex = currentIndex;
+  while (nextIndex === currentIndex) {
+    nextIndex = Math.floor(Math.random() * playlistLength);
+  }
+  return nextIndex;
+};
+
 export const usePlayerStore = create<IPlayerStorie>((set) => ({
   ...initialState,
 
-  handleCurrentPlaylist: (tracks) => set({ currentPlaylist: tracks }),
+  handleCurrentPlaylist: (currentPlaylist) => set({ currentPlaylist }),
 
-  handleCurrentMusic: (music) => set({ currentMusic: music }),
+  handleCurrentMusic: (currentMusic) =>
+    set({
+      currentMusic,
+      currentTime: 0,
+      duration: 0,
+      isPlaying: true,
+      isLoading: true,
+      playbackError: null,
+      seekTo: null,
+    }),
 
   handleMusicVolume: () =>
-    set((state) => {
-      let { musicVolume } = state;
-
-      if (musicVolume === 0.2) musicVolume = 0.8;
-      else if (musicVolume === 0) musicVolume = 0.2;
-      else musicVolume = 0;
-
-      return { ...state, musicVolume };
-    }),
+    set((state) => ({
+      musicVolume:
+        state.musicVolume === 0 ? 0.35 : state.musicVolume < 0.7 ? 0.8 : 0,
+    })),
 
   handleSkipMusic: (direction) =>
     set((state) => {
-      if (!state.currentMusic) return state;
+      if (!state.currentMusic || state.currentPlaylist.length === 0) return {};
 
-      let currentMusicIndex: number = 0;
+      const currentIndex = state.currentPlaylist.findIndex(
+        (music) => music.id === state.currentMusic?.id,
+      );
+      if (currentIndex < 0) return {};
 
-      state.currentPlaylist.forEach((music, index) => {
-        if (state.currentMusic?.id !== music.id) return;
-        return (currentMusicIndex = index);
-      });
+      const nextIndex =
+        direction === "prev"
+          ? currentIndex - 1
+          : getNextIndex(
+              currentIndex,
+              state.currentPlaylist.length,
+              state.isShuffled,
+            );
 
-      if (direction === "prev") {
-        currentMusicIndex -= 1;
-      } else {
-        currentMusicIndex += 1;
-      }
-
-      if (
-        currentMusicIndex < 0 ||
-        currentMusicIndex === state.currentPlaylist.length
-      ) {
-        return state;
-      }
+      if (nextIndex < 0 || nextIndex >= state.currentPlaylist.length) return {};
 
       return {
-        ...state,
-        currentMusic: state.currentPlaylist[currentMusicIndex],
+        currentMusic: state.currentPlaylist[nextIndex],
+        currentTime: 0,
+        duration: 0,
+        isPlaying: true,
+        isLoading: true,
+        playbackError: null,
+        seekTo: null,
       };
     }),
 
   handlePlayMusic: () =>
+    set((state) =>
+      state.currentMusic
+        ? { isPlaying: !state.isPlaying, playbackError: null }
+        : {},
+    ),
+
+  handleSearch: ({ inputValue, playlistType }) =>
+    set((state) => ({
+      search: {
+        inputValue: inputValue ?? state.search.inputValue,
+        playlistType: playlistType ?? state.search.playlistType,
+      },
+    })),
+
+  handleSeek: (seekTo) => set({ seekTo, currentTime: seekTo }),
+  handleProgress: (currentTime) => set({ currentTime, seekTo: null }),
+  handleDuration: (duration) => set({ duration }),
+  handleLoading: (isLoading) => set({ isLoading }),
+  handlePlaybackError: (playbackError) =>
+    set(
+      playbackError
+        ? { playbackError, isLoading: false, isPlaying: false }
+        : { playbackError: null },
+    ),
+  handlePlaybackState: (isPlaying) => set({ isPlaying }),
+
+  handleTrackEnd: () =>
     set((state) => {
-      if (!state.currentMusic) return state;
-
-      let { buttonActions, currentAction, musicVolume } = state;
-      if (currentAction === "play") {
-        buttonActions.play.icon = <BsPlayFill />;
-        musicVolume = 0.2;
-
-        currentAction = null;
-      } else {
-        buttonActions.play.icon = <BsPauseFill />;
-        currentAction = "play";
+      if (!state.currentMusic || state.currentPlaylist.length === 0) {
+        return { isPlaying: false, currentTime: state.duration };
       }
-      return { buttonActions, currentAction, musicVolume };
+
+      if (state.repeatMode === "one") {
+        return { currentTime: 0, seekTo: 0, isPlaying: true };
+      }
+
+      const currentIndex = state.currentPlaylist.findIndex(
+        (music) => music.id === state.currentMusic?.id,
+      );
+      let nextIndex = getNextIndex(
+        currentIndex,
+        state.currentPlaylist.length,
+        state.isShuffled,
+      );
+
+      if (nextIndex >= state.currentPlaylist.length) {
+        if (state.repeatMode !== "all") {
+          return { isPlaying: false, currentTime: state.duration };
+        }
+        nextIndex = 0;
+      }
+
+      return {
+        currentMusic: state.currentPlaylist[nextIndex],
+        currentTime: 0,
+        duration: 0,
+        isPlaying: true,
+        isLoading: true,
+        playbackError: null,
+        seekTo: null,
+      };
     }),
 
-  handleSearch: ({ inputValue = "", playlistType }) =>
-    set((state) => {
-      let { search } = state;
-
-      search = { ...search, inputValue };
-
-      if (playlistType) {
-        search = { ...search, playlistType };
-      }
-
-      return { ...state, search };
-    }),
+  toggleRepeatMode: () =>
+    set((state) => ({
+      repeatMode:
+        state.repeatMode === "off"
+          ? "all"
+          : state.repeatMode === "all"
+            ? "one"
+            : "off",
+    })),
+  toggleShuffle: () => set((state) => ({ isShuffled: !state.isShuffled })),
 }));

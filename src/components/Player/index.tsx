@@ -1,104 +1,186 @@
-import React, { FC, useEffect, useRef } from "react";
-import { useFavoriteMusicsStore } from "../../store/useFavoriteMusicsStore";
-
-import { IActions, IButtonKey } from "../../store/usePlayerStore/types";
-import { usePlayerStore } from "../../store/usePlayerStore";
-
+import { FC } from "react";
+import { AiFillHeart } from "react-icons/ai";
+import {
+  BsPauseFill,
+  BsPlayFill,
+  BsRepeat,
+  BsRepeat1,
+  BsShuffle,
+  BsVolumeDownFill,
+  BsVolumeMuteFill,
+  BsVolumeUpFill,
+} from "react-icons/bs";
+import { BiSkipNext, BiSkipPrevious } from "react-icons/bi";
+import { useFavoriteMusicsStore } from "store/useFavoriteMusicsStore";
+import { usePlayerStore } from "store/usePlayerStore";
+import { WaveformPlayer } from "components/WaveformPlayer";
 import * as S from "./style";
 
 interface IPlayer {
   bgTransparent?: boolean;
 }
 
+const formatTime = (seconds: number) => {
+  if (!Number.isFinite(seconds)) return "0:00";
+  const minutes = Math.floor(seconds / 60);
+  return `${minutes}:${Math.floor(seconds % 60)
+    .toString()
+    .padStart(2, "0")}`;
+};
+
 export const Player: FC<IPlayer> = ({ bgTransparent = false }) => {
-  const audioRef = useRef<HTMLAudioElement>(null);
-
-  const { buttonActions, currentMusic, currentAction } = usePlayerStore();
-
-  const { handlePlayMusic, handleSkipMusic, handleMusicVolume, musicVolume } =
-    usePlayerStore();
-
+  const {
+    currentMusic,
+    currentPlaylist,
+    currentTime,
+    duration,
+    isLoading,
+    isPlaying,
+    isShuffled,
+    musicVolume,
+    playbackError,
+    repeatMode,
+    handleMusicVolume,
+    handlePlayMusic,
+    handleSkipMusic,
+    toggleRepeatMode,
+    toggleShuffle,
+  } = usePlayerStore();
   const { handleFavoriteMusics, favoriteMusics } = useFavoriteMusicsStore();
 
-  const getButtonValues: () => IButtonKey[] = () =>
-    Object.values(buttonActions);
-
-  const playAudio = () => {
-    const audio = audioRef.current;
-
-    if (currentAction === "play") {
-      audio?.play();
-    } else {
-      audio?.pause();
-    }
-  };
-
-  const a = () => {};
-
-  const handleActions: { [Key in IActions] } = {
-    play: () => handlePlayMusic(),
-    prev: () => handleSkipMusic("prev"),
-    next: () => handleSkipMusic("next"),
-    volume: () => handleMusicVolume(),
-    like: () => handleFavoriteMusics(currentMusic!),
-    info: () =>
-      window.open("https://github.com/guicoelhodev/ReactMusic", "_blank"),
-  };
-
-  useEffect(() => {
-    if (audioRef.current) {
-      audioRef.current.volume = musicVolume;
-    }
-
-    playAudio();
-  }, [audioRef.current, currentAction, currentMusic, musicVolume]);
+  const currentIndex = currentPlaylist.findIndex(
+    (music) => music.id === currentMusic?.id,
+  );
+  const isFavorite = favoriteMusics.some(
+    (music) => music.id === currentMusic?.id,
+  );
+  const canGoPrevious = currentIndex > 0;
+  const canGoNext =
+    isShuffled ||
+    (currentIndex >= 0 && currentIndex < currentPlaylist.length - 1);
+  const VolumeIcon =
+    musicVolume === 0
+      ? BsVolumeMuteFill
+      : musicVolume < 0.7
+        ? BsVolumeDownFill
+        : BsVolumeUpFill;
+  const RepeatIcon = repeatMode === "one" ? BsRepeat1 : BsRepeat;
 
   return (
-    <S.Container isTransparent={bgTransparent}>
-      <S.Header>
-        {currentMusic?.album.cover_big ? (
-          <img src={currentMusic?.album.cover_big} />
+    <S.Container
+      $cover={currentMusic?.album.cover_xl}
+      $isTransparent={bgTransparent}
+    >
+      <S.Content>
+        <S.Eyebrow>
+          <span /> Now playing
+        </S.Eyebrow>
+
+        {!currentMusic ? (
+          <S.EmptyState>
+            <S.EmptyCover />
+            <div>
+              <h2>Choose your soundtrack</h2>
+              <p>Select a track from the collection to start its preview.</p>
+            </div>
+          </S.EmptyState>
         ) : (
-          <span />
-        )}
-      </S.Header>
+          <S.NowPlaying>
+            <S.CoverWrap>
+              <img
+                src={currentMusic.album.cover_big}
+                alt={`${currentMusic.title} album cover`}
+              />
+              {isPlaying && <S.PlayingBadge>Playing</S.PlayingBadge>}
+            </S.CoverWrap>
 
-      <audio ref={audioRef} src={currentMusic?.preview}></audio>
-      <S.PlayerInfo>
-        <article>
-          <h3>{currentMusic ? currentMusic.title : "XXXXX XXXX"}</h3>
-
-          <p>{currentMusic ? currentMusic.artist.name : "XXXXX XXXX"}</p>
-        </article>
-
-        <S.PlayActionsContainer>
-          {getButtonValues().map((item) => {
-            let iconColor = "#fff";
-            if (
-              item.action === "like" &&
-              favoriteMusics.some((music) => music.id === currentMusic?.id)
-            ) {
-              iconColor = "#ee88a6";
-            }
-
-            return (
-              <article key={item.action}>
-                <S.ButtonAction
-                  title={item.title}
-                  size={item.size}
-                  iconColor={iconColor}
-                  onClick={() => {
-                    const currentAction = handleActions[item.action];
-                    currentAction();
-                  }}
+            <S.PlayerInfo>
+              <S.TrackHeading>
+                <div>
+                  <p>{currentMusic.album.title}</p>
+                  <h2>{currentMusic.title}</h2>
+                  <h3>{currentMusic.artist.name}</h3>
+                </div>
+                <S.FavoriteButton
+                  type="button"
+                  $isFavorite={isFavorite}
+                  onClick={() => handleFavoriteMusics(currentMusic)}
+                  aria-label={
+                    isFavorite ? "Remove from favorites" : "Add to favorites"
+                  }
+                  aria-pressed={isFavorite}
                 >
-                  {item.icon}
-                </S.ButtonAction>
-              </article>
-            );
-          })}
-        </S.PlayActionsContainer>
-      </S.PlayerInfo>
+                  <AiFillHeart />
+                </S.FavoriteButton>
+              </S.TrackHeading>
+
+              <S.WaveSection>
+                <WaveformPlayer url={currentMusic.preview} />
+                <S.Timeline>
+                  <span>{formatTime(currentTime)}</span>
+                  <span>{formatTime(duration)}</span>
+                </S.Timeline>
+              </S.WaveSection>
+
+              <S.Controls>
+                <S.SecondaryButton
+                  type="button"
+                  $isActive={isShuffled}
+                  onClick={toggleShuffle}
+                  aria-label="Toggle shuffle"
+                  aria-pressed={isShuffled}
+                >
+                  <BsShuffle />
+                </S.SecondaryButton>
+                <S.SecondaryButton
+                  type="button"
+                  onClick={() => handleSkipMusic("prev")}
+                  disabled={!canGoPrevious}
+                  aria-label="Previous track"
+                >
+                  <BiSkipPrevious />
+                </S.SecondaryButton>
+                <S.PlayButton
+                  type="button"
+                  onClick={handlePlayMusic}
+                  disabled={isLoading}
+                  aria-label={isPlaying ? "Pause preview" : "Play preview"}
+                >
+                  {isPlaying ? <BsPauseFill /> : <BsPlayFill />}
+                </S.PlayButton>
+                <S.SecondaryButton
+                  type="button"
+                  onClick={() => handleSkipMusic("next")}
+                  disabled={!canGoNext}
+                  aria-label="Next track"
+                >
+                  <BiSkipNext />
+                </S.SecondaryButton>
+                <S.SecondaryButton
+                  type="button"
+                  $isActive={repeatMode !== "off"}
+                  onClick={toggleRepeatMode}
+                  aria-label={`Repeat mode: ${repeatMode}`}
+                >
+                  <RepeatIcon />
+                </S.SecondaryButton>
+              </S.Controls>
+
+              <S.PlayerFooter>
+                <span>{isLoading ? "Loading preview..." : "Deezer preview"}</span>
+                <button
+                  type="button"
+                  onClick={handleMusicVolume}
+                  aria-label={`Volume ${Math.round(musicVolume * 100)} percent`}
+                >
+                  <VolumeIcon />
+                </button>
+              </S.PlayerFooter>
+              {playbackError && <S.Error role="alert">{playbackError}</S.Error>}
+            </S.PlayerInfo>
+          </S.NowPlaying>
+        )}
+      </S.Content>
     </S.Container>
   );
 };

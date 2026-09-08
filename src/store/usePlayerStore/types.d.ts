@@ -1,11 +1,8 @@
-import { IButtonActions } from "components/refactor/Player/types";
-import { IconType } from "react-icons";
 import { IMusic } from "services/http/GET/useTopWorldMusics/types";
 
 export type IPlayerStorie = IAttributes & IMethods;
-
-export type IActions = "play" | "prev" | "next" | "info" | "like" | "volume";
 export type IPlaylist = "top_100" | "my_playlist";
+export type IRepeatMode = "off" | "all" | "one";
 
 type ISearch = {
   inputValue: string;
@@ -19,24 +16,28 @@ export type IMethods = {
   handleCurrentPlaylist: (musics: IMusic[]) => void;
   handleMusicVolume: () => void;
   handleSearch: (params: Partial<ISearch>) => void;
+  handleSeek: (time: number) => void;
+  handleProgress: (time: number) => void;
+  handleDuration: (duration: number) => void;
+  handleLoading: (isLoading: boolean) => void;
+  handlePlaybackError: (error: string | null) => void;
+  handlePlaybackState: (isPlaying: boolean) => void;
+  handleTrackEnd: () => void;
+  toggleRepeatMode: () => void;
+  toggleShuffle: () => void;
 };
 
 export type IAttributes = {
-  buttonActions: IButtonActions;
-  currentAction: IActions | null;
   currentMusic: IMusic | null;
   currentPlaylist: IMusic[];
   musicVolume: number;
+  isPlaying: boolean;
+  currentTime: number;
+  duration: number;
+  isLoading: boolean;
+  playbackError: string | null;
+  repeatMode: IRepeatMode;
+  isShuffled: boolean;
+  seekTo: number | null;
   search: ISearch;
-};
-
-export type IButtonActions = {
-  [Key in IActions]: IButtonKey;
-};
-
-export type IButtonKey = {
-  title: string;
-  size: ISize;
-  icon: Element<IconType>;
-  action: IActions;
 };
