@@ -1,97 +1,137 @@
 import styled from "styled-components";
 
-interface IStyledMusic {
-  src: string;
-}
+export const Container = styled.article<{ $isCurrent: boolean }>`
+  min-width: 0;
+  padding: 0.55rem;
+  border: 1px solid
+    ${({ theme, $isCurrent }) =>
+      $isCurrent ? theme.colors["blue-500"] : theme.colors["blue-700"]};
+  border-radius: 1rem;
+  background: ${({ theme, $isCurrent }) =>
+    $isCurrent ? "rgba(19, 66, 99, 0.28)" : theme.colors["blue-800"]};
+  transition: transform 180ms ease, border-color 180ms ease;
 
-interface IStyledContent {
-  isFavorite: boolean;
-}
-export const Container = styled.div`
-  border-radius: 0.5rem;
-  width: 16rem;
-
-  display: flex;
-  flex-direction: column;
-
-  @media (max-width: 580px) {
-    width: 100%;
-
-    flex-direction: row;
+  &:hover {
+    transform: translateY(-3px);
+    border-color: ${({ theme }) => theme.colors["blue-500"]};
   }
 `;
 
-export const Player = styled.button<IStyledMusic>`
-  border-radius: 0.5rem 0.5rem 0 0;
-  aspect-ratio: 1/1;
-  background: url(${(p) => p.src});
-  background-repeat: no-repeat;
-  background-position: center;
-  background-size: contain;
-
-  border: 1px solid ${(p) => p.theme.colors["blue-aqua-200"]};
-
-  cursor: pointer;
-
-  @media (max-width: 580px) {
-    border-radius: 0.5rem 0 0 0.5rem;
-    width: 5rem;
-  }
-`;
-
-export const ContentMusic = styled.section<IStyledContent>`
+export const CoverButton = styled.button`
+  position: relative;
+  display: block;
   width: 100%;
-  background-color: ${(p) => p.theme.colors["blue-700"]};
+  overflow: hidden;
+  border: 0;
+  border-radius: 0.72rem;
+  background: ${({ theme }) => theme.colors["blue-700"]};
 
-  border-radius: 0 0 0.5rem 0.5rem;
-  padding: 0.5rem;
-
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-
-  border: 1px solid ${(p) => p.theme.colors["blue-aqua-200"]};
-
-  div {
-    width: calc(16rem - 4rem);
-    color: ${(p) => p.theme.colors["blue-aqua-200"]};
-
-    p,
-    h4 {
-      width: 100%;
-      overflow: hidden;
-      white-space: nowrap;
-      text-overflow: ellipsis;
-    }
-
-    h4 {
-      font-size: ${(p) => p.theme["text-lg"]};
-      font-weight: 600;
-    }
-    p {
-      font-size: ${(p) => p.theme["text-sm"]};
-    }
+  img {
+    display: block;
+    width: 100%;
+    aspect-ratio: 1;
+    object-fit: cover;
+    transition: transform 250ms ease, opacity 180ms ease;
   }
 
-  button {
-    background: inherit;
-    border: 1px solid transparent;
+  span {
+    position: absolute;
+    right: 0.7rem;
+    bottom: 0.7rem;
+    display: grid;
+    place-items: center;
+    width: 2.65rem;
+    height: 2.65rem;
     border-radius: 50%;
-    width: 2.4rem;
-    height: 2.4rem;
+    color: ${({ theme }) => theme.colors["blue-900"]};
+    background: ${({ theme }) => theme.colors["cyan-400"]};
+    box-shadow: 0 8px 22px rgba(0, 0, 0, 0.35);
+    opacity: 0;
+    transform: translateY(0.4rem);
+    transition: opacity 180ms ease, transform 180ms ease;
 
     svg {
-      fill: ${(p) =>
-        p.isFavorite
-          ? p.theme.colors["blue-aqua-200"]
-          : p.theme.colors["gray-200"]};
-      width: 2rem;
-      height: 2rem;
-      transition: all 200ms ease-in;
+      width: 1.35rem;
+      height: 1.35rem;
     }
   }
 
-  @media (max-width: 580px) {
-    border-radius: 0 0.5rem 0.5rem 0;
+  &:hover,
+  &:focus-visible {
+    img {
+      transform: scale(1.035);
+      opacity: 0.72;
+    }
+
+    span {
+      opacity: 1;
+      transform: translateY(0);
+    }
+  }
+
+  @media (hover: none) {
+    span {
+      opacity: 1;
+      transform: none;
+    }
+  }
+`;
+
+export const ContentMusic = styled.div`
+  display: flex;
+  align-items: center;
+  gap: 0.4rem;
+  padding: 0.75rem 0.2rem 0.2rem;
+`;
+
+export const TrackButton = styled.button`
+  display: flex;
+  min-width: 0;
+  flex: 1;
+  flex-direction: column;
+  gap: 0.2rem;
+  border: 0;
+  text-align: left;
+  background: transparent;
+
+  strong,
+  span {
+    width: 100%;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+  }
+
+  strong {
+    color: ${({ theme }) => theme.colors.white};
+    font-size: 0.82rem;
+  }
+
+  span {
+    color: ${({ theme }) => theme.colors["gray-400"]};
+    font-size: 0.72rem;
+  }
+`;
+
+export const FavoriteButton = styled.button<{ $isFavorite: boolean }>`
+  display: grid;
+  flex: 0 0 2.75rem;
+  place-items: center;
+  width: 2.75rem;
+  height: 2.75rem;
+  border: 0;
+  border-radius: 50%;
+  color: ${({ theme, $isFavorite }) =>
+    $isFavorite ? theme.colors["pink-200"] : theme.colors["gray-500"]};
+  background: transparent;
+
+  &:hover {
+    background: rgba(255, 255, 255, 0.05);
+  }
+
+  svg {
+    width: 1.15rem;
+    height: 1.15rem;
+    fill: currentColor;
   }
 `;

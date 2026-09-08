@@ -1,11 +1,13 @@
 import React, { FC, useEffect, useRef } from "react";
 
 interface IInfiniteScroll {
-  loadMore: (arg: boolean) => void;
+  loadMore: () => void;
 }
 
 export const InfiniteScroll: FC<IInfiniteScroll> = ({ loadMore }) => {
   const containerRef = useRef<HTMLDivElement>(null);
+  const loadMoreRef = useRef(loadMore);
+  loadMoreRef.current = loadMore;
 
   useEffect(() => {
     const options = {
@@ -18,13 +20,14 @@ export const InfiniteScroll: FC<IInfiniteScroll> = ({ loadMore }) => {
       const target = entities[0];
 
       if (target.isIntersecting) {
-        loadMore(false);
+        loadMoreRef.current();
       }
     }, options);
 
-    if (containerRef.current) {
-      observer.observe(containerRef.current);
-    }
+    const container = containerRef.current;
+    if (container) observer.observe(container);
+
+    return () => observer.disconnect();
   }, []);
 
   return <div ref={containerRef}></div>;

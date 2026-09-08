@@ -1,41 +1,47 @@
-import * as React from "react";
 import { AiFillHeart } from "react-icons/ai";
-import { useMediaQuery } from "react-responsive";
+import { BsPauseFill, BsPlayFill } from "react-icons/bs";
 import { IMusic } from "services/http/GET/useTopWorldMusics/types";
-import { useFavoriteMusicsStore } from "../../store/useFavoriteMusicsStore";
-import { usePlayerStore } from "../../store/usePlayerStore";
+import { useFavoriteMusicsStore } from "store/useFavoriteMusicsStore";
+import { usePlayerStore } from "store/usePlayerStore";
 import * as S from "./style";
 
-type IMusicItem = IMusic;
-
-export const MusicItem: React.FC<IMusicItem> = (props) => {
-  const { handleCurrentMusic } = usePlayerStore();
+export const MusicItem = (music: IMusic) => {
+  const { currentMusic, isPlaying, handleCurrentMusic, handlePlayMusic } =
+    usePlayerStore();
   const { favoriteMusics, handleFavoriteMusics } = useFavoriteMusicsStore();
+  const isCurrent = currentMusic?.id === music.id;
+  const isFavorite = favoriteMusics.some((item) => item.id === music.id);
 
-  const isMobile = useMediaQuery({ maxWidth: 580 });
+  const handleSelect = () => {
+    if (isCurrent) handlePlayMusic();
+    else handleCurrentMusic(music);
+  };
+
   return (
-    <S.Container
-      onClick={() => {
-        if (isMobile) return handleCurrentMusic(props as IMusic);
-      }}
-    >
-      <S.Player
-        src={props.album?.cover_medium!}
-        onClick={() => {
-          if (!isMobile) return handleCurrentMusic(props as IMusic);
-        }}
-      />
-      <S.ContentMusic
-        isFavorite={favoriteMusics.some((i) => i.id === props.id)}
+    <S.Container $isCurrent={isCurrent}>
+      <S.CoverButton
+        type="button"
+        onClick={handleSelect}
+        aria-label={`${isCurrent && isPlaying ? "Pause" : "Play"} ${music.title} by ${music.artist.name}`}
       >
-        <div>
-          <h4>{props.title}</h4>
-          <p>{props.artist?.name}</p>
-        </div>
+        <img src={music.album.cover_medium} alt="" />
+        <span>{isCurrent && isPlaying ? <BsPauseFill /> : <BsPlayFill />}</span>
+      </S.CoverButton>
 
-        <button onClick={() => handleFavoriteMusics(props)}>
+      <S.ContentMusic>
+        <S.TrackButton type="button" onClick={handleSelect}>
+          <strong>{music.title}</strong>
+          <span>{music.artist.name}</span>
+        </S.TrackButton>
+        <S.FavoriteButton
+          type="button"
+          $isFavorite={isFavorite}
+          onClick={() => handleFavoriteMusics(music)}
+          aria-label={isFavorite ? "Remove from favorites" : "Add to favorites"}
+          aria-pressed={isFavorite}
+        >
           <AiFillHeart />
-        </button>
+        </S.FavoriteButton>
       </S.ContentMusic>
     </S.Container>
   );

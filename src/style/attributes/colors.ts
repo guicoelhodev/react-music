@@ -1,12 +1,17 @@
 export const colorsCSS = {
-  white: "#fff",
-  "pink-200": "#ee88a6",
-
-  "blue-aqua-200": "#02C3BD",
-
-  'blue-800': '#050517',
-  'blue-700': '#0d0d37',
-  'blue-600': '#101041',
-
-  "gray-200": "#d3d3d3",
+  white: "#f7fbff",
+  "pink-200": "#ff729e",
+  "red-300": "#ff8793",
+  "cyan-300": "#8bf4ff",
+  "cyan-400": "#20d9ee",
+  "blue-aqua-200": "#20d9ee",
+  "blue-500": "#1b668e",
+  "blue-600": "#173452",
+  "blue-700": "#102641",
+  "blue-800": "#091a31",
+  "blue-900": "#050d1f",
+  "gray-200": "#dce7f2",
+  "gray-300": "#aab9c9",
+  "gray-400": "#74869a",
+  "gray-500": "#52657a",
 } as const;

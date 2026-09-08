@@ -14,17 +14,14 @@ export const useFavoriteMusicsStore = create<IFavoriteMusicsStore>()(
 
       handleFavoriteMusics: (music) =>
         set((state) => {
-          let { favoriteMusics } = state;
+          const alreadyExist = state.favoriteMusics.some(
+            (item) => item.id === music.id,
+          );
+          const favoriteMusics = alreadyExist
+            ? state.favoriteMusics.filter((item) => item.id !== music.id)
+            : [...state.favoriteMusics, music];
 
-          const alreadyExist = favoriteMusics.some((i) => i.id === music.id);
-
-          if (!alreadyExist) {
-            favoriteMusics.push(music);
-          } else {
-            favoriteMusics = favoriteMusics.filter((i) => i.id !== music.id);
-          }
-
-          return { ...state, favoriteMusics };
+          return { favoriteMusics };
         }),
     }),
     {
