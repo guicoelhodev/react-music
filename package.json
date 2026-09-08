@@ -6,6 +6,7 @@
     "@testing-library/jest-dom": "^5.16.5",
     "@testing-library/react": "^14.0.0",
     "@testing-library/user-event": "^14.4.3",
+    "@wavesurfer/react": "^1.0.12",
     "axios": "^1.3.5",
     "react": "^18.2.0",
     "react-debounce-input": "^3.3.0",
@@ -15,6 +16,7 @@
     "react-responsive": "^9.0.2",
     "react-router-dom": "^6.10.0",
     "styled-components": "^5.3.9",
+    "wavesurfer.js": "^7.12.11",
     "zustand": "^4.3.7"
   },
   "scripts": {
