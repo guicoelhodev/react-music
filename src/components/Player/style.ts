@@ -5,7 +5,7 @@ export const Container = styled.section<{
   $isTransparent: boolean;
 }>`
   position: relative;
-  min-height: 31rem;
+  min-height: 25rem;
   overflow: hidden;
   isolation: isolate;
   border: 1px solid ${({ theme }) => theme.colors["blue-500"]};
@@ -36,7 +36,7 @@ export const Container = styled.section<{
 export const Content = styled.div`
   position: relative;
   height: 100%;
-  padding: 1.65rem;
+  padding: 1.25rem;
 
   @media (max-width: 720px) {
     padding: 1.25rem;
@@ -47,7 +47,7 @@ export const Eyebrow = styled.p`
   display: flex;
   align-items: center;
   gap: 0.55rem;
-  margin-bottom: 1.5rem;
+  margin-bottom: 0.75rem;
   color: ${({ theme }) => theme.colors["gray-300"]};
   font-size: 0.7rem;
   font-weight: 700;
@@ -277,7 +277,7 @@ export const EmptyState = styled.div`
   grid-template-columns: minmax(10rem, 0.7fr) 1.3fr;
   align-items: center;
   gap: 2rem;
-  min-height: 23rem;
+  min-height: 18rem;
 
   @media (max-width: 720px) {
     grid-template-columns: 1fr;

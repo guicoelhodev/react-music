@@ -81,22 +81,6 @@ export const HeaderActions = styled.nav`
   }
 `;
 
-export const HeaderButton = styled.button`
-  display: grid;
-  place-items: center;
-  width: 2.75rem;
-  height: 2.75rem;
-  border: 1px solid ${({ theme }) => theme.colors["blue-700"]};
-  border-radius: 50%;
-  color: ${({ theme }) => theme.colors["gray-300"]};
-  background: ${({ theme }) => theme.colors["blue-800"]};
-
-  svg {
-    width: 1.25rem;
-    height: 1.25rem;
-  }
-`;
-
 export const PlaylistButton = styled.button<{ $isActive: boolean }>`
   display: flex;
   align-items: center;
@@ -138,17 +122,6 @@ export const FavoriteCount = styled.div`
     font-size: 0.72rem;
     font-weight: 700;
   }
-`;
-
-export const Avatar = styled.div`
-  display: grid;
-  place-items: center;
-  width: 2.75rem;
-  height: 2.75rem;
-  border: 1px solid ${({ theme }) => theme.colors["blue-500"]};
-  border-radius: 50%;
-  color: ${({ theme }) => theme.colors["cyan-400"]};
-  background: linear-gradient(145deg, ${({ theme }) => theme.colors["blue-700"]}, ${({ theme }) => theme.colors["blue-800"]});
 `;
 
 export const Main = styled.main`

@@ -14,7 +14,7 @@ export const UpNext = () => {
     (music) => music.id === currentMusic?.id,
   );
   const queueStart = currentIndex >= 0 ? currentIndex : 0;
-  const queue = currentPlaylist.slice(queueStart, queueStart + 6);
+  const queue = currentPlaylist.slice(queueStart, queueStart + 4);
 
   return (
     <S.Container>

@@ -1,6 +1,6 @@
 import { useEffect } from "react";
 import { AiFillHeart } from "react-icons/ai";
-import { IoHeadsetSharp, IoNotificationsOutline, IoPersonOutline } from "react-icons/io5";
+import { IoHeadsetSharp } from "react-icons/io5";
 import { MdPlaylistPlay } from "react-icons/md";
 import { useMediaQuery } from "react-responsive";
 import { InfiniteScroll } from "components/InfiniteScroll";
@@ -89,9 +89,6 @@ export const Home = () => {
           </S.Logo>
           <Search />
           <S.HeaderActions>
-            <S.HeaderButton type="button" aria-label="Notifications">
-              <IoNotificationsOutline />
-            </S.HeaderButton>
             <S.PlaylistButton
               type="button"
               $isActive={search.playlistType === "my_playlist"}
@@ -106,9 +103,6 @@ export const Home = () => {
               <AiFillHeart />
               <span>{favoriteMusics.length}</span>
             </S.FavoriteCount>
-            <S.Avatar aria-label="Profile">
-              <IoPersonOutline />
-            </S.Avatar>
           </S.HeaderActions>
         </S.Header>
 

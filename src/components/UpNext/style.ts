@@ -4,8 +4,8 @@ export const Container = styled.aside`
   display: flex;
   flex-direction: column;
   min-width: 0;
-  min-height: 31rem;
-  padding: 1.5rem;
+  min-height: 25rem;
+  padding: 1.25rem;
   border: 1px solid ${({ theme }) => theme.colors["blue-600"]};
   border-radius: 1.75rem;
   background: ${({ theme }) => theme.colors["blue-800"]};
@@ -15,7 +15,7 @@ export const Header = styled.header`
   display: flex;
   align-items: center;
   justify-content: space-between;
-  margin-bottom: 1.15rem;
+  margin-bottom: 0.65rem;
 
   span {
     color: ${({ theme }) => theme.colors["cyan-400"]};
@@ -55,7 +55,7 @@ export const TrackButton = styled.button<{ $isCurrent: boolean }>`
   align-items: center;
   gap: 0.65rem;
   width: 100%;
-  min-height: 3.85rem;
+  min-height: 3.5rem;
   padding: 0.45rem;
   border: 1px solid
     ${({ theme, $isCurrent }) =>
@@ -129,8 +129,8 @@ export const ViewAll = styled.a`
   align-items: center;
   justify-content: center;
   gap: 0.5rem;
-  min-height: 2.75rem;
-  margin-top: 0.9rem;
+  min-height: 2.25rem;
+  margin-top: 0.5rem;
   border-top: 1px solid ${({ theme }) => theme.colors["blue-700"]};
   color: ${({ theme }) => theme.colors["cyan-400"]};
   font-size: 0.72rem;
