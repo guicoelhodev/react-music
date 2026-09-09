@@ -136,11 +136,15 @@ export const Main = styled.main`
 
 export const Featured = styled.section`
   display: grid;
-  grid-template-columns: minmax(0, 2.15fr) minmax(18rem, 0.85fr);
+  grid-template-columns: 1fr;
   gap: 1rem;
 
-  @media (max-width: 1160px) {
+  @media (min-width: 960px) and (max-width: 1160px) {
     grid-template-columns: minmax(0, 1.65fr) minmax(18rem, 1fr);
+  }
+
+  @media (min-width: 1161px) {
+    grid-template-columns: minmax(0, 2.15fr) minmax(18rem, 0.85fr);
   }
 `;
 

@@ -19,6 +19,7 @@ export const Home = () => {
   const { handleCurrentPlaylist, handleSearch, currentPlaylist, search } =
     usePlayerStore();
   const { favoriteMusics } = useFavoriteMusicsStore();
+  const isTablet = useMediaQuery({ minWidth: 720 });
   const isDesktop = useMediaQuery({ minWidth: 960 });
   const {
     data: musicWorldData,
@@ -107,10 +108,10 @@ export const Home = () => {
         </S.Header>
 
         <S.Main>
-          {isDesktop && (
+          {isTablet && (
             <S.Featured>
               <Player />
-              <UpNext />
+              {isDesktop && <UpNext />}
             </S.Featured>
           )}
 
@@ -180,7 +181,7 @@ export const Home = () => {
           </S.Library>
         </S.Main>
       </S.Container>
-      {!isDesktop && <MobilePlayer />}
+      {!isTablet && <MobilePlayer />}
     </S.Layout>
   );
 };
