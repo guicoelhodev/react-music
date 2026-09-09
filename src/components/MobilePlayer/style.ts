@@ -109,7 +109,6 @@ export const Panel = styled.div<{ $isOpen: boolean }>`
   position: fixed;
   z-index: 54;
   inset: 0;
-  padding: 1rem;
   overflow-y: auto;
   background: ${({ theme }) => theme.colors["blue-900"]};
   opacity: ${({ $isOpen }) => ($isOpen ? 1 : 0)};
@@ -119,8 +118,18 @@ export const Panel = styled.div<{ $isOpen: boolean }>`
   transition: opacity 180ms ease, transform 220ms ease, visibility 220ms;
 
   > section {
-    max-width: 42rem;
-    margin: 0 auto;
+    display: flex;
+    flex-direction: column;
+    min-height: calc(100dvh - 4.5rem);
+    border: 0;
+    border-radius: 0;
+    box-shadow: none;
+
+    > div {
+      display: flex;
+      flex: 1;
+      flex-direction: column;
+    }
   }
 `;
 
@@ -129,7 +138,8 @@ export const PanelHeader = styled.header`
   align-items: center;
   justify-content: space-between;
   max-width: 42rem;
-  margin: 0 auto 0.75rem;
+  margin: 0 auto;
+  padding: 1rem;
 
   span {
     color: ${({ theme }) => theme.colors["gray-300"]};
