@@ -9,6 +9,7 @@ export const Waveform = styled.div`
 export const Wave = styled.div<{ $isVisible: boolean }>`
   position: relative;
   z-index: 1;
+  width: 100%;
   opacity: ${(props) => (props.$isVisible ? 1 : 0)};
   transition: opacity 180ms ease;
 `;

@@ -61,6 +61,10 @@ export const Eyebrow = styled.p`
     background: ${({ theme }) => theme.colors["cyan-400"]};
     box-shadow: 0 0 14px ${({ theme }) => theme.colors["cyan-400"]};
   }
+
+  @media (max-width: 720px) {
+    display: none;
+  }
 `;
 
 export const NowPlaying = styled.div`
@@ -70,7 +74,10 @@ export const NowPlaying = styled.div`
   gap: clamp(1.5rem, 3vw, 3rem);
 
   @media (max-width: 720px) {
-    grid-template-columns: 1fr;
+    display: flex;
+    flex: 1;
+    flex-direction: column;
+    justify-content: space-between;
   }
 `;
 
@@ -80,10 +87,6 @@ export const CoverWrap = styled.div`
   max-width: 18rem;
   justify-self: center;
 
-  @media (max-width: 720px) {
-    max-width: 15rem;
-  }
-
   img {
     display: block;
     width: 100%;
@@ -91,6 +94,15 @@ export const CoverWrap = styled.div`
     object-fit: cover;
     border-radius: 1.25rem;
     box-shadow: 0 22px 44px rgba(0, 0, 0, 0.4);
+  }
+
+  @media (max-width: 720px) {
+    align-self: stretch;
+    max-width: none;
+
+    img {
+      aspect-ratio: 4 / 5;
+    }
   }
 `;
 
@@ -110,6 +122,10 @@ export const PlayingBadge = styled.span`
 
 export const PlayerInfo = styled.div`
   min-width: 0;
+
+  @media (max-width: 720px) {
+    width: 100%;
+  }
 `;
 
 export const TrackHeading = styled.div`
@@ -291,6 +307,10 @@ export const PlayerFooter = styled.div`
       background: ${({ theme }) => theme.colors["cyan-400"]};
       box-shadow: 0 0 0.5rem rgba(32, 217, 238, 0.5);
     }
+  }
+
+  @media (max-width: 720px) {
+    display: none;
   }
 `;
 
