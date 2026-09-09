@@ -18,11 +18,15 @@ export const Container = styled.div`
 `;
 
 export const Header = styled.header`
+  position: sticky;
+  z-index: 10;
+  top: 0;
   display: grid;
   grid-template-columns: auto minmax(16rem, 38rem) auto;
   align-items: center;
   gap: clamp(1rem, 3vw, 2.5rem);
   min-height: 5.25rem;
+  background: ${({ theme }) => theme.colors["blue-900"]};
 
   @media (max-width: 900px) {
     grid-template-columns: auto minmax(0, 1fr);
