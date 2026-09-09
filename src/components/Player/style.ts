@@ -156,7 +156,9 @@ export const TrackHeading = styled.div`
 `;
 
 export const FavoriteButton = styled.button<{ $isFavorite: boolean }>`
+  display: grid;
   flex: 0 0 2.75rem;
+  place-items: center;
   width: 2.75rem;
   height: 2.75rem;
   border: 1px solid ${({ theme }) => theme.colors["blue-500"]};
@@ -250,18 +252,44 @@ export const PlayerFooter = styled.div`
   color: ${({ theme }) => theme.colors["gray-400"]};
   font-size: 0.7rem;
 
-  button {
-    display: grid;
-    place-items: center;
-    width: 2.75rem;
-    height: 2.75rem;
-    border: 0;
-    color: ${({ theme }) => theme.colors["gray-300"]};
+  input {
+    width: 4.5rem;
+    height: 1rem;
+    appearance: none;
+    border-radius: 999px;
     background: transparent;
+    cursor: pointer;
 
-    svg {
-      width: 1.3rem;
-      height: 1.3rem;
+    &::-webkit-slider-runnable-track {
+      height: 0.3rem;
+      border-radius: 999px;
+      background: ${({ theme }) => theme.colors["blue-600"]};
+    }
+
+    &::-webkit-slider-thumb {
+      width: 0.8rem;
+      height: 0.8rem;
+      margin-top: -0.25rem;
+      appearance: none;
+      border: 2px solid ${({ theme }) => theme.colors["blue-900"]};
+      border-radius: 50%;
+      background: ${({ theme }) => theme.colors["cyan-400"]};
+      box-shadow: 0 0 0.5rem rgba(32, 217, 238, 0.5);
+    }
+
+    &::-moz-range-track {
+      height: 0.3rem;
+      border-radius: 999px;
+      background: ${({ theme }) => theme.colors["blue-600"]};
+    }
+
+    &::-moz-range-thumb {
+      width: 0.8rem;
+      height: 0.8rem;
+      border: 2px solid ${({ theme }) => theme.colors["blue-900"]};
+      border-radius: 50%;
+      background: ${({ theme }) => theme.colors["cyan-400"]};
+      box-shadow: 0 0 0.5rem rgba(32, 217, 238, 0.5);
     }
   }
 `;

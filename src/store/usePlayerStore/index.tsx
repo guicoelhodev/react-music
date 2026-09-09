@@ -49,11 +49,7 @@ export const usePlayerStore = create<IPlayerStorie>((set) => ({
       seekTo: null,
     }),
 
-  handleMusicVolume: () =>
-    set((state) => ({
-      musicVolume:
-        state.musicVolume === 0 ? 0.35 : state.musicVolume < 0.7 ? 0.8 : 0,
-    })),
+  handleMusicVolume: (musicVolume) => set({ musicVolume }),
 
   handleSkipMusic: (direction) =>
     set((state) => {

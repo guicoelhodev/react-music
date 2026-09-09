@@ -6,9 +6,6 @@ import {
   BsRepeat,
   BsRepeat1,
   BsShuffle,
-  BsVolumeDownFill,
-  BsVolumeMuteFill,
-  BsVolumeUpFill,
 } from "react-icons/bs";
 import { BiSkipNext, BiSkipPrevious } from "react-icons/bi";
 import { useFavoriteMusicsStore } from "store/useFavoriteMusicsStore";
@@ -58,12 +55,6 @@ export const Player: FC<IPlayer> = ({ bgTransparent = false }) => {
   const canGoNext =
     isShuffled ||
     (currentIndex >= 0 && currentIndex < currentPlaylist.length - 1);
-  const VolumeIcon =
-    musicVolume === 0
-      ? BsVolumeMuteFill
-      : musicVolume < 0.7
-        ? BsVolumeDownFill
-        : BsVolumeUpFill;
   const RepeatIcon = repeatMode === "one" ? BsRepeat1 : BsRepeat;
 
   return (
@@ -168,13 +159,15 @@ export const Player: FC<IPlayer> = ({ bgTransparent = false }) => {
 
               <S.PlayerFooter>
                 <span>{isLoading ? "Loading preview..." : "Deezer preview"}</span>
-                <button
-                  type="button"
-                  onClick={handleMusicVolume}
+                <input
+                  type="range"
+                  min="0"
+                  max="1"
+                  step="0.01"
+                  value={musicVolume}
+                  onChange={(event) => handleMusicVolume(Number(event.currentTarget.value))}
                   aria-label={`Volume ${Math.round(musicVolume * 100)} percent`}
-                >
-                  <VolumeIcon />
-                </button>
+                />
               </S.PlayerFooter>
               {playbackError && <S.Error role="alert">{playbackError}</S.Error>}
             </S.PlayerInfo>
