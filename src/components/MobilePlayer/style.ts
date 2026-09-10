@@ -5,58 +5,80 @@ export const Container = styled.div`
   z-index: 50;
 `;
 
-export const MiniPlayer = styled.div`
+export const MiniPlayer = styled.div<{ $isCompact: boolean }>`
   position: fixed;
   z-index: 52;
-  right: 1rem;
-  bottom: calc(1rem + env(safe-area-inset-bottom));
-  left: 1rem;
+  bottom: calc(
+    ${({ $isCompact }) => ($isCompact ? "0.6rem" : "1rem")} +
+      env(safe-area-inset-bottom)
+  );
+  left: 50%;
   display: flex;
   align-items: center;
-  max-width: 34rem;
-  min-height: 4.5rem;
-  margin: 0 auto;
+  width: calc(100% - ${({ $isCompact }) => ($isCompact ? "7rem" : "2rem")});
+  max-width: ${({ $isCompact }) => ($isCompact ? "20rem" : "34rem")};
+  height: ${({ $isCompact }) => ($isCompact ? "3rem" : "4.5rem")};
   overflow: hidden;
   border: 1px solid ${({ theme }) => theme.colors["blue-500"]};
-  border-radius: 1rem;
+  border-radius: ${({ $isCompact }) => ($isCompact ? "1.5rem" : "1rem")};
   background: rgba(6, 17, 37, 0.94);
   box-shadow: 0 18px 45px rgba(0, 0, 0, 0.5);
   backdrop-filter: blur(16px);
+  -webkit-backdrop-filter: blur(16px);
+  transform: translateX(-50%);
+  transition:
+    width 420ms cubic-bezier(0.32, 0.72, 0, 1),
+    max-width 420ms cubic-bezier(0.32, 0.72, 0, 1),
+    height 420ms cubic-bezier(0.32, 0.72, 0, 1),
+    bottom 420ms cubic-bezier(0.32, 0.72, 0, 1),
+    border-radius 420ms cubic-bezier(0.32, 0.72, 0, 1);
+  will-change: width, height;
 `;
 
 export const Progress = styled.span<{ $progress: number }>`
   position: absolute;
-  top: 0;
+  bottom: 0;
   left: 0;
   width: ${({ $progress }) => `${$progress}%`};
   height: 2px;
   background: ${({ theme }) => theme.colors["cyan-400"]};
+  box-shadow: 0 0 10px rgba(32, 217, 238, 0.7);
   transition: width 200ms linear;
 `;
 
-export const TrackButton = styled.button`
+export const TrackButton = styled.button<{ $isCompact: boolean }>`
   display: flex;
   min-width: 0;
   flex: 1;
   align-items: center;
-  gap: 0.75rem;
-  padding: 0.55rem;
+  align-self: stretch;
+  gap: ${({ $isCompact }) => ($isCompact ? "0.5rem" : "0.75rem")};
+  padding: ${({ $isCompact }) => ($isCompact ? "0.35rem" : "0.55rem")};
   border: 0;
   text-align: left;
   background: transparent;
+  transition:
+    gap 420ms cubic-bezier(0.32, 0.72, 0, 1),
+    padding 420ms cubic-bezier(0.32, 0.72, 0, 1);
 
   img {
-    width: 3.25rem;
-    height: 3.25rem;
+    flex: 0 0 auto;
+    width: ${({ $isCompact }) => ($isCompact ? "2rem" : "3.25rem")};
+    height: ${({ $isCompact }) => ($isCompact ? "2rem" : "3.25rem")};
     object-fit: cover;
-    border-radius: 0.65rem;
+    border-radius: ${({ $isCompact }) => ($isCompact ? "50%" : "0.65rem")};
+    transition:
+      width 420ms cubic-bezier(0.32, 0.72, 0, 1),
+      height 420ms cubic-bezier(0.32, 0.72, 0, 1),
+      border-radius 420ms cubic-bezier(0.32, 0.72, 0, 1);
   }
 
   span {
     display: flex;
     min-width: 0;
     flex-direction: column;
-    gap: 0.2rem;
+    gap: ${({ $isCompact }) => ($isCompact ? "0" : "0.2rem")};
+    transition: gap 220ms ease;
   }
 
   strong,
@@ -68,30 +90,53 @@ export const TrackButton = styled.button`
 
   strong {
     color: ${({ theme }) => theme.colors.white};
-    font-size: 0.82rem;
+    font-size: ${({ $isCompact }) => ($isCompact ? "0.72rem" : "0.82rem")};
+    transition: font-size 220ms ease;
   }
 
   small {
+    max-height: ${({ $isCompact }) => ($isCompact ? "0" : "1rem")};
     color: ${({ theme }) => theme.colors["gray-400"]};
     font-size: 0.7rem;
+    opacity: ${({ $isCompact }) => ($isCompact ? 0 : 1)};
+    transform: translateY(
+      ${({ $isCompact }) => ($isCompact ? "-0.25rem" : "0")}
+    );
+    transition:
+      max-height 220ms ease,
+      opacity 160ms ease,
+      transform 220ms ease;
   }
 `;
 
-export const IconButton = styled.button`
+export const IconButton = styled.button<{ $isCompact: boolean }>`
   display: grid;
-  flex: 0 0 2.75rem;
+  flex: 0 0 ${({ $isCompact }) => ($isCompact ? "2.25rem" : "2.75rem")};
   place-items: center;
-  width: 2.75rem;
-  height: 2.75rem;
-  margin-right: 0.25rem;
+  width: ${({ $isCompact }) => ($isCompact ? "2.25rem" : "2.75rem")};
+  height: ${({ $isCompact }) => ($isCompact ? "2.25rem" : "2.75rem")};
+  margin-right: ${({ $isCompact }) => ($isCompact ? "0.125rem" : "0.25rem")};
   border: 0;
   border-radius: 50%;
   color: ${({ theme }) => theme.colors.white};
   background: transparent;
+  transition:
+    flex-basis 420ms cubic-bezier(0.32, 0.72, 0, 1),
+    width 420ms cubic-bezier(0.32, 0.72, 0, 1),
+    height 420ms cubic-bezier(0.32, 0.72, 0, 1),
+    margin-right 420ms cubic-bezier(0.32, 0.72, 0, 1),
+    background 180ms ease,
+    transform 180ms ease;
+
+  &:active {
+    background: rgba(247, 251, 255, 0.12);
+    transform: scale(0.94);
+  }
 
   svg {
-    width: 1.35rem;
-    height: 1.35rem;
+    width: ${({ $isCompact }) => ($isCompact ? "1.05rem" : "1.35rem")};
+    height: ${({ $isCompact }) => ($isCompact ? "1.05rem" : "1.35rem")};
+    transition: width 220ms ease, height 220ms ease;
   }
 `;
 
