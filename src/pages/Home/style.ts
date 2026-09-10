@@ -1,7 +1,7 @@
 import styled from "styled-components";
 
 export const Layout = styled.div`
-  min-height: 100vh;
+  min-height: 100dvh;
   background:
     radial-gradient(circle at 18% 0%, rgba(19, 90, 126, 0.14), transparent 30rem),
     ${({ theme }) => theme.colors["blue-900"]};
@@ -30,6 +30,11 @@ export const Header = styled.header`
 
   @media (max-width: 900px) {
     grid-template-columns: auto minmax(0, 1fr);
+  }
+
+  @media (max-width: 640px) {
+    margin-inline: -1rem;
+    padding-inline: 1rem;
   }
 
   @media (max-width: 520px) {
@@ -93,7 +98,7 @@ export const PlaylistButton = styled.button<{ $isActive: boolean }>`
   padding: 0 0.8rem;
   border: 1px solid
     ${({ theme, $isActive }) =>
-      $isActive ? theme.colors["blue-500"] : theme.colors["blue-700"]};
+    $isActive ? theme.colors["blue-500"] : theme.colors["blue-700"]};
   border-radius: 0.8rem;
   color: ${({ theme, $isActive }) =>
     $isActive ? theme.colors["cyan-400"] : theme.colors["gray-300"]};
