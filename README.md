@@ -1,63 +1,49 @@
-<div align='center'>
-    <h1 align='center'>React music</h1>
-    <br />
-
-  <p>This project was created with React, typescript, styled-components and Deezer API</p>
-
-[![Status - Done](https://img.shields.io/badge/Status-Done-green?style=for-the-badge)](/docs/ "Go to project documentation")
-
+<div align="center">
+  <h1>React Music</h1>
+  <p>A web application for searching for music, listening to previews, and creating a favorites playlist.</p>
 </div>
 
-<div align='center'>
+<img src="./github/react-music.png" alt="React Music home page with the player, queue, and featured tracks" width="100%" />
 
-[![React - 18.2.0](https://img.shields.io/static/v1?label=React&message=18.2.0&color=%2335F8B1)](https://)
-[![Typescript - 5.0.4](https://img.shields.io/static/v1?label=Typescript&message=5.0.4&color=%2335F8B1)](https://)
-[![Styled-components - 5.3.9](https://img.shields.io/static/v1?label=Styled-components&message=5.3.9&color=%2335F8B1)](https://)
+## About
 
-<br />
-</div>
+React Music is a music player that uses the Deezer catalog. It allows users to browse popular tracks, search for tracks, artists, and albums, and listen to available previews.
 
-<div align='center'>
-  <p>If you want to see the website, 
-    <a href='https://react-music-xi.vercel.app/' target='_blank'>click here</a>
-  </p>
-</div>
+## Features
 
-<img src='./github/readme_bg.png' alt='Homepage that shows some musics to play'/>
+- List of the most popular tracks worldwide.
+- Search by track, artist, or album.
+- Music previews provided by Deezer.
+- Playback, volume, repeat, and shuffle controls.
+- Queue showing the upcoming tracks.
+- Favorites playlist.
+- Responsive layout for desktop, tablet, and mobile devices.
 
-<br />
+## Technologies
 
-<img src='./github/gtmatrix_test.png' alt='gtmatrix test application'>
+- React
+- TypeScript
+- Styled Components
+- Deezer API
+- Zustand
 
-## Steps to updated oldest project (more than 2 years)
+## Run locally
 
-### Goals
+You need a Deezer API key from RapidAPI.
 
-- [x] Fix route migration v5 => v6
-- [x] Update all packages managers correctly
-- [x] Add typescript
-- [x] Create a simple design System UI in styled-components
-- [x] Add a playground test to refactor all components
-- [x] Insert react testing library and setup jest with typescript environment
-- [x] Add storybook
-- [x] Migrate state logic from react-redux to zustand
-- [x] Create Interfaces to type all data objects in site
-- [x] Add new UI features
+```bash
+npm install
+cp .env.example .env
+```
 
-<br />
+Add your key to `.env`:
 
-- Fix migration react router dom:
+```env
+VITE_RAPIDAPI_KEY=your_key
+```
 
-1. Add all packages @latest version
-2. Change react routers from v5 to v6
-3. Remove useHistory to use useNavigate
+Then start the application:
 
-- Update all packages correctly
-
-1. npm i -g npm-check-updates
-2. run the following command: ncu
-3. ncu -u change all packages to latest version
-
-- Add typescript
-
-1. Fix all default problems issues temporally changing the tsconfig.json file, noImplictyAny: false
+```bash
+npm run dev
+```
