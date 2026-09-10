@@ -13,7 +13,7 @@ export const GlobalStyle = createGlobalStyle`
 
   body {
     min-width: 320px;
-    min-height: 100vh;
+    min-height: 100dvh;
     color: ${({ theme }) => theme.colors.white};
     background: ${({ theme }) => theme.colors["blue-900"]};
     font-family: Inter, ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;

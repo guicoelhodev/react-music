@@ -75,9 +75,11 @@ export const NowPlaying = styled.div`
 
   @media (max-width: 720px) {
     display: flex;
+    min-height: 0;
     flex: 1;
     flex-direction: column;
     justify-content: space-between;
+    gap: 1rem;
   }
 `;
 
@@ -97,11 +99,16 @@ export const CoverWrap = styled.div`
   }
 
   @media (max-width: 720px) {
+    display: flex;
+    min-height: 0;
+    flex: 1;
     align-self: stretch;
     max-width: none;
+    overflow: hidden;
 
     img {
-      aspect-ratio: 4 / 5;
+      height: 100%;
+      aspect-ratio: auto;
     }
   }
 `;
@@ -124,6 +131,7 @@ export const PlayerInfo = styled.div`
   min-width: 0;
 
   @media (max-width: 720px) {
+    flex: 0 0 auto;
     width: 100%;
   }
 `;

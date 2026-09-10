@@ -1,7 +1,7 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import {
-  BsArrowsAngleExpand,
   BsChevronDown,
+  BsMusicNoteList,
   BsPauseFill,
   BsPlayFill,
 } from "react-icons/bs";
@@ -13,6 +13,17 @@ export const MobilePlayer = () => {
   const [isOpen, setIsOpen] = useState(false);
   const { currentMusic, currentTime, duration, isPlaying, handlePlayMusic } =
     usePlayerStore();
+
+  useEffect(() => {
+    if (!isOpen || !currentMusic) return;
+
+    const previousOverflow = document.body.style.overflow;
+    document.body.style.overflow = "hidden";
+
+    return () => {
+      document.body.style.overflow = previousOverflow;
+    };
+  }, [currentMusic, isOpen]);
 
   if (!currentMusic) return null;
 
@@ -43,9 +54,9 @@ export const MobilePlayer = () => {
         <S.IconButton
           type="button"
           onClick={() => setIsOpen(true)}
-          aria-label="Expand player"
+          aria-label="Open player menu"
         >
-          <BsArrowsAngleExpand />
+          <BsMusicNoteList />
         </S.IconButton>
       </S.MiniPlayer>
 

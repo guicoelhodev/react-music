@@ -9,7 +9,7 @@ export const MiniPlayer = styled.div`
   position: fixed;
   z-index: 52;
   right: 1rem;
-  bottom: 1rem;
+  bottom: calc(1rem + env(safe-area-inset-bottom));
   left: 1rem;
   display: flex;
   align-items: center;
@@ -109,7 +109,12 @@ export const Panel = styled.div<{ $isOpen: boolean }>`
   position: fixed;
   z-index: 54;
   inset: 0;
-  overflow-y: auto;
+  display: flex;
+  height: 100dvh;
+  max-height: 100dvh;
+  flex-direction: column;
+  overflow: hidden;
+  overscroll-behavior: none;
   background: ${({ theme }) => theme.colors["blue-900"]};
   opacity: ${({ $isOpen }) => ($isOpen ? 1 : 0)};
   visibility: ${({ $isOpen }) => ($isOpen ? "visible" : "hidden")};
@@ -119,16 +124,19 @@ export const Panel = styled.div<{ $isOpen: boolean }>`
 
   > section {
     display: flex;
+    min-height: 0;
+    flex: 1;
     flex-direction: column;
-    min-height: calc(100dvh - 4.5rem);
     border: 0;
     border-radius: 0;
     box-shadow: none;
 
     > div {
       display: flex;
+      min-height: 0;
       flex: 1;
       flex-direction: column;
+      padding-bottom: calc(1.25rem + env(safe-area-inset-bottom));
     }
   }
 `;
@@ -137,9 +145,10 @@ export const PanelHeader = styled.header`
   display: flex;
   align-items: center;
   justify-content: space-between;
+  width: 100%;
   max-width: 42rem;
   margin: 0 auto;
-  padding: 1rem;
+  padding: calc(1rem + env(safe-area-inset-top)) 1rem 1rem;
 
   span {
     color: ${({ theme }) => theme.colors["gray-300"]};
